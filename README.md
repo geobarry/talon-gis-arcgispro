@@ -8,10 +8,10 @@ Talon GIS: ArcGIS Pro voice commands
 2. Install git:
     https://git-scm.com/install/
 
-3. Download MouseFree repository
+3. Download MouseFree repository to your talon user folder
     - Launch git CMD
     - At the prompt, enter: 	
-	    `cd "appdata\talon\user"`
+	    `cd %appdata%\talon\user`
     or say:				
 	    `'go talon user'`
     - At the prompt, enter:		
