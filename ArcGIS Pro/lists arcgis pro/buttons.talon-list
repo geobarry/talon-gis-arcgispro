@@ -1,0 +1,11 @@
+list: user.arc_button
+-
+okay: ok
+cancel
+apply
+edit				
+run
+Back:back|return
+export
+Save
+burger:c=Button_Burger

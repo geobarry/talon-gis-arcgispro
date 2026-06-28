@@ -1,0 +1,71 @@
+list: user.arc_layer_context_item
+-
+View Metadata: View Metadata
+Sharing: Sharing
+Data: Data
+Configure Popups: Configure Pop-ups
+Enable Popups: Enable Pop-ups
+Symbology: Symbology
+Convert Labels: Convert Labels
+Labeling Properties: Labeling Properties...
+Label: Label
+Selection: Selection
+Zoom To Layer: Zoom To Layer
+Zoom: Zoom To Layer
+Joins and Relates: Joins and Relates
+New Report: New Report
+Create Chart: Create Chart
+Data Design: Data Design
+Data Engineering: Data Engineering
+Attribute Table: Attribute Table
+Group: Group
+Remove: Remove
+Copy: Copy
+Properties: Properties
+Edit Metadata: Edit Metadata
+Set Data Source: Data,Set Data Source
+Split Address Review: Data,Split Address Review
+Rematch Addresses: Data,Rematch Addresses
+Export Table: Data,Export Table
+Export Features: Data,Export Features
+Share As Layer Package: Sharing,Share As Layer Package
+Share As Web Layer: Sharing,Share As Web Layer
+Overwrite Web Layer: Sharing,Overwrite Web Layer
+Save As Offline Service Definition: Sharing,Save As Offline Service Definition
+Save As Layer File: Sharing,Save As Layer File
+Convert Labels To Graphics: Convert Labels,Convert Labels To Graphics...
+Convert Labels To Annotation: Convert Labels:Convert Labels To Annotation...
+Overwrite Web Layer: Convert Labels,Overwrite Web Layer
+Save As Offline Service Definition: Convert Labels,Save As Offline Service Definition
+Save As Layer File: Convert Labels,Save As Layer File
+Pan To Selection: Selection,Pan To Selection
+Clear Selection: Selection,Clear Selection
+Switch Selection: Selection,Switch Selection
+Select All: Selection,Select All
+Select Visible Features: Selection,Select Visible Features
+Make Layer From Selected Features: Selection,Make Layer From Selected Features
+Make this the only selectable layer: Selection,Make this the only selectable layer
+Attribute Table Showing Selection: Selection,Attribute Table Showing Selection
+Zoom To Selection: Selection,Zoom To Selection
+Add Spatial Join: Joins and Relates,Add Spatial Join
+Add Relate: Joins and Relates,Add Relate
+Add Join: Joins and Relates,Add Join
+Spatial Join: Joins and Relates,Add Spatial Join
+Relate: Joins and Relates,Add Relate
+Join: Joins and Relates,Add Join
+Remove Join: Joins and Relates,Remove Join
+Remove All Joins: Joins and Relates,Remove All Joins
+Remove Relate: Joins and Relates,Remove Relate
+Remove All Relates: Joins and Relates,Remove All Relates
+Pie Chart: Create Chart,Pie Chart
+Line Chart: Create Chart,Line Chart
+Histogram: Create Chart,Histogram
+Box Plot: Create Chart,Box Plot
+Scatter Plot: Create Chart,Scatter Plot
+Scatter Plot Matrix: Create Chart,Scatter Plot Matrix
+Matrix Heat Chart: Create Chart,Matrix Heat Chart
+Calendar Heat Chart: Create Chart,Calendar Heat Chart
+Data Clock: Create Chart,Data Clock
+QQ Plot: Create Chart,QQ Plot
+Bar Chart: Create Chart,Bar Chart
+Fields: Data Design,Fields

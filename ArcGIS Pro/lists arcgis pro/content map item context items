@@ -1,0 +1,19 @@
+list: user.arc_contents_map_context_item
+-
+# names for items in context menu when you right click map in them Table of Contents
+Properties
+Save As Offline Service Definition
+Save As Map File
+Reorder Layers
+Update Data Sources
+Edit Metadata
+View Metadata
+Import Thumbnail
+Create Thumbnail
+Convert Labels
+Labeling
+Zoom To Reference Scale
+Clear Reference Scale
+Set Reference Scale
+New Group Layer
+Add Data

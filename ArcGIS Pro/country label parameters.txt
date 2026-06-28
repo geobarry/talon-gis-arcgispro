@@ -1,0 +1,7 @@
+fitting strategy maximum overrun 0%
+position may place label outside polygon boundary
+label symbol callouts use leader lines
+position external zones
+position offset
+
+label class conflict resolution buffer

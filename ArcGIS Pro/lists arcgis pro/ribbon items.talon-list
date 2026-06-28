@@ -1,0 +1,531 @@
+list: user.arc_ribbon_item
+-
+Map Paste: Map,Clipboard,Paste
+Map Cut: Map,Clipboard,Cut
+Map Copy: Map,Clipboard,Copy
+Map Copy Path: Map,Clipboard,Copy Path
+Map Explore: Map,Navigate,Explore
+Map Zoom Full Extent: Map,Navigate,,Zoom Full Extent
+Map Zoom To: Map,Navigate,,Zoom To
+Map Fixed Zoom In: Map,Navigate,,Fixed Zoom In
+Map Fixed Zoom Out: Map,Navigate,,Fixed Zoom Out
+Map Zoom Previous: Map,Navigate,,Previous Extent
+Map Previous Extent: Map,Navigate,,Previous Extent
+Map Zoom Next: Map,Navigate,,Next Extent
+Map Next Extent: Map,Navigate,,Next Extent
+Map Bookmarks: Map,Navigate,Bookmarks
+Map Go To XY: Map,Navigate,Go To XY
+Map Basemap: Map,Layer,Basemap
+Map Add Data: Map,Layer,Add Data
+Map Add Data From Path: Map,Layer,Add Data From Path
+Map XY Table To Point: Map,Layer,XY Table To Point
+Map Add Graphics Layer: Map,Layer,Add Graphics Layer
+Map Select: Map,Selection,Select
+Map Select By Attributes: Map,Selection,Select By Attributes
+Map Select By Location: Map,Selection,Select By Location
+Map Attributes: Map,Selection,Attributes
+Map Clear: Map,Selection,Clear
+Map Zoom To: Map,Selection,Zoom To
+Map Measure: Map,Inquiry,Measure
+Map Locate: Map,Inquiry,Locate
+Map Infographics: Map,Inquiry,Infographics
+Map Coordinate Conversion: Map,Inquiry,Coordinate Conversion
+Map Pause: Map,Labeling,,Pause
+Map Lock: Map,Labeling,,Lock
+Map View Unplaced: Map,Labeling,,View Unplaced
+Map More: Map,Labeling,,More
+Map Convert: Map,Labeling,Convert
+Map Offline: Map,Offline,Offline
+
+Layout Paste: Layout,Clipboard,Paste
+Layout Cut: Layout,Clipboard,Cut
+Layout Copy: Layout,Clipboard,Copy
+Layout Navigate: Layout,Navigate,Navigate
+Layout Zoom to Page: Layout,Navigate,Zoom to Page
+Layout Zoom To Selected: Layout,Navigate,Zoom To Selected
+Layout Previous Extent: Layout,Navigate,Previous Extent
+Layout Page Width: Layout,Navigate,Page Width
+Layout Zoom To Width: Layout,Navigate,Page Width
+Layout Zoom One Hundred: Layout,Navigate,Zoom 100%
+Layout Next Extent: Layout,Navigate,Next Extent
+Layout Select: Layout,Elements,Select
+Layout Select All: Layout,Elements,Select All
+Layout Clear Selection: Layout,Elements,Clear Selection
+Layout Delete: Layout,Elements,Delete
+Layout Duplicate Layout: Layout,Page Setup,Duplicate Layout
+Layout Size: Layout,Page Setup,Size
+Layout Orientation: Layout,Page Setup,Orientation
+Layout Page from Printer: Layout,Page Setup,Page from Printer
+Layout Rulers: Layout,Show,Rulers
+Layout Guides: Layout,Show,Guides
+Layout Margins: Layout,Show,Margins
+Layout Activate: Layout,Map,Activate
+Layout Zoom Full Extent: Layout,Map,,Zoom Full Extent
+Layout Zoom To: Layout,Map,,Zoom To
+Layout Zoom In: Layout,Map,,Fixed Zoom In
+Layout Zoom Out: Layout,Map,,Fixed Zoom Out
+Layout Previous Extent: Layout,Map,,Previous Extent
+Layout Next Extent: Layout,Map,,Next Extent
+Layout Zoom To Map View: Layout,Map,Zoom To Map View
+Layout Bookmarks: Layout,Map,Bookmarks
+Layout Check Spelling: Layout,Review,Check Spelling
+
+Layout Close Activation: Layout,Map,Close Activation
+
+Insert New Map: Insert,Project,New Map
+Insert New Layout: Insert,Project,New Layout
+Insert New Report: Insert,Project,New Report
+Insert New Presentation: Insert,Project,New Presentation
+Insert New Notebook: Insert,Project,New Notebook
+Insert Toolbox: Insert,Project,Toolbox
+Insert Import Map: Insert,Project,Import Map
+Insert Import Layout: Insert,Project,Import Layout
+Insert Task: Insert,Project,Task
+Insert Connections: Insert,Project,Connections
+Insert Add Folder: Insert,Project,Add Folder
+Insert New Investigation: Insert,Knowledge Graph,New Investigation
+Insert Layer Templates: Insert,Layer Templates,Layer Templates
+Insert Link Analysis: Insert,Link Analysis,Link Analysis
+Insert Measurements: Insert,Measurements,Measurements
+Insert Styles: Insert,Styles,Styles
+Insert Favorites: Insert,Favorites,Favorites
+
+Insert Map Surrounds: Insert,Map Surrounds,Map Surrounds
+#Insert Graphics and Text: Insert,Graphics and Text,Graphics and Text
+#Insert Graphics and Text: Insert,Graphics and Text,More
+Insert Graphics and Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout
+Insert Rectangle Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout,c=BarMenuGallery,p=group.*Text.*,n=Rectangle Text
+Insert Straight Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout,c=BarMenuGallery,p=group.*Text.*,n=Straight Text
+Insert Measurements: Insert,Measurements,Measurements
+Insert Styles: Insert,Styles,Styles
+Insert Favorites: Insert,Favorites,Favorites
+
+Insert New Map: Insert,Project,New Map
+Insert New Layout: Insert,Project,New Layout
+Insert New Report: Insert,Project,New Report
+Insert New Presentation: Insert,Project,New Presentation
+Insert New Notebook: Insert,Project,New Notebook
+Insert Toolbox: Insert,Project,Toolbox
+Insert Import Map: Insert,Project,Import Map
+Insert Import Layout: Insert,Project,Import Layout
+Insert Task: Insert,Project,Task
+Insert Connections: Insert,Project,Connections
+Insert Add Folder: Insert,Project,Add Folder
+Insert New Investigation: Insert,Knowledge Graph,New Investigation
+Insert Map Frame: Insert,Map Frames,Map Frame
+Insert Rectangle: Insert,Map Frames,Rectangle
+Insert Extent Indicator: Insert,Map Frames,Extent Indicator
+Insert Grid: Insert,Map Frames,Grid
+Insert Map Series: Insert,Map Frames,Map Series
+Insert Refresh Map Series: Insert,Map Frames,Refresh Map Series
+Insert North Arrow: Insert,Map Surrounds,North Arrow
+Insert Scale Bar: Insert,Map Surrounds,Scale Bar
+Insert Legend: Insert,Map Surrounds,Legend
+Insert Chart Frame: Insert,Map Surrounds,Chart Frame
+Insert Table Frame: Insert,Map Surrounds,Table Frame
+Insert Additional Surrounds: Insert,Map Surrounds,Additional Surrounds
+Insert Dynamic Text: Insert,Graphics and Text,Dynamic Text
+Insert Picture: Insert,Graphics and Text,Picture
+Insert Distance and Direction: Insert,Measurements,Distance and Direction
+Insert Add: Insert,Styles,Add
+Insert New: Insert,Styles,New
+Insert Import: Insert,Styles,Import
+Insert Add Item: Insert,Favorites,Add Item
+
+Analysis History: Analysis,Geoprocessing,History
+Analysis ModelBuilder: Analysis,Geoprocessing,ModelBuilder
+Analysis Python: Analysis,Geoprocessing,Python
+Analysis Environments: Analysis,Geoprocessing,Environments
+Analysis Ready To Use Tools: Analysis,Geoprocessing,Ready To Use Tools
+Analysis Tools: Analysis,Geoprocessing,Tools
+Analysis Analysis Gallery: Analysis,Tools,Analysis Gallery,Analysis Gallery
+Analysis Feature Analysis: Analysis,Portal,Feature Analysis
+Analysis Raster Analysis: Analysis,Portal,Raster Analysis
+Analysis Data Engineering: Analysis,Workflows,Data Engineering
+Analysis Suitability Modeler: Analysis,Workflows,Suitability Modeler
+Analysis Visibility Analysis: Analysis,Workflows,Visibility Analysis
+Analysis Exploratory three D Analysis: Analysis,Workflows,Exploratory 3D Analysis
+Analysis Simulation: Analysis,Workflows,Simulation
+Analysis Network Analysis: Analysis,Workflows,Network Analysis
+Analysis Neighborhood Explorer: Analysis,Workflows,Neighborhood Explorer
+Analysis Geostatistical Wizard: Analysis,Workflows,Geostatistical Wizard
+Analysis Business Analysis: Analysis,Workflows,Business Analysis
+Analysis Data Interop: Analysis,Workflows,Data Interop
+Analysis Raster: Analysis,Raster,Raster
+
+View Global: View,View,Global
+View Local: View,View,Local
+View Map: View,View,Map
+View Convert: View,View,Convert
+View Link Views: View,Link,Link Views
+View Link Cursors: View,Link,Link Cursors
+View Reset Panes: View,Windows,Reset Panes
+View Catalog Pane: View,Windows,Catalog Pane
+View Catalog View: View,Windows,Catalog View
+View Contents: View,Windows,Contents
+View Geoprocessing: View,Windows,Geoprocessing
+View Python Window: View,Windows,Python Window
+View Tasks: View,Windows,Tasks
+View Workflow Manager: View,Windows,Workflow Manager
+View Aviation: View,Windows,Aviation
+View Indoors: View,Windows,Indoors
+View Create: View,Thumbnail,Create
+View Import: View,Thumbnail,Import
+View Add: View,Animation,Add
+View Remove: View,Animation,Remove
+View Enable Location: View,Device Location,Enable Location
+View Illumination: View,Effects,Illumination
+View Weather: View,Effects,Weather
+View Visual: View,Effects,Visual
+View Camera: View,Effects,Camera
+View Postprocessing: View,Effects,Postprocessing
+View Depth Priority: View,Scene,Depth Priority
+View Drawing Mode: View,Scene,Drawing Mode
+View Mode : View,View Clipping,Mode 
+View Navigator: View,Navigation,Navigator
+View Camera: View,Navigation,Camera
+View Magnifier: View,Navigation,Magnifier
+
+Edit Paste: Edit,Clipboard,Paste
+Edit Cut: Edit,Clipboard,Cut
+Edit Copy: Edit,Clipboard,Copy
+Edit Copy Path: Edit,Clipboard,Copy Path
+Edit Save: Edit,Manage Edits,Save
+Edit Discard: Edit,Manage Edits,Discard
+Edit Error Inspector: Edit,Manage Edits,Error Inspector
+Edit Manage Templates: Edit,Manage Edits,Manage Templates
+Edit Status: Edit,Manage Edits,Status
+Edit Settings: Edit,Manage Edits,Settings
+Edit Snapping: Edit,Snapping,Snapping
+Edit Create: Edit,Features,Create
+Edit Modify: Edit,Features,Modify
+Edit Delete: Edit,Features,Delete
+Edit Select: Edit,Selection,Select
+Edit Attributes: Edit,Selection,Attributes
+Edit Clear: Edit,Selection,Clear
+Edit Zoom To: Edit,Selection,Zoom To
+Edit Editor tool gallery: Edit,Tools,Editor tool gallery,Editor tool gallery
+Edit Mode: Edit,Elevation,Mode
+Edit Linear Unit: Feet: Edit,Elevation,Map surfaces,,,Linear Unit: Feet
+Edit Ground To Grid: Edit,Corrections,Ground To Grid
+Edit Manage Quality: Edit,Data Reviewer,Manage Quality
+
+Imagery New Workspace: Imagery,Ortho Mapping,New Workspace
+Imagery Georeference: Imagery,Alignment,Georeference
+Imagery Raster Functions: Imagery,Analysis,Raster Functions
+Imagery Function Editor: Imagery,Analysis,Function Editor
+Imagery Change Detection: Imagery,Analysis,Change Detection
+Imagery Classification Wizard: Imagery,Image Classification,Classification Wizard
+Imagery Classification Tools: Imagery,Image Classification,Classification Tools
+Imagery Deep Learning Tools: Imagery,Image Classification,Deep Learning Tools
+Imagery Mensuration Tools: Imagery,Mensuration,Mensuration Tools,Mensuration Tools
+Imagery Results: Imagery,Mensuration,Results
+Imagery Tools: Imagery,Tools,Tools
+Imagery Share: Imagery,Share,Share
+Imagery Motion Imagery: Imagery,Motion Imagery,Motion Imagery
+
+
+Share Save As: Share,Save As,Save As
+Share Output: Share,Output,Output
+
+Share Project: Share,Package,Project
+Share Map: Share,Package,Map
+Share Mobile Map: Share,Package,Mobile Map
+Share Layer: Share,Package,Layer
+Share Geoprocessing: Share,Package,Geoprocessing
+Share Deep Learning: Share,Package,Deep Learning
+Share Web Map: Share,Share As,Web Map
+Share Web Layer: Share,Share As,Web Layer
+Share Web Style: Share,Share As,Web Style
+Share Locator: Share,Share As,Locator
+Share Geodata Service: Share,Share As,Geodata Service
+Share Web Tool: Share,Share As,Web Tool
+Share Jobs: Share,Status,Jobs
+Share Save Web Map: Share,Manage,Save Web Map
+Share Replace Web Layer: Share,Manage,Replace Web Layer
+Share Data Stores: Share,Manage,Data Stores
+Share Upload File: Share,Manage,Upload File
+Share Project Template: Share,Save As,Project Template
+Share Style Items: Share,Save As,Style Items
+Share Map File: Share,Save As,Map File
+Share Layer File: Share,Save As,Layer File
+Share Task Item: Share,Save As,Task Item
+Share Print Map: Share,Output,Print Map
+Share Export Map: Share,Output,Export Map
+Share Capture To Clipboard: Share,Output,Capture To Clipboard
+
+Help Ribbon: Help,Customize,Ribbon
+Help Quick Access Toolbar: Help,Customize,Quick Access Toolbar
+Help Shortcuts: Help,Customize,Shortcuts
+Help Help: Help,Help,Help
+Help Learning Resources: Help,Help,Learning Resources
+Help Diagnostic Monitor: Help,Performance,Diagnostic Monitor
+Help Esri Community: Help,Contact Us,Esri Community
+Help Technical Support: Help,Contact Us,Technical Support
+
+Map Frame Dynamic Text: Map Frame,Insert Graphics and Text,Dynamic Text
+Map Frame Picture: Map Frame,Insert Graphics and Text,Picture
+Map Frame Edit Vertices: Map Frame,Edit,Edit Vertices
+Map Frame Rotate Or Flip: Map Frame,Edit,Rotate Or Flip
+Map Frame Merge Shapes: Map Frame,Edit,Merge Shapes
+Map Frame Reshape: Map Frame,Edit,Reshape
+Map Frame Polygon Symbol: Map Frame,Symbol,Polygon Symbol,Polygon Symbol
+Map Frame Fill: Map Frame,Symbol,Fill,Fill
+Map Frame Selected Color: Map Frame,Symbol,Fill,,Selected Color
+Map Frame Stroke: Map Frame,Symbol,Stroke,Stroke
+Map Frame Selected Color: Map Frame,Symbol,Stroke,,Selected Color
+Map Frame Text: Map Frame,Text Symbol,Text,Text
+Map Frame Grow Font: Map Frame,Text Symbol,,Grow Font
+Map Frame Decrease Font Size: Map Frame,Text Symbol,,Decrease Font Size
+Map Frame Font Settings: Map Frame,Text Symbol,,Font Settings
+Map Frame Selected Color: Map Frame,Text Symbol,,Color,,Selected Color
+Map Frame Align: Map Frame,Arrange,Align
+Map Frame Distribute: Map Frame,Arrange,Distribute
+Map Frame Group: Map Frame,Arrange,Group
+Map Frame Order: Map Frame,Arrange,Order
+Map Frame Size and Position: Map Frame,Size & Position,Size & Position
+Map Frame X: Map Frame,Size & Position,Size & Position,a=X
+Map Frame Y: Map Frame,Size & Position,Size & Position,a=Y
+Map Frame Width: Map Frame,Size & Position,Size & Position,a=Width
+Map Frame Height: Map Frame,Size & Position,Size & Position,a=Height
+Map Frame Anchor Top Left: Map Frame,Size & Position,Size & Position,a=AnchorTopLeft
+Map Frame Anchor Top Middle: Map Frame,Size & Position,Size & Position,a=AnchorTopMid
+Map Frame Anchor Top Right: Map Frame,Size & Position,Size & Position,a=AnchorTopRight
+Map Frame Anchor Center Left: Map Frame,Size & Position,Size & Position,a=AnchorLeftMid
+Map Frame Anchor Center Middle: Map Frame,Size & Position,Size & Position,a=AnchorCenter
+Map Frame Anchor Center Right: Map Frame,Size & Position,Size & Position,a=AnchorRightMid
+Map Frame Anchor Bottom Left: Map Frame,Size & Position,Size & Position,a=BottomLeft
+Map Frame Anchor Bottom Middle: Map Frame,Size & Position,Size & Position,a=AnchorBottomMid
+Map Frame Anchor Bottom Right: Map Frame,Size & Position,Size & Position,a=AnchorBottomRight
+
+Text More: Text,Insert Graphics and Text,,More
+Text Dynamic Text: Text,Insert Graphics and Text,Dynamic Text
+Text Picture: Text,Insert Graphics and Text,Picture
+Text Edit Vertices: Text,Edit,Edit Vertices
+Text Rotate Or Flip: Text,Edit,Rotate Or Flip
+Text Merge Shapes: Text,Edit,Merge Shapes
+Text Reshape: Text,Edit,Reshape
+Text Hyperlink: Text,Edit,Hyperlink
+Text Polygon Symbol: Text,Symbol,Polygon Symbol,Polygon Symbol
+Text Fill: Text,Symbol,Fill,Fill
+Text Selected Color: Text,Symbol,Fill,,Selected Color
+Text Stroke: Text,Symbol,Stroke,Stroke
+Text Selected Color: Text,Symbol,Stroke,,Selected Color
+Text Text: Text,Text Symbol,Text,Text
+Text Font Size: Text,Text Symbol,,a=esri_layouts_textSymbolFontSizeComboBox
+Text Grow Font: Text,Text Symbol,,Grow Font
+Text Decrease Font Size: Text,Text Symbol,,Decrease Font Size
+Text Font Settings: Text,Text Symbol,,Font Settings
+Text Selected Color: Text,Text Symbol,,Color,,Selected Color
+Text Align Left: Text,Text Symbol,,a=Position_HorizontalAlignmentLeftButton
+Text Align Center: Text,Text Symbol,,a=Position_HorizontalAlignmentCenterButton
+Text Align Right: Text,Text Symbol,,a=Position_HorizontalAlignmentRightButton
+Text Align: Text,Arrange,Align
+Text Distribute: Text,Arrange,Distribute
+Text Group: Text,Arrange,Group
+Text Order: Text,Arrange,Order
+Text X: Text,Size & Position,Size & Position,a=X
+Text Y: Text,Size & Position,Size & Position,a=Y
+Text Width: Text,Size & Position,Size & Position,a=Width
+Text Height: Text,Size & Position,Size & Position,a=Height
+Text Anchor Top Left: Text,Size & Position,Size & Position,a=AnchorTopLeft
+Text Anchor Top Middle: Text,Size & Position,Size & Position,a=AnchorTopMid
+Text Anchor Top Right: Text,Size & Position,Size & Position,a=AnchorTopRight
+Text Anchor Center Left: Text,Size & Position,Size & Position,a=AnchorLeftMid
+Text Anchor Center Middle: Text,Size & Position,Size & Position,a=AnchorCenter
+Text Anchor Center Right: Text,Size & Position,Size & Position,a=AnchorRightMid
+Text Anchor Bottom Left: Text,Size & Position,Size & Position,a=BottomLeft
+Text Anchor Bottom Middle: Text,Size & Position,Size & Position,a=AnchorBottomMid
+Text Anchor Bottom Right: Text,Size & Position,Size & Position,a=AnchorBottomRight
+
+Data Attribute Table: Data,Table,Attribute Table
+Data Table From Selection: Data,Table,Table From Selection
+Data All: Data,Selection,All
+Data Switch: Data,Selection,Switch
+Data Clear: Data,Selection,Clear
+Data Layer From Selection: Data,Selection,Layer From Selection
+Data Fields: Data,Data Design,Fields
+Data Subtypes: Data,Data Design,Subtypes
+Data Domains: Data,Data Design,Domains
+Data Attribute Rules: Data,Data Design,Attribute Rules
+Data Contingent Values: Data,Data Design,Contingent Values
+Data Add Archive: Data,Archiving,Add Archive
+Data Relationship: Data,Relationship,Relationship
+Data Export: Data,Export,Export
+Data Data Engineering: Data,Data Engineering,Data Engineering
+Data Visualize: Data,Visualize,Visualize
+Fields Paste: Fields,Clipboard,Paste
+Fields Cut: Fields,Clipboard,Cut
+Fields Copy: Fields,Clipboard,Copy
+Fields Subtypes: Fields,Data Design,Subtypes
+Fields Domains: Fields,Data Design,Domains
+Fields Attribute Rules: Fields,Data Design,Attribute Rules
+Fields Contingent Values: Fields,Data Design,Contingent Values
+Fields Save: Fields,Manage Edits,Save
+Fields Discard: Fields,Manage Edits,Discard
+Fields Refresh: Fields,Manage Edits,Refresh
+Fields New: Fields,Edits,New
+Fields Delete: Fields,Edits,Delete
+Fields Filter Name:: Fields,Filter,Filter Name:
+Fields Filter Domain:: Fields,Filter,Filter Domain:
+Fields Sort Ascending: Fields,Field Order,Sort Ascending
+Fields Sort Descending: Fields,Field Order,Sort Descending
+Fields Reset: Fields,Field Order,Reset
+Fields Data Engineering: Fields,Data Engineering,Data Engineering
+Table Paste: Table,Clipboard,Paste
+Table Cut: Table,Clipboard,Cut
+Table Copy: Table,Clipboard,Copy
+Table Copy Path: Table,Clipboard,Copy Path
+Table Zoom To: Table,Row,Zoom To
+Table Pan To: Table,Row,Pan To
+Table Flash: Table,Row,Flash
+Table Add: Table,Field,Add
+Table Delete: Table,Field,Delete
+Table Sort: Table,Field,Sort
+Table Fields: Table,Field,Fields
+Table Aliases: Table,Field,Aliases
+Table Select By Attributes: Table,Selection,Select By Attributes
+Table All: Table,Selection,All
+Table Switch: Table,Selection,Switch
+Table Clear: Table,Selection,Clear
+Table Zoom To: Table,Selection,Zoom To
+Table Pan To: Table,Selection,Pan To
+Table Delete: Table,Selection,Delete
+Table Calculate Field: Table,Tools,Calculate Field
+Table Calculate Geometry: Table,Tools,Calculate Geometry
+Table Summarize: Table,Tools,Summarize
+Table Joins: Table,Relationship,Joins
+Table Relates: Table,Relationship,Relates
+Table Related Data: Table,Relationship,Related Data
+Table Time: Table,Filter,Time
+Table Range: Table,Filter,Range
+Table Extent: Table,Filter,Extent
+Table Export Features: Table,Export,Export Features
+Table Export Table: Table,Export,Export Table
+Table Print: Table,Output,Print
+Table Table Appearance: Table,Appearance,Table Appearance
+
+Raster Layer Scale Range: Raster Layer,Visibility Range,Scale Range
+Raster Layer Maximum Scale: Raster Layer,Visibility Range,Maximum Scale,Maximum Scale
+Raster Layer Minimum Scale: Raster Layer,Visibility Range,Minimum Scale,Minimum Scale
+Raster Layer Layer Blend: Raster Layer,Effects,,Layer Blend
+Raster Layer Layer Blend: Raster Layer,Effects,,Layer Blend
+Raster Layer Feature Blend: Raster Layer,Effects,,Feature Blend
+Raster Layer Feature Blend: Raster Layer,Effects,,Feature Blend
+Raster Layer Swipe: Raster Layer,Compare,,Swipe
+Raster Layer Flicker: Raster Layer,Compare,,Flicker
+Raster Layer Symbology: Raster Layer,Rendering,Symbology
+Raster Layer Stretch Type: Raster Layer,Rendering,Stretch Type
+Raster Layer Resampling Type: Raster Layer,Rendering,Resampling Type
+Raster Layer Band Combination: Raster Layer,Rendering,Band Combination
+Raster Layer Masking: Raster Layer,Rendering,Masking
+Raster Layer Rotation Type: Raster Layer,Rotation,Rotation Type
+
+Legend Dynamic Text: Legend,Insert Graphics and Text,Dynamic Text
+Legend Picture: Legend,Insert Graphics and Text,Picture
+Legend Edit Vertices: Legend,Edit,Edit Vertices
+Legend Rotate Or Flip: Legend,Edit,Rotate Or Flip
+Legend Merge Shapes: Legend,Edit,Merge Shapes
+Legend Reshape: Legend,Edit,Reshape
+Legend Legend Gallery: Legend,Legend,Legend Gallery
+Legend Text: Legend,Text Symbol,Text,Text
+Legend Grow Font: Legend,Text Symbol,,Grow Font
+Legend Decrease Font Size: Legend,Text Symbol,,Decrease Font Size
+Legend Font Settings: Legend,Text Symbol,,Font Settings
+Legend Selected Color: Legend,Text Symbol,,Color,,Selected Color
+Legend Align: Legend,Arrange,Align
+Legend Distribute: Legend,Arrange,Distribute
+Legend Group: Legend,Arrange,Group
+Legend Order: Legend,Arrange,Order
+Legend X: Legend,Size & Position,Size & Position,a=x
+Legend Y: Legend,Size & Position,Size & Position,a=x
+Legend Width: Legend,Size & Position,Size & Position,a=Width
+Legend Height: Legend,Size & Position,Size & Position,a=Height
+
+Feature Layer Scale Range: Feature Layer,Visibility Range,Scale Range
+Feature Layer Maximum Scale: Feature Layer,Visibility Range,Maximum Scale,Maximum Scale
+Feature Layer Minimum Scale: Feature Layer,Visibility Range,Minimum Scale,Minimum Scale
+Feature Layer Transparency: Feature Layer,Effects,,Transparency
+Feature Layer Layer Blend: Feature Layer,Effects,,Layer Blend
+Feature Layer Feature Blend: Feature Layer,Effects,,Feature Blend
+Feature Layer Swipe: Feature Layer,Compare,,Swipe
+Feature Layer Flicker: Feature Layer,Compare,,Flicker
+Feature Layer Symbology: Feature Layer,Drawing,Symbology
+Feature Layer Masking: Feature Layer,Drawing,Masking
+Feature Layer Display Filters: Feature Layer,Drawing,Display Filters
+Feature Layer Import: Feature Layer,Drawing,Import
+Feature Layer Aggregation: Feature Layer,Drawing,Aggregation
+Feature Layer Type: Feature Layer,Extrusion,Type
+Feature Layer Field: Feature Layer,Extrusion,Layer Extrusion,Field
+Feature Layer Selected extrusion field: Feature Layer,Extrusion,Layer Extrusion,,Selected extrusion field
+Feature Layer Unit: Feature Layer,Extrusion,Layer Extrusion,Unit
+Feature Layer Face Culling: Feature Layer,Faces,Face Culling
+Feature Layer Lighting: Feature Layer,Faces,Lighting
+
+Raster Layer Scale Range: Raster Layer,Visibility Range,Scale Range
+Raster Layer Maximum Scale: Raster Layer,Visibility Range,Maximum Scale,Maximum Scale
+Raster Layer Minimum Scale: Raster Layer,Visibility Range,Minimum Scale,Minimum Scale
+Raster Layer Transparency: Raster Layer,Effects,,Transparency
+Raster Layer Layer Blend: Raster Layer,Effects,,Layer Blend
+Raster Layer Feature Blend: Raster Layer,Effects,,Feature Blend
+Raster Layer Swipe: Raster Layer,Compare,,Swipe
+Raster Layer Flicker: Raster Layer,Compare,,Flicker
+Raster Layer Symbology: Raster Layer,Rendering,Symbology
+Raster Layer Stretch Type: Raster Layer,Rendering,Stretch Type
+Raster Layer Resampling Type: Raster Layer,Rendering,Resampling Type
+Raster Layer Band Combination: Raster Layer,Rendering,Band Combination
+Raster Layer Masking: Raster Layer,Rendering,Masking
+Raster Layer Rotation Type: Raster Layer,Rotation,Rotation Type
+
+Animation Path: Animation,Display,Path
+Animation Edit Current Keyframe: Animation,Display,,Edit Current Keyframe
+Animation Edit Previous: Animation,Display,,Edit Previous
+Animation Edit Next: Animation,Display,,Edit Next
+Animation Bring Into View: Animation,Display,,Bring Into View
+Animation Import: Animation,Create,Import
+Animation Append: Animation,Create,Append
+Animation Update: Animation,Edit,,Update
+Animation Delete: Animation,Edit,,Delete
+Animation Delete All: Animation,Edit,,Delete All
+Animation EmbeddedTextBox: Animation,Edit,,,EmbeddedTextBox
+Animation Zoom To: Animation,Edit,,Zoom To
+Animation Properties: Animation,Edit,,Properties
+Animation Current:: Animation,Playback,,Current:
+Animation Duration:: Animation,Playback,,Duration:
+Animation Timeline: Animation,Playback,Timeline
+Animation Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Title
+Animation Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Paragraph
+Animation Image: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Image
+Animation Group: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Group
+Animation Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Title
+Animation Outline Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Outline Title
+Animation Shadow Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Shadow Title
+Animation Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Paragraph
+Animation Outline Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Outline Paragraph
+Animation Copyright: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Copyright
+Animation Image: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Image
+Animation Watermark: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Watermark
+Animation Full Screen: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Full Screen
+Animation Map Time: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Map Time
+Animation Map Range: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Map Range
+Animation Viewpoint: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Viewpoint
+Animation Voxel Filter: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Voxel Filter
+
+Animation Voxel Surface: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Voxel Surface
+
+Animation Point: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Point
+
+Animation Ellipse: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Ellipse
+
+Animation Rectangle: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Rectangle
+
+Animation Arrow: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Arrow
+
+Animation More: Animation,Overlay,Add Overlay,More
+Animation EmbeddedTextBox: Animation,Overlay,,,EmbeddedTextBox
+Animation Selected Color: Animation,Overlay,,,Selected Color
+Animation Movie: Animation,Export,Movie
+Animation Preview: Animation,Export,Preview
+Animation Lock View Size: Animation,Export,Lock View Size
+Animation Current Animation:: Animation,Manage,,Current Animation:
+Animation EmbeddedTextBox: Animation,Manage,,,EmbeddedTextBox

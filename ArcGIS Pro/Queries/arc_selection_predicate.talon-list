@@ -1,0 +1,26 @@
+list: user.arc_selection_predicate
+-
+is equal to
+is equal: is equal to
+equal to:is equal to
+equals:is equal to
+is not equal to
+is not equal:is not equal to
+not equal to:is not equal to
+not equal: is not equal to
+begins with
+does not begin with
+includes
+does not include
+contains
+does not contain
+is null
+is not null
+is less than
+less then
+is greater than
+greater then
+is less than or equal to
+less than a equal: is less than or equal
+is greater than or equal to
+greater than or equal: is greater than or equal

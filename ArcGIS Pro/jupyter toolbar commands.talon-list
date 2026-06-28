@@ -1,0 +1,13 @@
+list: user.jupyter_toolbar_command
+-
+save: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=save,c=jp-ToolbarButtonComponent;n=save,c=control icon-only
+Insert: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Insert a cell below .*,c=jp-ToolbarButtonComponent;n=Insert a cell below (B),c=control icon-only
+Cut: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Cut this cell .*,c=jp-ToolbarButtonComponent;n=Cut this cell .*,c=control icon-only
+Copy: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Copy this cell .*,c=jp-ToolbarButtonComponent;n=Copy this cell (C),c=control icon-only
+Paste: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Paste this cell from the clipboard .*,c=jp-ToolbarButtonComponent;n=Paste this cell from the clipboard .*,c=control icon-only
+Run cell: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Run this cell and advance .*,c=jp-ToolbarButtonComponent;n=Run this cell and advance .*,c=control icon-only
+Run all: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Run all cells,c=jp-ToolbarButtonComponent;n=Run all cells,c=control icon-only
+Undo: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Undo,c=jp-ToolbarButtonComponent;n=Undo,c=control icon-only
+Redo: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Redo,c=jp-ToolbarButtonComponent;n=Redo,c=control icon-only
+Cell type: c=lm-Widget jp-Notebook-toolbarCellType jp-Toolbar-item;n=Cell type
+Scrollbar: c=lm-Widget jp-CommandToolbarButton jp-Toolbar-item;n=Toggle virtual scrollbar (enabled with windowing mode: full),c=jp-ToolbarButtonComponent;n=Toggle virtual scrollbar (enabled with windowing mode: full),c=control icon-only

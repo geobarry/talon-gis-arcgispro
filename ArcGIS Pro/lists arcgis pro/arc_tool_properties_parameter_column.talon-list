@@ -1,0 +1,14 @@
+list: user.arc_tool_properties_parameter_column
+-
+Label:0
+Name:1
+Data Type:2
+Type:3
+Direction:4
+Description:5
+Category:6
+Filter:7
+Dependency:8
+Default:9
+Environment:10
+Symbology:11

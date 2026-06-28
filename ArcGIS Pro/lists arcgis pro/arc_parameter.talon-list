@@ -1,0 +1,21 @@
+list: user.arc_parameter
+-
+Input Table: n=Input Table.*,c=TextBox
+Browse Input Table: n=Input Table,c=Button
+Field Name: n=Field Name.*
+Field Type: n=Field Type.*,c=Textbox
+Fields: a=SelectedFieldListBox
+Helpers: a=ExpressionFunctionsListBox
+Editor: n=Editor View
+Clear: n=Clear
+Verify: n=Verify
+Import: n=Import
+Export: n=Export
+Input Features
+Output Feature Class
+Handling Topological Errors: n=Handling Topological Errors.*
+Keep collapsed points
+Input Raster
+Input: Input.*
+Input Training Sample File
+Output: Output.*

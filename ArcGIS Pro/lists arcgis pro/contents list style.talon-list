@@ -1,0 +1,9 @@
+list: user.arc_contents_list_style
+-
+Drawing Order:esri_mapping_DrawingOrderView
+Data Source:esri_mapping_DataSourceView
+Selection:esri_mapping_SelectionView
+Editing:esri_editing_EditingView
+Snapping:esri_mapping_SnappingView
+Labelling:esri_mapping_LabelingView
+Prospective Imagery:esri_mapping_ImageSpaceItemsView

@@ -1,0 +1,32 @@
+list: user.arc_primary_symbology_control
+-
+primary symbology:a=RendererColorizerPicker
+color scheme:a=RampComboBox
+invert:a=InvertedCheckBox
+edit values:a=UseCustomMinMaxCheckBox
+edit min max values:a=UseCustomMinMaxCheckBox
+value minimum:a=ValueMinTextbox
+value maximum:a=ValueMaxTextbox
+label minimum:a=LabelMinTextbox
+label maximum:a=LabelMaxTextbox
+stretch type:a=StretchTypeCombobox
+raster histogram:a=RasterHistogramButton
+Gamma:a=PART_TextBox
+splitter:a=.*_GridSplitter
+statistics tab:a=Stats_Tab
+statistics:a=StatsTypeCombobox
+
+field:n=Select.*field,c=ComboBox
+expression:a=ExpressionBuilderButton
+normalization:n=Selected normalization field,c=ComboBox
+method:n=Selected classification method,c=ComboBox
+classes:n=EmbeddedTextBox,c=TextBox,a=PART_EditableTextBox
+minimum size:n=Minimum symbol size,c=TextBox
+maximum size:n=Maximum symbol size,c=TextBox
+template:a=ClassBreaks_TemplateSymbolButton
+classes tab:n=Classes,c=TabItem
+more:n=Classes,c=TabItem;n=More
+histogram tab:n=Histogram,c=TabItem
+symbol:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=Format class break symbol,c=Button
+upper value:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=.*Column Display Index.*1
+label:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=.*Column Display Index.*2
