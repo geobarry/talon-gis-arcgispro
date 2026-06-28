@@ -17,6 +17,6 @@ Talon GIS: ArcGIS Pro voice commands
     - At the prompt, enter:		
         `git clone https:/github.com/geobarry/mousefree.git`
 
-4. Download talon-gis-arcgispro repository
+4. Download talon-gis-arcgispro repository to your talon user folder
     - Same steps as above but at the prompt enter:
         `git clone https://github.com/geobarry/talon-gis-arcgispro.git`
