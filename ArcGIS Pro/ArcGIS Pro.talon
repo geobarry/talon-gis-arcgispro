@@ -4,44 +4,6 @@ mode: command
 mode: user.zen
 -
 
-# PANELS
-show panels: key(ctrl:down tab)
-choose panel: key(ctrl:up)
-contents: user.arc_select_contents()
-panel [select] {user.arc_dynamic_panel}$: user.arc_select_panel(arc_dynamic_panel,true)
-catalog [select] {user.arc_catalog_group}: user.arc_select_catalog_group(arc_catalog_group)
-
-# TABS (MAPS,LAYOUTS,TABLES)
-# A tab is within a group, i.e. [maps,layouts,tables] or [catalog, ...]
-(tab|panel) close: key("ctrl-f4")
-(tab|panel) next: key("ctrl-f6")
-(tab|panel) previous: key("ctrl-shift-f6")
-
-# BUTTONS
-{user.arc_button} button: user.arc_tab_to_button(arc_button,true)
-
-# CONTENTS PANEL
-list by Drawing Order: user.arc_contents_list_by('esri_mapping_DrawingOrderView')
-list by Data Source: user.arc_contents_list_by('esri_mapping_DataSourceView')
-list by Selection: user.arc_contents_list_by('esri_mapping_SelectionView')
-list by Editing: user.arc_contents_list_by('esri_editing_EditingView')
-list by Snapping: user.arc_contents_list_by('esri_mapping_SnappingView')
-list by Labelling: user.arc_contents_list_by('esri_mapping_LabelingView')
-list by Prospective Imagery: user.arc_contents_list_by('esri_mapping_ImageSpaceItemsView')
-
-
-
-# CONTENTS PANEL LAYERS
-layer select {user.arc_dynamic_layer}: user.arc_select_layer(arc_dynamic_layer,false)
-layer copy {user.arc_dynamic_layer}: user.arc_copy_layer(arc_dynamic_layer,false)
-layer expand {user.arc_dynamic_layer}: user.arc_expand_collapse_layer(arc_dynamic_layer,"expand")
-layer collapse {user.arc_dynamic_layer}: user.arc_expand_collapse_layer(arc_dynamic_layer,"collapse")
-layer {user.arc_layer_context_item}: user.arc_context_item(arc_layer_context_item)
-layer up: user.arc_drag_list_item("up")
-layer down: user.arc_drag_list_item("down")
-map properties: user.arc_context_item("Properties")
-map projection: user.arc_map_coordinate_system()
-^go to map$: user.arc_select_map_in_contents()
 
 # RIBBON
 ^menu {user.arc_ribbon_heading}$: user.arc_open_ribbon(arc_ribbon_heading)
