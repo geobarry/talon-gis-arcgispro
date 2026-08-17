@@ -1,11 +1,13 @@
 os: windows
-app.exe: arcgispro.exe
+#app.exe: arcgispro.exe
 mode: command
 mode: user.zen
 -
-arc help: user.arc_help_module("arc help")
-arc help navigation: user.arc_help_module("navigation")
-arc help menu$: user.help_list("user.arc_ribbon_heading")
-arc help {user.arc_ribbon_heading} menu: user.help_list("user.arc_ribbon_item",false,true,"{arc_ribbon_heading}")
-arc help contents: user.arc_help_module("contents")
-arc help symbology: user.arc_help_module("Symbology.symbology")
+# COMMAND MODULES
+arc help$: user.arc_help_module("arc help")
+arc help command modules$: user.help_list("user.arc_command_modules",false,true)
+arc help menu headings$: user.help_list("user.arc_menu_heading")
+arc help lists$: user.help_list("user.arc_list",false,true)
+arc help search <user.text>$: user.arc_help_search(text)
+help close$: user.close_arc_help_search()
+

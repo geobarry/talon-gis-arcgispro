@@ -4,14 +4,14 @@ import re, time
 
 mod = Module()
 
-mod.list("arc_panel","panels that can be accessed with standard keyboard shortcut")
-mod.list("arc_button","buttons that can be accessed with standard keyboard shortcuts in ArcGIS Pro")
-mod.list("arc_catalog_group","groups of items in the catalog pane")
-mod.list("arc_layer_context_item","menu items available when right clicking on map layer")
+mod.list("arc_panel","Say 'arc select {arc_panel}' to navigate to panel")
+mod.list("arc_button","Say '{arc_button} button' to tab to the button and click it")
+mod.list("arc_catalog_group","Say 'catalog select {arc_catalog_group} to open group in Catalog panel'")
+mod.list("arc_layer_context_item","Say 'layer {{layer_name}} {arc_layer_context_item}' to right click on layer and select option in context menu")
 mod.list("arc_contents_map_context_item","automation_id's for items in context menu when you right click map in them Table of Contents")
-mod.list("arc_ribbon_heading","Main menu headings.")
-mod.list("arc_ribbon_item","Sequence of elements to access each item on the ribbon")
-mod.list("arc_contents_list_style","List style for contents panel")
+mod.list("arc_menu_heading","Main menu headings. Say 'menu {arc_menu_heading}' to open menu. Say 'arc help {arc_menu_heading} menu for list of menu' items.")
+mod.list("arc_menu_item","Say '{arc_menu_heading} arc_menu_item' to invoke control from main menu")
+mod.list("arc_contents_list_style","Say 'list by {arc_contents_list_style}' to change list style of Contents panel")
 
 mod.list("arc_field_name","the name of a field for definition queries and attribute selection")
 
@@ -62,7 +62,7 @@ def remove_underscores(prop_name: str, val: str):
         return val
 def expand_ribbon():
     """Returns true if ribbon needed to be expanded"""
-    root = actions.user.window_root()
+    root = actions.user.earthbound_root()
     prop_seq = [
         [("class_name","Ribbon")],
     ]
@@ -75,7 +75,7 @@ def expand_ribbon():
         return False
 def collapse_ribbon():
     print(f"FUNCTION collapse_ribbon")
-    root = actions.user.window_root()
+    root = actions.user.earthbound_root()
     prop_seq = [
         [("class_name","Ribbon")],
     ]
@@ -131,7 +131,8 @@ def get_layers():
                 elapsed=finish_time - start_time
                 print(f'get_leaves completion time: {elapsed}')
                 return leaves
-def get_panels(trg_type = 'tool'):
+def get_panels_or_tabs(trg_type = 'tool'):
+    """Returns elements of class ProDocumentWindow or ProToolWindow, or .*TabItem containing them"""
     with actions.user.tracking_paused():
         start_time=time.perf_counter()
         # it looks like we can assume that hidden windows all come after visible windows
@@ -159,13 +160,15 @@ def get_panels(trg_type = 'tool'):
         panel_list=[]
         for container in container_list:
             # Content panel has ProToolWindow directly under ToolWindowContainer, other tool panels have intermediate TabItem
-            tab_list=actions.user.matching_children(container,[("class_name","(ProToolWindow|.*TabItem)")])
+            if trg_type == 'tool':
+                prop_list=[("class_name","ProToolWindow")]
+                panel_list += actions.user.matching_children(container,prop_list)
+                prop_list=[("class_name",".*TabItem")]
+                panel_list += actions.user.matching_children(container,prop_list)
             # Maps, tables and layouts have a child with predictable automation id
-            if trg_type != 'tool':
-                tab_list_new = []
+            else:
                 prop_list=[("automation_id",f".*{trg_type}Pane.*")]
-                tab_list=[tab for tab in tab_list if actions.user.element_match(tab,prop_list)]
-            panel_list += tab_list
+                panel_list += actions.user.matching_children(container,prop_list)
         return panel_list
 
 global layer_dict                
@@ -183,18 +186,18 @@ def arc_dynamic_layer(_) -> dict[str,str]:
 @ctx.dynamic_list("user.arc_dynamic_panel")
 def arc_dynamic_panel(_) -> dict[str,str]:
     """currently open tool panels"""
-    name_list = get_panels('tool')
+    name_list = get_panels_or_tabs('tool')
     out = actions.user.text_to_spoken_forms(name_list)
     return out
 
-global panel_dict
+global panel_or_tab_dict
 def get_panel_spoken_forms(panel_type: str):
     with actions.user.tracking_paused():
-        global panel_dict
-        panel_list=get_panels(panel_type)
-        if panel_list:
-            name_list = [(panel.name, panel) for panel in panel_list]
-            spoken_form_dict,panel_dict = actions.user.create_spoken_form_mappings(name_list)
+        global panel_or_tab_dict
+        panel_or_tab_list=get_panels_or_tabs(panel_type)
+        if panel_or_tab_list:
+            name_list = [(panel_or_tab.name, panel_or_tab) for panel_or_tab in panel_or_tab_list]
+            spoken_form_dict,panel_or_tab_dict = actions.user.create_spoken_form_mappings(name_list)
             return spoken_form_dict
             
 @ctx.dynamic_list("user.arc_dynamic_map")
@@ -271,39 +274,50 @@ def arc_coordinate(m) -> str:
     else:
         print("else...")
         return f"{easting},{northing}"
-
-def post_process_panel(el, panel_name: str = ''):
-    """performs post processing on the input panel for selection"""
-    def perform_post_processing(el):
-        if panel_name == "Catalog":
-            # set focus on selected item
-            prop_seq = [
-                [("class_name","ProjectDockPane")],
-                [("automation_id","MainTreeView")]
-            ]
-            el = actions.user.find_el_by_prop_seq(prop_seq,el,verbose = True)
-            if el:
-                pattern = el.selection_pattern
-                if pattern:
-                    sel_el = pattern.selection
-                    if sel_el:
-                        actions.user.act_on_element(sel_el[0],"select")
-    actions.user.act_on_element(el,"select")
+def get_panel_from_panel_or_tab(panel_or_tab):
+    """if input is a tab, selects tab so that panel is accessible and then returns the panel"""
+    actions.user.act_on_element(panel_or_tab,"select")
     prop_list = [("class_name",".*Window")]
-    child = actions.user.matching_child(el,prop_list)
+    child = actions.user.matching_child(panel_or_tab,prop_list)
     if child:
         actions.user.act_on_element(child,"invoke")
         actions.user.act_on_element(child,"select")
-        # take further action depending on panel
-        perform_post_processing(child)
         return child
     else:
-        # take further action depending on panel
-        print(f'el: {el}')
-        perform_post_processing(el)
+        print(f'panel_or_tab: {panel_or_tab}')
+        actions.user.act_on_element(panel_or_tab,'invoke')
+        actions.user.act_on_element(panel_or_tab,'select')
+        return panel_or_tab
+def post_process_panel(el, panel_name: str = ''):
+    """performs post processing on the input panel for selection"""
+    if panel_name == "Catalog":
+        # set focus on selected item
+        prop_seq = [
+            [("class_name","ProjectDockPane")],
+            [("automation_id","MainTreeView")]
+        ]
+        el = actions.user.find_el_by_prop_seq(prop_seq,el,verbose = True)
+        if el:
+            pattern = el.selection_pattern
+            if pattern:
+                sel_el = pattern.selection
+                if sel_el:
+                    actions.user.act_on_element(sel_el[0],"select")
+
 @mod.action_class
 class Actions:
-    def arc_ribbon_heading_element(heading: str):
+    def earthbound_root():
+        """returns the root window element that is not an airspace popup""" 
+        root=actions.user.window_root()
+        actions.user.copy_element_ancestors(root)
+        prop_list=[("automation_id","AirspacePopup")]
+        n=0
+        while n < 5 and actions.user.element_match(root,prop_list):
+            root=actions.user.el_prop_val(root,'parent')
+            n += 1
+        return root
+        
+    def arc_menu_heading_element(heading: str):
         """Obtain ribbon heading windows accessibility element"""
         # get parent element
         ensure_focus()
@@ -322,7 +336,7 @@ class Actions:
         el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
         return el
     def arc_open_ribbon(heading: str):
-        """Opens the menu; use talon list user.arc_ribbon_heading"""
+        """Opens the menu; use talon list user.arc_menu_heading"""
         # Try to ensure that the current focus is on the main application
         ensure_focus()
         # obtain the ribbon element
@@ -335,21 +349,21 @@ class Actions:
             # determine if the ribbon is showing or hidden
             state = el.expandcollapse_pattern.state
             # get ribbon heading element
-            el = actions.user.arc_ribbon_heading_element(heading)
+            el = actions.user.arc_menu_heading_element(heading)
             if state == "Collapsed" and heading != "Project":
                 actions.user.act_on_element(el,"click")
             actions.user.act_on_element(el,"select")
             if heading == "Project":
                 actions.key("enter")
             return el
-    def arc_ribbon_item(seq: str):
-        """Returns element on ribbon; use {user.arc_ribbon_item}"""
+    def arc_menu_item(seq: str):
+        """Returns element on ribbon; use {user.arc_menu_item}"""
         ensure_focus()
         print(f'seq: {seq}')
         # make sure ribbon is expanded
         need_to_collapse = expand_ribbon()
         seq = seq.split(",")
-        el = actions.user.arc_ribbon_heading_element(seq[0])
+        el = actions.user.arc_menu_heading_element(seq[0])
         elapsed_sec=0
         if el:
             actions.user.act_on_element(el,"select")
@@ -371,15 +385,15 @@ class Actions:
                         break
         print(f'elapsed_sec: {elapsed_sec}')
         return el,need_to_collapse
-    def arc_call_ribbon_item(seq: str):
+    def arc_call_menu_item(seq: str):
         """Performs default action on ribbon item"""
-        el,need_to_collapse = actions.user.arc_ribbon_item(seq)
+        el,need_to_collapse = actions.user.arc_menu_item(seq)
         # If the button is disabled, the element will be None
         if el:
             # make sure element has been selected
 #            actions.user.act_on_element(el,"select")
             prop_list=[("name",seq.split(",")[-1])]
-            print(f'arc_call_ribbon_item: el: {el}')
+            print(f'arc_call_menu_item: el: {el}')
             
             pattern_list = actions.user.el_prop_val(el,'patterns')
             if pattern_list:
@@ -392,10 +406,10 @@ class Actions:
                 else:
                     actions.user.act_on_element(el,"hover")
                     actions.user.act_on_element(el,'select')
-    def arc_get_ribbon_items(heading: str):
+    def arc_get_menu_items(heading: str):
         """Creates text for a talon list of ribbon items"""
-        ribbon_heading = actions.user.arc_ribbon_heading_element(heading)
-        actions.user.act_on_element(ribbon_heading,"select")
+        menu_heading = actions.user.arc_menu_heading_element(heading)
+        actions.user.act_on_element(menu_heading,"select")
         r = []
         def append_item(item, seq):
             new_seq = seq + [item.name]
@@ -404,7 +418,7 @@ class Actions:
                     append_item(child,new_seq)
             elif item.name != "":
                 r.append(new_seq)
-        append_item(ribbon_heading,[])
+        append_item(menu_heading,[])
         r = [f"{x[0]} {x[-1]}: {','.join(x)}" for x in r]
         clip.set_text("\n".join(r))
     def arc_tool_window(name: str):
@@ -418,7 +432,7 @@ class Actions:
             if tool_window:
                 return tool_window
             else:
-                tool_window = actions.user.arc_select_panel(name)
+                tool_window = actions.user.quick_select_panel(name)
                 if tool_window:
                     return tool_window
     def arc_nav_toolbox(toolbox_name: str):
@@ -446,36 +460,48 @@ class Actions:
                 actions.user.act_on_element(TreeViewItem,"scroll_into_view")
     def arc_select_panel(panel_spoken_form: str, ordinal: int = 1):
         """Selects a panel, tab, or similar by searching through panels"""
-        global panel_dict
-        if panel_dict:
-            panel_list=panel_dict[panel_spoken_form]
-            if panel_list and ordinal <= len(panel_list):
-                panel=panel_list[ordinal - 1]
-                if panel:
+        global panel_or_tab_dict
+        if panel_or_tab_dict:
+            panel_or_tab_list=panel_or_tab_dict[panel_spoken_form]
+            if panel_or_tab_list and ordinal <= len(panel_or_tab_list):
+                panel_or_tab=panel_or_tab_list[ordinal - 1]
+                if panel_or_tab:
+                    panel=get_panel_from_panel_or_tab(panel_or_tab)
                     name=actions.user.el_prop_val(panel,'name')
                     post_process_panel(panel,name)
     def quick_select_panel(panel_name: str):
         """Selects tool panel with known name"""
-        root = actions.user.window_root()
-        prop_seq = [
-        	[("class_name","FrameworkDockSite")],
-        	[("class_name","DockHost")],
-        	[("class_name","SplitContainer")],
-        	[("class_name","ToolWindowContainer")],
-        	[("name",panel_name)]
-        ]
-        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True,extra_search_levels=3)
-        print(f'el: {el}')
-        if el:
-            post_process_panel(el,panel_name)
-            return el
+        # first try to find parent of current focused element
+        prop_list=[("class_name","(ProToolWindow|ProDocumentWindow)"),("name",panel_name)]
+        el=actions.user.safe_focused_element()
+        panel=actions.user.matching_ancestor(el,prop_list)
+        print(f'panel: {panel}')
+        # otherwise navigate from top
+        if not panel:
+            root=actions.user.earthbound_root()
+            prop_seq = [
+                [("class_name","FrameworkDockSite")],
+                [("class_name","DockHost")],
+                [("class_name","SplitContainer")],
+                [("class_name","ToolWindowContainer")],
+                [("name",panel_name)]
+            ]
+            panel_or_tab = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True,extra_search_levels=3)
+            print(f'panel_or_tab: {panel_or_tab}')
+            if panel_or_tab:
+                panel=get_panel_from_panel_or_tab(panel_or_tab)
+        if panel:
+            actions.user.act_on_element(panel,'select')
+            # actions.user.act_on_element(panel,'invoke')
+            post_process_panel(panel,panel_name)
+            return panel
     def arc_tab_to_layers():
         """presses the tab key to get to the layer list area"""
         # make sure Contents panel is selected
         prop_list = [("name","Contents"),("class_name",".*ToolWindow")]
         el = actions.user.safe_focused_element()
         if not actions.user.matching_ancestor(el,prop_list):
-            actions.user.arc_select_panel("Contents")
+            actions.user.quick_select_panel("Contents")
         if actions.user.wait_for_matching_ancestor(prop_list):
             print(f"FUNCTION: arc_tab_to_layers")
             actions.user.key_to_matching_element("tab",["OR",[("class_name","TreeView"),("class_name",  "TreeViewItem")]],escape_key = "esc")
@@ -589,7 +615,7 @@ class Actions:
     def arc_select_catalog_group(group_name: str):
         """Selects a group heading within the catalog panel"""
         print("FUNCTION: arc_select_catalog_group")
-        tool_window = actions.user.arc_tool_window("Catalog")
+        tool_window = actions.user.quick_select_panel("Catalog")
         print(f'tool_window: {tool_window}')
         if tool_window:
             group_list = ["Maps","Toolboxes","Notebooks","Databases","Layouts","Styles","Folders","Locators"]
@@ -636,7 +662,7 @@ class Actions:
         item_list = item_str.split(",")
         # prep work
         root = actions.user.window_root()
-        popup_prop_list=[("class_name","Popup")]
+        popup_prop_list=[("class_name",".*Popup")]
 
         # ArcGIS Pro stubbornly keeps secondary menu popups open so we need to test for this
         level_n=0
@@ -727,7 +753,7 @@ class Actions:
     def arc_contents_list_by(contents_list_style: str):
         """Chooses display option for Contents Pane; options are stored in arc_contents_list_style"""
         # first make sure the focus is on the contents panel
-        actions.user.arc_select_panel("Contents")
+        actions.user.quick_select_panel("Contents")
         # press tab until we get to a ListBoxItem
         prop_list = [("class_name","ListBoxItem")]
         actions.user.key_to_matching_element("tab",prop_list)
@@ -742,7 +768,7 @@ class Actions:
         which is 0.5 seconds."""
         # start in the center of the map or layout
         prop_list = ["or",[("class_name","LayoutPaneView"),("class_name","MapPaneView")]]
-        root = actions.user.window_root()
+        root = actions.user.earthbound_root()
         print(f'root: {root}')
         prop_seq = [
             [("class_name","FrameworkDockSite")],
@@ -778,7 +804,7 @@ class Actions:
     def arc_create_custom_layout(wd: float, ht: float):
         """Creates a new layout with the given dimensions"""
         # open the menu command
-        actions.user.arc_call_ribbon_item("Insert,Project,New Layout")
+        actions.user.arc_call_menu_item("Insert,Project,New Layout")
         # makes sure it is open
         prop_list = [("automation_id","esri_layouts_gallery")]
         el = actions.user.wait_for_element(prop_list)
@@ -819,7 +845,7 @@ class Actions:
     def arc_draw_rectangle_on_layout():
         """Draws rectangle in center of layout, to be repositioned later"""
         print("we are here")
-        root = actions.user.window_root()
+        root = actions.user.earthbound_root()
         prop_seq = [
                     [("class_name","FrameworkDockSite")],
                     [("class_name","DockHost")],
@@ -851,7 +877,7 @@ class Actions:
         if layout_wd == -1 or layout_ht == -1:
             print("unable to obtain layout width or height")
             return
-        actions.user.arc_call_ribbon_item("Map Frame,Size & Position,Size & Position,a=X")
+        actions.user.arc_call_menu_item("Map Frame,Size & Position,Size & Position,a=X")
         el = actions.user.safe_focused_element()
         print(f'el: {el}')
         # makes sure we're there
@@ -879,20 +905,20 @@ class Actions:
         """Places focus on the scale text element"""
         print("FUNCTION arc_scale_text")
         actions.key("esc:5")
-        root = actions.user.window_root()
+        root = actions.user.earthbound_root()
         prop_seq = [
-            [("class_name","FrameworkDockSite"),("automation_id","dockSite")],
-            [("class_name","DockHost"),("automation_id","dockSite.PART_DockHost")],
+            [("automation_id","dockSite")],
+            [("automation_id","dockSite.PART_DockHost")],
             [("class_name","SplitContainer")],
             [("class_name","Workspace")],
             [("class_name","TabbedMdiContainer")],
             [("class_name","DockingWindowContainerTabItem")],
-            [("class_name","DocumentWindow")],
+            [("class_name","ProDocumentWindow")],
             [("class_name",".*PaneView")],
-            [("class_name",".*ReadoutControl"),("automation_id",".*ReadoutControl")],
-            [("class_name","ScaleControl"),("automation_id","_scaleControl")],
-            [("class_name","ExtendedComboBox"),("automation_id","_comboBox")],
-            [("class_name","TextBox"),("automation_id","PART_EditableTextBox")]
+            [("automation_id",".*ReadoutControl")],
+            [("automation_id","_scaleControl")],
+            [("automation_id","_comboBox")],
+            [("automation_id","PART_EditableTextBox")]
         ]
         el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
         print(f'el: {el}')
@@ -949,13 +975,13 @@ class Actions:
                                 if el:
                                     actions.user.act_on_element(el,'invoke')
                                     # actions.sleep(1)
-                                    actions.user.arc_call_ribbon_item("Map,Navigate,Go To XY")
+                                    actions.user.arc_call_menu_item("Map,Navigate,Go To XY")
                                     actions.key("esc")
                                     
     def arc_insert_text():
         """Selects a text insertion option from the insert menu"""
         # first navigate to the "Additional Surrounds" item just to the left of the text options
-        actions.user.arc_call_ribbon_item("Insert,Map Surrounds,Additional Surrounds")
+        actions.user.arc_call_menu_item("Insert,Map Surrounds,Additional Surrounds")
         # tab one more time to get element, entered open it up and tabbed to move to first option
         actions.key("tab enter tab")
     def arc_set_position(attr: str,val: float):
@@ -979,7 +1005,7 @@ class Actions:
         el = actions.user.safe_focused_element()
         prop_list = [("class_name","TreeViewItem"),("automation_id","mappingTOCItem_Map.*")]
         if not actions.user.element_match(el,prop_list):
-            root = actions.user.window_root()
+            root = actions.user.earthbound_root()
             prop_seq = [
                 [("class_name","FrameworkDockSite")],
                 [("class_name","DockHost")],
@@ -1029,7 +1055,7 @@ class Actions:
         """Selects the given label group and returns the group element if successful"""
 
         # TOOL WINDOW
-        tool_window = actions.user.arc_tool_window("Label Class.*")
+        tool_window = actions.user.quick_select_panel("Label Class.*")
         if tool_window:
             # UPPER TAB
             prop_seq = [
@@ -1084,7 +1110,7 @@ class Actions:
     def arc_nav_nth_symbol(n: int):
         """Attempts to navigate to and return the nth symbol in, for example, graduated symbols"""
         print("FUNCTION: arc_nav_nth_symbol")
-        tool_window = actions.user.arc_tool_window("Symbology")
+        tool_window = actions.user.quick_select_panel("Symbology")
         if tool_window:
             prop_seq = [
                 [("class_name","SymbologyDockPane")],

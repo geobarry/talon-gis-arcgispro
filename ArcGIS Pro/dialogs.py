@@ -7,7 +7,7 @@ class Actions:
     def arc_dialog_button(button_name: str, action: str = None):
         """Attempts to locate the given button just under the dialog window using uiautomation"""
         root=actions.user.window_root()
-        print(f'root: {root}')
+        print(f'***arc_dialog_button root: {root}')
         if root:
             prop_list=[("name",button_name),("class_name","Button")]
             button=actions.user.matching_child(root,prop_list)

@@ -27,6 +27,9 @@ template:a=ClassBreaks_TemplateSymbolButton
 classes tab:n=Classes,c=TabItem
 more:n=Classes,c=TabItem;n=More
 histogram tab:n=Histogram,c=TabItem
-symbol:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=Format class break symbol,c=Button
+# This has changed:
+# unique values symbol:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=Format class break symbol,c=Button
+# this works:
+symbol: c=ScrollViewer;n=Format single symbol
 upper value:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=.*Column Display Index.*1
 label:a=CB_Tabs;a=CB_Labels_Tab;a=DataGrid;n=.*Column Display Index.*2

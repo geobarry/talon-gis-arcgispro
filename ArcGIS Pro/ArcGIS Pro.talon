@@ -4,27 +4,6 @@ mode: command
 mode: user.zen
 -
 
-
-# RIBBON
-^menu {user.arc_ribbon_heading}$: user.arc_open_ribbon(arc_ribbon_heading)
-^{user.arc_ribbon_item}$: user.arc_call_ribbon_item(arc_ribbon_item)
-# more verbose version
-[open the] {user.arc_ribbon_heading} menu: user.arc_open_ribbon(arc_ribbon_heading)
-# inserts text into the textbox just after the label with a given text
-insert text: user.arc_insert_text()
-
-# RIBBON SHORTCUTS
-zoom in: user.arc_call_ribbon_item("Map,Navigate,,Fixed Zoom In")
-zoom out: user.arc_call_ribbon_item("Map,Navigate,,Fixed Zoom Out")
-
-# OVERRIDES
-^{user.nav_key} until <user.lazy_target>$:
-	user.arc_key_to_element(nav_key,"n={lazy_target}.*")
-
-^{user.nav_key} until <user.ordinals> <user.lazy_target>$:
-	user.arc_key_to_element(nav_key,"n={lazy_target}.*",ordinals)
-
-
 # GENERAL CONVENIENCE
 # say this after selecting any command that requires you to then draw a rectangle onto the layout
 
@@ -38,14 +17,14 @@ position why <user.real_number>: user.arc_set_position("Y",real_number)
 shape width <user.real_number>: user.arc_set_position("Width",real_number)
 shape height <user.real_number>: user.arc_set_position("Height",real_number)
 
+# OVERRIDES
+^{user.nav_key} until <user.lazy_target>$:
+	user.arc_key_to_element(nav_key,"n={lazy_target}.*")
 
+^{user.nav_key} until <user.ordinals> <user.lazy_target>$:
+	user.arc_key_to_element(nav_key,"n={lazy_target}.*",ordinals)
 
-
-
-# MAPS
-(navigate|nav|center map on) <user.arc_coordinate>: user.arc_nav_coord(arc_coordinate)
-(navigate|nav|center map on)$: user.arc_nav_coord()
-[click on] representative fraction: user.arc_scale_text()
+insert text: user.arc_insert_text()
 
 
 # WHY ISN'T THE TALON LIST BEING RECOGNIZED???
@@ -61,7 +40,7 @@ select color transparency <number>: user.arc_select_color_transparency(number)
 add data: key(esc:5 alt m a d down enter)
 
 # ESRI shortcuts
-toggle ribbon: key("ctrl-f1")
+
 keyboard shortcuts: key("f12")
 copy path: key("ctrl-alt-p")
 new map: key("ctrl-m")
@@ -70,14 +49,7 @@ export:
 	user.key_to_elem_by_val("tab","Browse.*","Name")
 	key("shift-tab ctrl-a")
 command search: key("alt-q")
-panel options: key("alt-minus")
-close panel: key("shift-esc")
-next command: key("tab")
-previous command: key("shift-esc")
-next (element|item): key("down")
-previous (element|item): key("up")
-next (map|layout|view): key("ctrl-f6")
-previous (map|layout|view): key("ctrl-shift-f6")
+
 
 # Catalog Pane
 go to catalog folders: key("esc:5 alt-v c p alt-f6 pageup f")
@@ -118,16 +90,7 @@ layer properties:
 # Catalogue Pane
 add to current map: key(menu a)
 
-# Map Navigation
-pan {user.compass_direction}: user.arc_pan(compass_direction,0.25)
-pan (far|way) {user.compass_direction}: user.arc_pan(compass_direction,0.9)
-pan (tiny|a little bit) {user.compass_direction}: user.arc_pan(compass_direction,0.05)
 
-pan west <number>: user.pan_arcgis_pro_map('west',number)
-pan east <number>: user.pan_arcgis_pro_map("east",number)
-pan north <number>: user.pan_arcgis_pro_map('north',number)
-pan south <number>: user.pan_arcgis_pro_map('south',number)
-orient [north]: key(o)
 
 select by attributes:
 	key(esc:5)
@@ -135,60 +98,4 @@ select by attributes:
 	sleep(0.2)
 	key(m s b a)
 clear selection: key(esc:5 alt m c x)
-
-# DEVELOPMENT
-^ribbon copy {user.arc_ribbon_heading} items$: user.arc_get_ribbon_items(arc_ribbon_heading) 
-
-# MENU ITEM SHORTCUTS - do we need these anymore?
-# insert menu shortcuts
-# new map command already mapped above
-new layout: key(alt n n l)
-new custom layout: key(alt n n l c tab:4)
-(new|add) map frame: key(alt n m g)
-
-# analysis menu shortcuts
-new jupyter notebook: user.slow_key_press("alt-a p f down right:3 enter",1.0)
-
-# edit short cuts
-save edits:
-	key(esc:5)
-	key(alt)
-	sleep(0.2)
-	key(e s v)
-	
-# layout menu shortcuts
-
-# table menu shortcuts
-add field:
-	key(esc:5)
-	key(alt)
-	sleep(0.2)
-	key(t v f n)
-zoom [to] selected: key(alt t v r z)
-flash (selected|active): key(alt t v r f)
-pan [to] (selected|active): key(alt t v r p)
-
-	
-# field many shortcuts
-save fields:
-	key(esc:5)
-	key(alt)
-	sleep(0.2)
-	key(f s v)
-# share menu shortcuts
-export layout:
-	key(esc:5)
-	key(alt)
-	sleep(0.2)
-	key(s x l)
-	sleep(0.5)
-	key(down:3)
-# map frame menu shortcuts
-[set] (text|map|legend|scale bar|north arrow|arrow|line|shape) position: 
-	key(esc:5 alt j f s p)
-	user.key_to_elem_by_val("tab","TextBox","class_name")
-	key(ctrl-a)
-flip vertical: key(alt j f r v)
-flip horizontal: key(alt j f r v)
-
 

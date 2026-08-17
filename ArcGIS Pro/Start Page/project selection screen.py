@@ -44,6 +44,8 @@ class Actions:
     def arc_act_on_project(prj_key: str, action: str = "select", ordinal: int = 1):
         """selects or opens the given project"""
         prj_list=prj_dict[prj_key]
+        print(f'prj_list: {prj_list}')
+        print(f'len(prj_list): {len(prj_list)}')
         if prj_list and len(prj_list) >= ordinal:
             act_on_project(prj_list[ordinal - 1], action)
             

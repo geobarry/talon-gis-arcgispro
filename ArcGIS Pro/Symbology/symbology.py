@@ -7,8 +7,25 @@ mod.list("arc_primary_symbology_control","control on the primary symbology panel
 mod.list("arc_primary_symbology","Primary symbology types in ArcGIS Pro")
 mod.list("arc_symbol_property_group","assemble property group inside symbology tab")
 mod.list("arc_color_symbol_control","specifications to get to a color symbol control")
+mod.list("arc_number_symbol_control", "any symbology control with a numeric value")
 mod.list("arc_symbol_control","specifications to get to a symbol control")
 mod.list("arc_symbol_effect","effect that can be applied to symbols in symbology")
+
+@mod.capture(rule="{user.arc_color_symbol_control} {user.color}")
+def arc_symbol_color(m) -> (str, str, str):
+    """specifies a color symbol property and its color"""
+    return "color", str(m[0]), str(m[1])
+
+@mod.capture(rule="{user.arc_number_symbol_control} <user.real_number>")
+def arc_symbol_number(m) -> (str, str, str):
+    """specifies a numeric symbol property and its value"""
+    return "number", str(m[0]), str(m[1])
+
+@mod.capture(rule="(<user.arc_symbol_color> | <user.arc_symbol_number>)")
+def arc_symbol_value(m) -> (str, str, str):
+    """specifies a color or numeric symbol property and is value"""
+    val_list=tuple(m[0])
+    return str(val_list[0]), str(val_list[1]), str(val_list[2])
 
 ctx=Context()
 
@@ -52,25 +69,27 @@ ctx.lists["user.arc_symbol_property_group"] = {
 }
 
 ctx.lists["user.arc_color_symbol_control"] = {
-    'Color':'Symbol;Appearance;n=Color,c=DropDownColorPicker;n=Selected Color,c=ComboBox',
-    'Fill Color':'Symbol;Appearance;n=Color,c=DropdownColorPicker;n=Selected Color,c=ComboBox',
-    'Outline color':'Symbol;Appearance;n=Outline color,c=DropDownColorPicker;n=Selected Color,c=ComboBox',
+    'Color':'Symbol;Appearance;c=DropDownColorPicker;n=Color,c=ComboBox',
+    'Fill Color':'Symbol;Appearance;c=DropdownColorPicker;n=Color,c=ComboBox',
+    'Outline color':'Symbol;Appearance;c=DropDownColorPicker;n=Outline Color,c=ComboBox',
     'Halo Color':'Symbol;Halo;n=Color,c=DropDownColorPicker;n=Selected Color,c=ComboBox',
     'Halo Outline color':'Symbol;Halo;n=Outline color,c=DropDownColorPicker;n=Selected Color,c=ComboBox',
 }
 
-ctx.lists["user.arc_symbol_control"] = {
-    'Shape fill symbol':'Symbol;Appearance;n=Shape fill symbol,c=ComboBox',
-
+ctx.lists["user.arc_number_symbol_control"] = {
     'Outline width':'Symbol;Appearance;n=Outline width,c=DoubleEditBox;n=Outline width,c=TextBox',
     'Line width':'Symbol;Appearance;n=Line width;n=Line width,c=TextBox',
     'Size':'Symbol;Appearance;n=Size,c=DoubleEditBox;n=Size,c=TextBox',
+    'Halo Outline width':'Symbol;Halo;n=Outline width,c=DoubleEditBox;n=Outline width,c=TextBox',
+    'Halo size':'Symbol;Halo;n=Halo size,c=DoubleEditBox'
+}
+
+ctx.lists["user.arc_symbol_control"] = {
+    'Shape fill symbol':'Symbol;Appearance;n=Shape fill symbol,c=ComboBox',
     'Enable scale based sizing':'Symbol;Appearance;n=Enable scale-based sizing,c=CheckBox',
     'Angle':'Symbol;Appearance;n=Angle,c=DoubleEditBoxWithDropDown',
     'Halo':'Symbol;Halo;n=,c=ComboBox',
-    'Halo Outline width':'Symbol;Halo;n=Outline width,c=DoubleEditBox;n=Outline width,c=TextBox',
-    'Halo size':'Symbol;Halo;n=Halo size,c=DoubleEditBox'
-} | ctx.lists["user.arc_color_symbol_control"]
+} | ctx.lists["user.arc_color_symbol_control"] | ctx.lists["user.arc_number_symbol_control"]
  
 scroll_id = {
     "Symbol":".*BasicPropertiesScrollViewer",
@@ -89,10 +108,10 @@ class Actions:
         	[("class_name","FrameworkDockSite"),("automation_id","dockSite")],
         	[("class_name","DockHost"),("automation_id","dockSite.PART_DockHost")],
         	[("class_name","SplitContainer")],
-        	[("class_name","SplitContainer")],
+        	# [("class_name","SplitContainer")],
         	[("class_name","ToolWindowContainer")],
         	[("class_name","DockingWindowContainerTabItem"),("automation_id","esri_mapping_symbologyDockPaneTab")],
-        	[("class_name","ToolWindow"),("automation_id","esri_mapping_symbologyDockPane")],
+        	[("class_name","ProToolWindow"),("automation_id","esri_mapping_symbologyDockPane")],
         	[("class_name","SymbologyDockPane")],
 #        	[("class_name","ScrollViewer")],
         ]
@@ -175,8 +194,7 @@ class Actions:
         """navigate to symbol gallery or properties and returns DockPane"""
         print("FUNCTION: arc_symbol")
         # get tool window
-        tool_window = actions.user.arc_tool_window("Symbology")
-        print(f'tool_window: {tool_window}')
+        tool_window = actions.user.quick_select_panel("Symbology")
         if not tool_window:
             print("Unable to find Symbology tool window")
             return 
@@ -190,7 +208,6 @@ class Actions:
             if el:
                 if "LegacyIAccessible" in el.patterns:
                     legacy_state = el.legacyiaccessible_pattern.state
-                    print(f'legacy_state: {legacy_state}')
                     if legacy_state == 0:
                         in_advanced_symbology = True
                         print(f"Already in Advanced symbology options")
@@ -318,14 +335,13 @@ class Actions:
         # PARSE ctrl_specs
         print(f'ctrl_specs: {ctrl_specs}')
         val = [x.strip() for x in ctrl_specs.split(";")]
-        print(f'val: {val}')
         prop_tab,prop_grp = val[0],val[1]
         prop_seq_str = val[2:]
         prop_seq = [actions.user.get_property_list(x) for x in prop_seq_str]
-        print(f'prop_seq_str: {prop_seq_str}')
         
         # OBTAIN EXPANDER
         expander = actions.user.arc_symbol_property_group(",".join([prop_tab,prop_grp]))
+        print(f'expander: {expander}')
         if not expander:
             print("arc_symbol_control could not find expander")
         else:
@@ -340,46 +356,85 @@ class Actions:
                     actions.sleep(0.1)
                     el = actions.user.find_el_by_prop_seq(prop_seq,expander,verbose=True)
             print(f'looking for {prop_seq}\n el: {el}')
-            
+            print(f'el: {el}')
             if el:
                 # some controls will have children that needed be accessed
                 pattern_list = actions.user.el_prop_val(el,'patterns')
-                print(f'pattern_list: {pattern_list}')
                 if pattern_list:
                     if 'ExpandCollapse' in pattern_list:
                         actions.user.act_on_element(el,'expand')
                     else:
                         actions.user.act_on_element(el,"select")
-        
-    def arc_symbol_assign_color(ctrl_specs: str, color: str):
-        """navigates to color symbol control and a science color"""
-        # navigate to and expand color combo box
-        actions.user.arc_symbol_control(ctrl_specs)
+                        prop_list=prop_seq[-1]
+                        el=actions.user.wait_for_element(prop_list)
+                        # select text within number symbol controls
+                        control_dict=ctx.lists["user.arc_number_symbol_control"]
+                        is_number_control = any(x==ctrl_specs for x in control_dict.values())
+                        if is_number_control:
+                            actions.key("ctrl-a")
+                    return el
+
+    def arc_symbol_color_properties():
+        """navigates to the color properties button if the color palette is already open"""
         # make sure color combo box is selected
-        prop_list=[("name","Selected Color"),("control_type","ComboBox")]
+        prop_list=[("class_name","ColorPalette")]
         el=actions.user.wait_for_element(prop_list)
-        print(f'el: {el}')
+        print(f'ColorPalette: {el}')
         if el:
-            # make sure combo box is expanded
-            status=actions.user.el_prop_val(el,'expand_collapse_state')
-            if status == "Expanded":
-                # navigate to and invoke Color Properties... button
-                prop_list=[("name","Color Properties...")]
+            # navigate to and invoke Color Properties... button
+            prop_list=[("name","Color Properties...")]
+            actions.user.key_to_matching_element("tab",prop_list)
+            el=actions.user.wait_for_element(prop_list)
+            print(f'Color Properties: {el}')
+            if el:
+                # invoking doesn't work so press enter key
+                actions.key("enter")        
+
+    def arc_symbol_assign_color(ctrl_specs: str, color: str = ""):
+        """navigates to color symbol control and assigns color"""
+        # navigate to and expand color combo box
+        color_ctrl=actions.user.arc_symbol_control(ctrl_specs)
+        print(f'color_ctrl: {color_ctrl}')
+        if color_ctrl:
+            actions.user.arc_symbol_color_properties()
+            # wait for dialog Color Editor to appear
+            prop_list=[("name","Color Editor")]
+            el=actions.user.wait_for_element(prop_list)
+            print(f'el: {el}')
+            if el:
+                # tab to the hex value editor
+                prop_list=[("automation_id","ColorEditorHexValue.*")]
                 actions.user.key_to_matching_element("tab",prop_list)
                 el=actions.user.wait_for_element(prop_list)
                 if el:
-                    # invoking doesn't work so press enter key
-                    actions.key("enter")
-                    # wait for dialog Color Editor to appear
-                    prop_list=[("name","Color Editor")]
-                    el=actions.user.wait_for_element(prop_list)
-                    if el:
-                        # tab to the hex value editor
-                        prop_list=[("automation_id","ColorEditorHexValue.*")]
-                        actions.user.key_to_matching_element("tab",prop_list)
-                        el=actions.user.wait_for_element(prop_list)
-                        if el:
-                            # enter value
-                            actions.insert(color)
-                            # shift tab to (1) validate entry, and (2) place focus on transparency
-                            actions.key("shift-tab")
+                    # enter value
+                    actions.insert(color)
+                    # shift tab to (1) validate entry, and (2) place focus on transparency
+                    actions.key("tab")
+                    actions.sleep(0.25) # for visual confirmation
+                    actions.user.arc_tab_to_button("OK",True)
+    
+    def arc_symbol_assign_number(ctrl_specs: str, val: float):
+        """navigates to numeric symbol control and assigns numeric value"""
+        el= actions.user.arc_symbol_control(ctrl_specs)
+        if el:
+            trg_txt=f"{str(val)} pt"
+            actions.user.set_el_prop_val(el,"value",trg_txt)
+            actions.key("enter")
+        else:
+            print("failed to attempt inserting numeric value.")
+    
+    def arc_symbol_assign_values(spec_list: list):
+        """assigns multiple color or numeric values to a symbol"""
+        with actions.user.tracking_paused():        
+            for val_type, ctrl_specs, val in spec_list:
+                print(f"assigning {val} to {ctrl_specs}")
+                el=actions.user.safe_focused_element()
+                print(f'el: {el}')
+                match val_type:
+                    case "number":
+                        actions.user.arc_symbol_assign_number(ctrl_specs,val)
+                    case "color":
+                        actions.user.arc_symbol_assign_color(ctrl_specs,val)
+                # el=actions.user.wait_for_matching_ancestor([("class_name","ProToolWindow")])
+                print(f'el: {el}')

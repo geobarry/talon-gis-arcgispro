@@ -13,29 +13,11 @@ mod=Module()
 
 mod.list("arc_gp_dynamic_parameter","name of parameter in current geoprocessing tool dialog")
 
-def geoprocessing_panel():
-    """returns the object with name='Geoprocessing',control_type='Pane'"""
-    root = actions.user.window_root()
-    prop_seq = [
-        [("class_name","FrameworkDockSite")],
-        [("class_name","DockHost")],
-        # we have a problem here: sometimes we need to dig down into one split container,
-        # sometimes two
-        [("class_name","SplitContainer")],
-        [("class_name","SplitContainer")],
-        [("class_name",".*ToolWindowContainer")],
-        [("name","Geoprocessing"),("class_name","DockingWindowContainerTabItem")],
-        [("name","Geoprocessing"),("class_name",".*ToolWindow")],
-    ]
-    el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
-    # if nothing is found we probably need to open the panel
-    if not el:
-        actions.user.arc_call_ribbon_item("Analysis,Geoprocessing,Tools")        
-        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
-    return el
+
 def get_parameter_container():
     """retrieves custom element that contains all of the parameters"""
-    panel=geoprocessing_panel()
+    panel=actions.user.quick_select_panel("Geoprocessing")
+    print(f'panel: {panel}')
     if panel:
         prop_seq=[
             [("automation_id","gp_doc_pane")],
@@ -51,9 +33,11 @@ param_dict={}
 def fetch_parameters():
     """retrieves list of parameter names for dynamic list and simultaneously saves control list and dictionary of (text controls) and corresponding ids to global variables"""
     container=get_parameter_container()
+    print(f'container: {container}')
     if container:
         param_dict.clear()
         param_ctrl_list=actions.user.el_prop_val(container,'children')
+        print(f'param_ctrl_list: {param_ctrl_list}')
         if param_ctrl_list:
             name_list=[]
             param_name=None
@@ -63,6 +47,7 @@ def fetch_parameters():
                     param_name=actions.user.el_prop_val(control,'name')
                     param_dict[param_name] = []
                     name_list.append(param_name)
+                print(f'param_name: {param_name}')
                 if param_name and control_type.lower() not in ['text','image']:
                     param_dict[param_name].append(control)
             return name_list
@@ -81,7 +66,7 @@ class Actions:
     def arc_run_tool(tool_name: str = ''):
         """runs the specified geoprocessing tool"""
         # obtain the geoprocessing panel
-        panel = geoprocessing_panel()
+        panel=actions.user.quick_select_panel("Geoprocessing")
         if not panel:
             return
         # access the tool search textbox
