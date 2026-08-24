@@ -131,12 +131,10 @@ def get_layers():
                 elapsed=finish_time - start_time
                 print(f'get_leaves completion time: {elapsed}')
                 return leaves
-def get_panels_or_tabs(trg_type = 'tool'):
-    """Returns elements of class ProDocumentWindow or ProToolWindow, or .*TabItem containing them"""
+def get_windows():
+    # it looks like we can assume that hidden windows all come after visible windows
+    # and we can save a tiny fraction of a second by not requesting title and hidden from all windows!
     with actions.user.tracking_paused():
-        start_time=time.perf_counter()
-        # it looks like we can assume that hidden windows all come after visible windows
-        # and we can save a tiny fraction of a second by not requesting title and hidden from all windows!
         app = ui.active_app()
         ws = []
         for x in app.windows():
@@ -144,6 +142,11 @@ def get_panels_or_tabs(trg_type = 'tool'):
                 ws.append(x)
             if x.hidden:
                 break
+        return ws
+def get_panels_or_tabs(trg_type = 'tool'):
+    """Returns elements of class ProDocumentWindow or ProToolWindow, or .*TabItem containing them"""
+    with actions.user.tracking_paused():
+        ws = get_windows()
         w_n = len(ws)
 
         branch_names = [".*Container.*","Workspace","DockHost","FrameworkDockSite","Window"]
@@ -170,6 +173,26 @@ def get_panels_or_tabs(trg_type = 'tool'):
                 prop_list=[("automation_id",f".*{trg_type}Pane.*")]
                 panel_list += actions.user.matching_children(container,prop_list)
         return panel_list
+
+
+def get_workspace_list():
+    with actions.user.tracking_paused():
+        win_list = get_windows()
+        r=[]
+        for w in win_list:
+            root=w.element
+            prop_seq = [
+                [("automation_id","dockSite")],
+                [("automation_id","dockSite.PART_DockHost")],
+                [("control_type","Group")],
+                [("control_type","Group")],
+                [("control_type","Group")],
+                [("control_type","Pane"), ("class_name","Workspace")]
+            ]
+            el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)            
+            r.append(el)
+        return r
+
 
 global layer_dict                
 @ctx.dynamic_list("user.arc_dynamic_layer")
@@ -306,6 +329,10 @@ def post_process_panel(el, panel_name: str = ''):
 
 @mod.action_class
 class Actions:
+    def arc_experiment():
+        """For experimentation purposes and this will always change"""
+        w=get_workspace_list()
+        print(f'w: {w}')
     def earthbound_root():
         """returns the root window element that is not an airspace popup""" 
         root=actions.user.window_root()
@@ -335,7 +362,7 @@ class Actions:
             ]
         el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
         return el
-    def arc_open_ribbon(heading: str):
+    def arc_open_menu(heading: str):
         """Opens the menu; use talon list user.arc_menu_heading"""
         # Try to ensure that the current focus is on the main application
         ensure_focus()
@@ -475,19 +502,17 @@ class Actions:
         prop_list=[("class_name","(ProToolWindow|ProDocumentWindow)"),("name",panel_name)]
         el=actions.user.safe_focused_element()
         panel=actions.user.matching_ancestor(el,prop_list)
-        print(f'panel: {panel}')
         # otherwise navigate from top
         if not panel:
             root=actions.user.earthbound_root()
             prop_seq = [
-                [("class_name","FrameworkDockSite")],
-                [("class_name","DockHost")],
+                [("automation_id","dockSite")], # [("class_name","FrameworkDockSite")],
+                [("automation_id","dockSite.PART_DockHost")], # [("class_name","DockHost")],
                 [("class_name","SplitContainer")],
-                [("class_name","ToolWindowContainer")],
+                [("automation_id",".*ToolWindowContainer")], # [("class_name","ToolWindowContainer")],
                 [("name",panel_name)]
             ]
-            panel_or_tab = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True,extra_search_levels=3)
-            print(f'panel_or_tab: {panel_or_tab}')
+            panel_or_tab = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False,extra_search_levels=3)
             if panel_or_tab:
                 panel=get_panel_from_panel_or_tab(panel_or_tab)
         if panel:
@@ -656,6 +681,7 @@ class Actions:
                 actions.user.act_on_element(el,'click')
     def arc_context_item(item_str: str):
         """Navigates to item using keyboard keys"""
+        print("function ARC_CONTEXT_ITEM")
         # open context menu
         actions.key("menu")
         # parse item sequence
@@ -901,28 +927,43 @@ class Actions:
             actions.sleep(0.1)
             actions.key("enter")
 
-    def arc_scale_text():
+    def arc_scale_text(scale: int = None):
         """Places focus on the scale text element"""
         print("FUNCTION arc_scale_text")
-        actions.key("esc:5")
-        root = actions.user.earthbound_root()
-        prop_seq = [
-            [("automation_id","dockSite")],
-            [("automation_id","dockSite.PART_DockHost")],
-            [("class_name","SplitContainer")],
-            [("class_name","Workspace")],
-            [("class_name","TabbedMdiContainer")],
-            [("class_name","DockingWindowContainerTabItem")],
-            [("class_name","ProDocumentWindow")],
-            [("class_name",".*PaneView")],
-            [("automation_id",".*ReadoutControl")],
-            [("automation_id","_scaleControl")],
-            [("automation_id","_comboBox")],
-            [("automation_id","PART_EditableTextBox")]
-        ]
-        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
-        print(f'el: {el}')
-        actions.user.act_on_element(el,"click")
+        # check if representative fraction textbox is already selected
+        el=None
+        cur_el=actions.user.safe_focused_element()
+        prop_list=[("automation_id","PART_EditableTextBox")]
+        if actions.user.element_match(cur_el,prop_list):
+            prop_list=[("automation_id","_scaleControl")]
+            if actions.user.matching_ancestor(cur_el,prop_list):
+                el=cur_el
+        # if not, obtain from top
+        if not el:
+            prop_seq = [
+                [("automation_id","dockSite")],
+                [("automation_id","dockSite.PART_DockHost")],
+                [("class_name","SplitContainer")],
+                [("class_name","Workspace")],
+                [], #            [("class_name","TabbedMdiContainer")],
+                [("automation_id","esri_(mapping_map|layouts_layout)Pane.*")],
+                [("automation_id","esri_(mapping_map|layouts_layout)Pane.*")],
+                [("class_name",".*PaneView")],
+                [("automation_id",".*ReadoutControl")],
+                [("automation_id","_scaleControl")],
+                [("automation_id","_comboBox")],
+                [("automation_id","PART_EditableTextBox")]
+            ]
+            actions.key("esc:5")
+            root = actions.user.earthbound_root()
+            el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
+        # continue if we have the right element
+        if el:
+            actions.user.act_on_element(el,'select')
+            actions.key("ctrl-a")
+            if scale:
+                actions.insert(str(scale))
+                actions.key("enter")
     def arc_nav_coord(coord: str = ""):
         """navigates to the given coordinates, expressed as '<easting>,<northing>'"""
         print(f'coord: {coord}')

@@ -79,10 +79,7 @@ toggle visibility: key(space)
 definition query: user.slow_key_press("enter pageup:3 down:7 tab")
 export features: key("alt t v e f")
 export table: key("alt t v e t")
-layer properties: 
-	key(menu)
-	user.key_to_elem_by_val("up","Properties")
-	key("enter")
+
 
 
 

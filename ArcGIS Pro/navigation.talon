@@ -3,7 +3,7 @@ app.exe: arcgispro.exe
 mode: command
 mode: user.zen
 -
-
+asparagus experiment: user.arc_experiment()
 # PANELS
 show panels: key(ctrl:down tab)
 choose panel: key(ctrl:up)

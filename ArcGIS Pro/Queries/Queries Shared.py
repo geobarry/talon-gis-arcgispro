@@ -62,7 +62,7 @@ def label_class_query_control():
     el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
     return el
 
-clause_prop_list = [("name","ArcGIS.Desktop.Internal.Mapping.Controls.QueryBuilder.QueryBuilderExpressionClauseViewModel")]
+clause_prop_list = [("control_type","ListItem"),("name","Clause")]
 comp_id_dict={
     'operator':"editingBooleanOperatorCombo",
     'field':"fieldNameComboBox",
@@ -92,8 +92,7 @@ def get_clause_by_value(trg_val: str):
             
 @ctx.dynamic_list("user.dynamic_query_clause")
 def dynamic_query_clause(_) -> dict[str,str]:
-    """Returns the value of the clause element"""
-    
+    """Returns the text in the value combo box"""
     query_box = actions.user.arc_query_box()
     r={}
     if query_box:
@@ -112,7 +111,6 @@ class Actions:
         # first look in ancestors
         el=actions.user.safe_focused_element()
         query_ctrl=actions.user.matching_ancestor(el,[("automation_id","queryBuilderControlRoot")])
-        print(f'query_ctrl: {query_ctrl}')
         if query_ctrl:
             return query_ctrl
         el=select_by_attributes_query_control()
@@ -120,7 +118,6 @@ class Actions:
             return el
         else:
             el=definition_query_query_control()
-            print(f'el: {el}')
             if el:
                 return el
             else:
@@ -129,10 +126,12 @@ class Actions:
     def arc_query_box():
         """returns the ListBox object"""
         query_builder = actions.user.arc_selected_query()
-        print(f'query_builder: {query_builder}')
         if query_builder:
-            prop_list = [("class_name","ListBox"),("automation_id","clausesListBox")]
-            query_box = actions.user.matching_child(query_builder,prop_list)
+            prop_seq=[
+                [("automation_id","clausesListBoxScrollViewer")],
+                [("automation_id","clausesListBox")]
+            ]
+            query_box=actions.user.find_el_by_prop_seq(prop_seq,query_builder)
             return query_box
     def arc_act_on_clause(val: str,comp: str = '',action: str = "select"):
         """Selects the given clause component, which should be captured by dynamic_query_clause"""
@@ -159,7 +158,8 @@ class Actions:
         # timing tests show that this is about 20% faster by going up the tree rather than down
         clause = actions.user.safe_focused_element()
         if clause:
-            prop_list = [("name","ArcGIS\.Desktop\.Internal\.Mapping\.Controls\.QueryBuilder\.QueryBuilderExpressionClauseViewModel")]
+            print(f'clause: {clause}')
+            prop_list = [("control_type","ListItem"),("name","Clause")]
             if not actions.user.element_match(clause,prop_list):
                 clause = actions.user.matching_ancestor(clause,prop_list)
         return clause
@@ -217,22 +217,28 @@ class Actions:
         print(f'query_box: {query_box}')
         if query_box:
             children = actions.user.matching_children(query_box,clause_prop_list)
+            print(f'clause_prop_list: {clause_prop_list}')
+            print(f'children: {children}')
             if children:
                 if -len(children) <= n <= len(children):
                     r = children[n - 1] if n > 0 else children[n]
                     return r
     def arc_select_nth_clause_item(n: int = 1,item_type: str = "clause",action: str = ''):
         """selects the nth clause, field, predicate, value or remove button"""
-        ex = actions.user.arc_nth_query_clause(n)
+        print("function ARC_SELECT_NTH_CLAUSE_ITEM")
+        print(f'item_type: {item_type}')
+        clause = actions.user.arc_nth_query_clause(n)
+        print(f'clause: {clause}')
         if item_type == 'clause':
-            actions.user.act_on_element(ex,'select')
+            actions.user.act_on_element(clause,'select')
             return 
-        elif ex:
+        elif clause:
             global clause_item_dict
             item_id = clause_item_dict[item_type]
+            print(f'item_id: {item_id}')
             if item_id:
                 prop_list = [("automation_id",item_id)]
-                el = actions.user.matching_child(ex,prop_list)
+                el = actions.user.matching_child(clause,prop_list)
                 if el:
                     print(f'el: {el}')
                     actions.user.act_on_element(el,'select')
@@ -253,6 +259,8 @@ class Actions:
         button = actions.user.matching_child(query_builder,prop_list)
         if button:
             actions.user.act_on_element(button,'invoke')
+            # after pressing add clause button, focus will be placed on boolean operator
+            prop_list=[("automation_id","editingBooleanOperatorCombo")]
             el = actions.user.wait_for_element(prop_list)
             print(f'AFTER PRESSING ADD CLAWS BUTTON el: {el}')
             if el:

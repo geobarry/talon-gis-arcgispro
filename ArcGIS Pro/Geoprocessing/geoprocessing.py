@@ -16,17 +16,32 @@ mod.list("arc_gp_dynamic_parameter","name of parameter in current geoprocessing 
 
 def get_parameter_container():
     """retrieves custom element that contains all of the parameters"""
-    panel=actions.user.quick_select_panel("Geoprocessing")
-    print(f'panel: {panel}')
-    if panel:
+    container=None
+    # TRY ANCESTORS FIRST
+    prop_list=[("automation_id","gp_tool_dialog.*")]
+    el=actions.user.safe_focused_element()
+    dialog=actions.user.matching_ancestor(el,prop_list)
+    if dialog:
         prop_seq=[
-            [("automation_id","gp_doc_pane")],
-            [("automation_id","gp_tool_dialog")],
             [("class_name","ScrollViewer")],
+            [("control_type","Custom")],
             [("control_type","Custom")]
         ]
-        container=actions.user.find_el_by_prop_seq(prop_seq,panel,verbose=False)
-        return container
+        container=actions.user.find_el_by_prop_seq(prop_seq,dialog)
+    # TRY TO SELECT GEOPROCESSING PANEL OTHERWISE
+    if not container:
+        panel=actions.user.quick_select_panel("Geoprocessing")
+        print(f'panel: {panel}')
+        if panel:
+            prop_seq=[
+                [("automation_id","gp_doc_pane")],
+                [("automation_id","gp_tool_dialog")],
+                [("class_name","ScrollViewer")],
+                [("control_type","Custom")]
+            ]
+            container=actions.user.find_el_by_prop_seq(prop_seq,panel,verbose=False)
+    print(f'container: {container}')
+    return container
 
 
 param_dict={}

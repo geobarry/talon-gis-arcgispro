@@ -128,31 +128,23 @@ class Actions:
                     ]]
         actions.user.key_to_matching_element("tab",prop_list,delay = 0.05)
     def arc_import_symbology():
-        """Navigates to the import symbology tool. Assumes a layer is selected and the symbology panel is open"""
-        actions.user.arc_select_panel("Symbology")
-        prop_seq = [
-                [("automation_id","dockSite")],
-                [("automation_id","dockSite.PART_DockHost")]
-        ]
-        el = actions.user.find_el_by_prop_seq(prop_seq)
-        print(f'1st el: {el}')
-        if el:
-            prop_list = [("automation_id","esri_mapping_symbologyDockPaneTab")]
-            el = actions.user.matching_descendant(el,prop_list,4)
-            print(f'2nd el: {el}')
+        """Navigates to the import symbology tool. Assumes a layer is selected."""
+        panel=actions.user.quick_select_panel("Symbology")
+        print(f'panel: {panel}')
+        if panel:
+            prop_seq = [
+                    [("control_type","Custom"),("class_name","SymbologyDockPane")],
+                    [("automation_id","Symbology_BurgerButton")]
+            ]
+            el = actions.user.find_el_by_prop_seq(prop_seq,panel)
             if el:
-                prop_list = [("automation_id","Symbology_BurgerButton")]
-                el = actions.user.matching_descendant(el,prop_list,3)
-                print(f'3rd el: {el}')
-                if el:
-                    el.expandcollapse_pattern.expand()
-                    # actions.sleep(2)
-                    actions.key("down enter")
-                    actions.sleep(1)
-                    prop_list = [("name","Symbology Layer")]#,("class_name","Textbox")]
-                    actions.user.key_to_matching_element("tab",prop_list)
-                    actions.sleep(0.5)
-                    actions.key("alt-down")
+                actions.user.act_on_element(el,'expand')
+                actions.key("down enter")
+                actions.sleep(1)
+                prop_list = [("name","Symbology Layer")]#,("class_name","Textbox")]
+                actions.user.key_to_matching_element("tab",prop_list)
+                actions.sleep(0.5)
+                actions.key("alt-down")
     def arc_select_primary_symbology(symbology_type: str = ""):
         """Selects the primary symbology combo box in the symbology panel"""
         tool_window = actions.user.arc_tool_window("Symbology")

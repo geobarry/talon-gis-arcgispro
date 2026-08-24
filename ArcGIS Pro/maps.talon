@@ -4,13 +4,13 @@ mode: command
 mode: user.zen
 -
 
-zoom in: user.arc_call_ribbon_item("Map,Navigate,,Fixed Zoom In")
-zoom out: user.arc_call_ribbon_item("Map,Navigate,,Fixed Zoom Out")
+zoom in: user.arc_call_menu_item("Map,Navigate,,Fixed Zoom In")
+zoom out: user.arc_call_menu_item("Map,Navigate,,Fixed Zoom Out")
 
 
 (navigate|nav|center map on) <user.arc_coordinate>: user.arc_nav_coord(arc_coordinate)
 (navigate|nav|center map on)$: user.arc_nav_coord()
-[click on] representative fraction: user.arc_scale_text()
+representative fraction [<number>]: user.arc_scale_text(number or 0)
 
 
 pan {user.compass_direction}: user.arc_pan(compass_direction,0.25)

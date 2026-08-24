@@ -4,18 +4,18 @@ mode: command
 mode: user.zen
 -
 
-# RIBBON
-^menu {user.arc_menu_heading}$: user.arc_open_ribbon(arc_menu_heading)
-^{user.arc_menu_item}$: user.arc_call_ribbon_item(arc_menu_item)
+# menu
+^menu {user.arc_menu_heading}$: user.arc_open_menu(arc_menu_heading)
+^{user.arc_menu_item}$: user.arc_call_menu_item(arc_menu_item)
 # more verbose version
-[open the] {user.arc_menu_heading} menu: user.arc_open_ribbon(arc_menu_heading)
+[open the] {user.arc_menu_heading} menu: user.arc_open_menu(arc_menu_heading)
 # inserts text into the textbox just after the label with a given text
-toggle ribbon: key("ctrl-f1")
+toggle menu: key("ctrl-f1")
 
 
 
 # DEVELOPMENT
-^ribbon copy {user.arc_menu_heading} items$: user.arc_get_ribbon_items(arc_menu_heading) 
+^menu copy {user.arc_menu_heading} items$: user.arc_get_menu_items(arc_menu_heading) 
 
 # MENU ITEM SHORTCUTS - do we need these anymore?
 # insert menu shortcuts
