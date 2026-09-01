@@ -79,6 +79,7 @@ for key in arc_list_key:
             arc_list_dict[key[9:].replace("_", " ")] = str(key)
 
 mod.list("arc_list","Say 'arc help list {arc_list}' to show list items.")
+print(f'arc_list_dict: {arc_list_dict}')
 ctx_arc.lists["user.arc_list"] = arc_list_dict
 
 print(f"CONTEXT ARC LIST {ctx_arc.lists['user.arc_list']}")

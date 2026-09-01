@@ -548,6 +548,11 @@ class Actions:
                         actions.key("up down")
                         el = actions.user.wait_for_element(prop_list)
                         return el
+    def arc_toggle_layer(layer_name: str, ordinal: int = 1):
+        """selects the given layer than toggles visibility with the space key"""
+        layer=actions.user.arc_select_layer(layer_name,ordinal)
+        if layer:
+            actions.key("space")
     def arc_copy_layer(layer_name: str, got_layers: bool = False):
         """Selects layer and then copies it into containing map"""
         layer_el = actions.user.arc_select_layer(layer_name,got_layers)
@@ -693,6 +698,7 @@ class Actions:
         # ArcGIS Pro stubbornly keeps secondary menu popups open so we need to test for this
         level_n=0
         menu=actions.user.matching_child(root,popup_prop_list)
+
         while menu and level_n < 5:
             level_n += 1
             menu=actions.user.matching_child(menu,popup_prop_list)
