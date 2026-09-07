@@ -149,7 +149,7 @@ def gui_my_context_group(gui: imgui.GUI):
         gui.text(context_name)
         gui.line()
         for rule, code in commands.items():
-            gui.text(f"{rule}: {code}")
+            gui.text(f"{rule}")
         gui.spacer()
 
     gui.spacer()

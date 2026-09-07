@@ -8,14 +8,17 @@ mode: user.zen
 # say this after selecting any command that requires you to then draw a rectangle onto the layout
 
 create [(custom|new)] <user.real_number> by <user.real_number> layout: user.arc_create_custom_layout(real_number_1, real_number_2)
+map frame insert {user.arc_dynamic_map}: user.arc_insert_map_frame(arc_dynamic_map)
 place (on|onto) layout: user.arc_draw_rectangle_on_layout()
-expand map to layout: user.arc_expand_map_to_layout()
-
+map expand to layout: user.arc_expand_map_to_layout()
+map expand to <user.real_number> by <user.real_number> layout: user.arc_expand_map_to_layout(real_number_1, real_number_2)
 
 position ex <user.real_number>: user.arc_set_position("X",real_number)
 position why <user.real_number>: user.arc_set_position("Y",real_number)
 shape width <user.real_number>: user.arc_set_position("Width",real_number)
 shape height <user.real_number>: user.arc_set_position("Height",real_number)
+
+show undo list: user.arc_show_undo_list()
 
 # OVERRIDES
 ^{user.nav_key} until <user.lazy_target>$:
@@ -76,7 +79,7 @@ collapse level: key("ctrl-minus")
 expand all: key("ctrl-shift-plus")
 collapse all: key("ctrl-shift-minus")
 toggle visibility: key(space)
-definition query: user.slow_key_press("enter pageup:3 down:7 tab")
+definition query: user.arc_definition_query()
 export features: key("alt t v e f")
 export table: key("alt t v e t")
 

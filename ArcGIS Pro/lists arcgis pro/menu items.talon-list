@@ -1,98 +1,126 @@
 list: user.arc_menu_item
 -
-Map Paste: Map,Clipboard,Paste
-Map Cut: Map,Clipboard,Cut
-Map Copy: Map,Clipboard,Copy
-Map Copy Path: Map,Clipboard,Copy Path
-Map Explore: Map,Navigate,Explore
-Map Zoom Full Extent: Map,Navigate,,Zoom Full Extent
-Map Zoom To: Map,Navigate,,Zoom To
-Map Fixed Zoom In: Map,Navigate,,Fixed Zoom In
-Map Fixed Zoom Out: Map,Navigate,,Fixed Zoom Out
-Map Zoom Previous: Map,Navigate,,Previous Extent
-Map Previous Extent: Map,Navigate,,Previous Extent
-Map Zoom Next: Map,Navigate,,Next Extent
-Map Next Extent: Map,Navigate,,Next Extent
-Map Bookmarks: Map,Navigate,Bookmarks
-Map Go To XY: Map,Navigate,Go To XY
-Map Basemap: Map,Layer,Basemap
-Map Add Data: Map,Layer,Add Data
-Map Add Data From Path: Map,Layer,Add Data From Path
-Map XY Table To Point: Map,Layer,XY Table To Point
-Map Add Graphics Layer: Map,Layer,Add Graphics Layer
-Map Select: Map,Selection,Select
-Map Select By Attributes: Map,Selection,Select By Attributes
-Map Select By Location: Map,Selection,Select By Location
-Map Attributes: Map,Selection,Attributes
-Map Clear: Map,Selection,Clear
-Map Zoom To: Map,Selection,Zoom To
-Map Measure: Map,Inquiry,Measure
-Map Locate: Map,Inquiry,Locate
-Map Infographics: Map,Inquiry,Infographics
-Map Coordinate Conversion: Map,Inquiry,Coordinate Conversion
-Map Pause: Map,Labeling,,Pause
-Map Lock: Map,Labeling,,Lock
-Map View Unplaced: Map,Labeling,,View Unplaced
-Map More: Map,Labeling,,More
-Map Convert: Map,Labeling,Convert
-Map Offline: Map,Offline,Offline
+Map Paste: a=esri_mapping_homeTab,a=esri_core_clipboardGroup,a=esri_core_editPasteSplitButton
+Map Cut: a=esri_mapping_homeTab,a=esri_core_clipboardGroup,a=esri_core_editCutButton
+Map Copy: a=esri_mapping_homeTab,a=esri_core_clipboardGroup,a=esri_core_editCopyButton
+Map Copy Path: a=esri_mapping_homeTab,a=esri_core_clipboardGroup,a=esri_core_editCopyPaths
+Map Explore: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,a=esri_mapping_exploreSplitButton
+Map Zoom Full Extent: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_zoomFullButton
+Map Zoom To: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_zoomToSelectionButton
+Map Zoom In: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_fixedZoomInButton
+Map Zoom Out: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_fixedZoomOutButton
+Map Zoom Previous: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_prevExtentButton
+Map Zoom Next: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,,a=esri_mapping_nextExtentButton
+Map Bookmarks: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,a=esri_mapping_bookmarksNavigateGallery
+Map Go To XY: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,a=esri_mapping_gotoXYControl
+Map Navigation Options: a=esri_mapping_homeTab,a=esri_mapping_navigateGroup,a=esri_mapping_navigationOptionsButton
+Map Basemap: a=esri_mapping_homeTab,a=esri_mapping_layerGroup,a=esri_mapping_basemapGallery
+Map Add Data: a=esri_mapping_homeTab,a=esri_mapping_layerGroup,a=esri_mapping_addDataSplitButton
+Map Add Data From Path: a=esri_mapping_homeTab,a=esri_mapping_layerGroup,a=esri_mapping_addDataFromPathRibbonButton
+Map XY Table To Point: a=esri_mapping_homeTab,a=esri_mapping_layerGroup,a=esri_mapping_xyTableToPointButton
+Map Add Graphics Layer: a=esri_mapping_homeTab,a=esri_mapping_layerGroup,a=esri_mapping_newGraphicsLayerButton
+Map Select: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_mapping_selectToolPalette
+Map Select By Attributes: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_geoprocessing_selectByAttributeButton
+Map Select By Location: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_geoprocessing_selectByLocationButton
+Map Attributes: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_editing_ShowAttributes
+Map Clear: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_mapping_clearSelectionButton
+Map Zoom To: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_mapping_zoomToSelectionButton
+Map Selection Options: a=esri_mapping_homeTab,a=esri_mapping_selectionGroup,a=esri_mapping_openSelectionOptionsButton
+Map Measure: a=esri_mapping_homeTab,a=esri_mapping_inquiryGroup,a=esri_mapping_measureSplitButton
+Map Locate: a=esri_mapping_homeTab,a=esri_mapping_inquiryGroup,a=esri_mapping_locateSplitButton
+Map Infographics: a=esri_mapping_homeTab,a=esri_mapping_inquiryGroup,a=esri_businessAnalyst_reportPlayer_ReportPlayerSplitButton
+Map Coordinate Conversion: a=esri_mapping_homeTab,a=esri_mapping_inquiryGroup,a=esri_defense_showCoordinateConversionDockPane
+Map Pause: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,,a=esri_mapping_labelPauseButton
+Map Lock: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,,a=esri_mapping_labelLockButton
+Map View Unplaced: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,,a=esri_mapping_labelViewUnplacedButton
+Map More: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,,a=esri_mapping_labelingOptionsMenu
+Map Convert: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,a=esri_mapping_labelConvertLabelsToolPalette
+Map Map Properties - Labeling: a=esri_mapping_homeTab,a=esri_mapping_labelingGroup,a=esri_mapping_labelingOptionsButton
+Map Download Map: a=esri_mapping_homeTab,a=esri_mapping_offlineGroup,a=esri_mapping_downloadMap
+Map Sync: a=esri_mapping_homeTab,a=esri_mapping_offlineGroup,a=esri_mapping_offlineSyncButton
+Map Remove: a=esri_mapping_homeTab,a=esri_mapping_offlineGroup,a=esri_mapping_offlineRemoveButton
+Map Share and Download Options: a=esri_mapping_homeTab,a=esri_mapping_offlineGroup,a=esri_mapping_openLocationOptionsButton
+Map Fill: a=esri_mapping_homeTab,a=esri_mapping_featureCacheGroup,a=esri_mapping_manualFillCacheButton
+Map Empty: a=esri_mapping_homeTab,a=esri_mapping_featureCacheGroup,a=esri_mapping_manualClearCacheButton
+Map Cancel: a=esri_mapping_homeTab,a=esri_mapping_featureCacheGroup,a=esri_mapping_cancelExistingFillCacheRequestsButton
+Map Auto Cache: a=esri_mapping_homeTab,a=esri_mapping_featureCacheGroup,a=esri_mapping_autoFillCacheButton
 
-Layout Paste: Layout,Clipboard,Paste
-Layout Cut: Layout,Clipboard,Cut
-Layout Copy: Layout,Clipboard,Copy
-Layout Navigate: Layout,Navigate,Navigate
-Layout Zoom to Page: Layout,Navigate,Zoom to Page
-Layout Zoom To Selected: Layout,Navigate,Zoom To Selected
-Layout Previous Extent: Layout,Navigate,Previous Extent
-Layout Page Width: Layout,Navigate,Page Width
-Layout Zoom To Width: Layout,Navigate,Page Width
-Layout Zoom One Hundred: Layout,Navigate,Zoom 100%
-Layout Next Extent: Layout,Navigate,Next Extent
-Layout Select: Layout,Elements,Select
-Layout Select All: Layout,Elements,Select All
-Layout Clear Selection: Layout,Elements,Clear Selection
-Layout Delete: Layout,Elements,Delete
-Layout Duplicate Layout: Layout,Page Setup,Duplicate Layout
-Layout Size: Layout,Page Setup,Size
-Layout Orientation: Layout,Page Setup,Orientation
-Layout Page from Printer: Layout,Page Setup,Page from Printer
-Layout Rulers: Layout,Show,Rulers
-Layout Guides: Layout,Show,Guides
-Layout Margins: Layout,Show,Margins
-Layout Activate: Layout,Map,Activate
-Layout Zoom Full Extent: Layout,Map,,Zoom Full Extent
-Layout Zoom To: Layout,Map,,Zoom To
-Layout Zoom In: Layout,Map,,Fixed Zoom In
-Layout Zoom Out: Layout,Map,,Fixed Zoom Out
-Layout Previous Extent: Layout,Map,,Previous Extent
-Layout Next Extent: Layout,Map,,Next Extent
-Layout Zoom To Map View: Layout,Map,Zoom To Map View
-Layout Bookmarks: Layout,Map,Bookmarks
-Layout Check Spelling: Layout,Review,Check Spelling
+Layout Paste: a=esri_layouts_homeTab,a=esri_layouts_clipboardGroup,a=esri_core_editPasteSplitButton
+Layout Cut: a=esri_layouts_homeTab,a=esri_layouts_clipboardGroup,a=esri_core_editCutButton
+Layout Copy: a=esri_layouts_homeTab,a=esri_layouts_clipboardGroup,a=esri_core_editCopyButton
+Layout Navigate: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,a=esri_layouts_pageNavigateTool
+Layout Zoom To Page: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomFullButton
+Layout Zoom Page Width: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomPageWidthButton
+Layout Zoom To Selected: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomToSelected
+Layout Zoom One Hundred Percent: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoom100PercentButton
+Layout Page Down: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomDownButton
+Layout Page Up: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomUpButton
+Layout Page Left: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomLeftButton
+Layout Page Right: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageZoomRightButton
+Layout Previous Extent: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pagePrevExtentButton
+Layout Next Extent: a=esri_layouts_homeTab,a=esri_layouts_pageNavigateGroup,,a=esri_layouts_pageNextExtentButton
+Layout Select: a=esri_layouts_homeTab,a=esri_layouts_selectionGroup,a=esri_layouts_selectToolPalette
+Layout Select All: a=esri_layouts_homeTab,a=esri_layouts_selectionGroup,a=esri_layouts_selectAllButton
+Layout Clear Selection: a=esri_layouts_homeTab,a=esri_layouts_selectionGroup,a=esri_layouts_clearSelectionButton
+Layout Delete: a=esri_layouts_homeTab,a=esri_layouts_selectionGroup,a=esri_core_editDeleteButton
+Layout Duplicate Layout: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_duplicateLayoutGallery
+Layout Size: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_pageSizeGallery
+Layout Orientation: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_pageOrientationGallery
+Layout Page from Printer: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_customPageSizeFromPrinter
+Layout Add Multiple Guides: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_addGuides
+Layout Ruler Properties: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_showRulerProperties
+Layout Properties: a=esri_layouts_homeTab,a=esri_layouts_pageDesignGroup,a=esri_layouts_layoutPropertiesButton
+Layout Rulers: a=esri_layouts_homeTab,a=esri_layouts_pageShowGroup,a=esri_layouts_showHideRulersCheck
+Layout Guides: a=esri_layouts_homeTab,a=esri_layouts_pageShowGroup,a=esri_layouts_showHideGuidesCheck
+Layout Margins: a=esri_layouts_homeTab,a=esri_layouts_pageShowGroup,a=esri_layouts_showHideMarginsCheck
+Layout Activate: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,a=esri_layouts_activateMap
+Layout Zoom Full Extent: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_zoomFullButton
+Layout Zoom To: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_zoomToSelectionButton
+Layout Fixed Zoom In: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_fixedZoomInButton
+Layout Fixed Zoom Out: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_fixedZoomOutButton
+Layout Previous Extent: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_prevExtentButton
+Layout Next Extent: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,,a=esri_mapping_nextExtentButton
+Layout Zoom To Map View: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,a=layout_zoomToMapViewGallery
+Layout Bookmarks: a=esri_layouts_homeTab,a=esri_layouts_mapFrameGroup,a=esri_mapping_bookmarksNavigateGallery
+Layout Check Spelling: a=esri_layouts_homeTab,a=esri_layouts_reviewGroup,a=esri_layouts_showSpellCheckPane
+Layout Show Proofing Options: a=esri_layouts_homeTab,a=esri_layouts_reviewGroup,a=esri_layouts_showProofingDialogButton
 
-Layout Close Activation: Layout,Map,Close Activation
+Layout Close Activation: a=esri_layouts_ActivateMapTab,a=esri_layouts_activatedMapGroup,a=esri_layouts_deactivateMap
 
-Insert New Map: Insert,Project,New Map
-Insert New Layout: Insert,Project,New Layout
-Insert New Report: Insert,Project,New Report
-Insert New Presentation: Insert,Project,New Presentation
-Insert New Notebook: Insert,Project,New Notebook
-Insert Toolbox: Insert,Project,Toolbox
-Insert Import Map: Insert,Project,Import Map
-Insert Import Layout: Insert,Project,Import Layout
-Insert Task: Insert,Project,Task
-Insert Connections: Insert,Project,Connections
-Insert Add Folder: Insert,Project,Add Folder
-Insert New Investigation: Insert,Knowledge Graph,New Investigation
-Insert Layer Templates: Insert,Layer Templates,Layer Templates
-Insert Link Analysis: Insert,Link Analysis,Link Analysis
-Insert Measurements: Insert,Measurements,Measurements
-Insert Styles: Insert,Styles,Styles
-Insert Favorites: Insert,Favorites,Favorites
+Insert New Map: a=esri_core_insertTab,a=esri_core_projectData,a=esri_mapping_newMapPalette
+Insert New Layout: a=esri_core_insertTab,a=esri_core_projectData,a=esri_layouts_gallery
+Insert New Report: a=esri_core_insertTab,a=esri_core_projectData,a=esri_reports_newReportSplitButton
+Insert New Presentation: a=esri_core_insertTab,a=esri_core_projectData,a=esri_presentations_newPresentationSplitButton
+Insert New Notebook: a=esri_core_insertTab,a=esri_core_projectData,a=esri_geodatabase_AddNewOrExistingNotebookSplitButton
+Insert Toolbox: a=esri_core_insertTab,a=esri_core_projectData,a=esri_geoprocessing_insertMenu
+Insert Import Map: a=esri_core_insertTab,a=esri_core_projectData,a=esri_layouts_importMap
+Insert Import Layout: a=esri_core_insertTab,a=esri_core_projectData,a=esri_layouts_templateGallery
+Insert Task: a=esri_core_insertTab,a=esri_core_projectData,a=esri_task_insertMenu
+Insert Connections: a=esri_core_insertTab,a=esri_core_projectData,a=esri_geodatabase_insertMenu
+Insert Add Folder: a=esri_core_insertTab,a=esri_core_projectData,a=esri_geodatabase_addFolderConnectionButton
+Insert New Investigation: a=esri_core_insertTab,a=esri_knowledgeGraph_insertKnowledgeGraphGroup,a=esri_knowledgeGraph_newKnowledgeGraphInvestigation
+Insert Map Frame: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_newMapFrameGallery
+Insert Rectangle: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_newMapFrameToolPalette
+Insert Extent Indicator: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_newExtentIndicatorMapFrameGallery
+Insert Grid: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_newMapGridStyleGallery
+Insert Map Series: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_mapSeriesSplitButton
+Insert Refresh Map Series: a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_mapSeriesRefreshButton
+Insert North Arrow: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newNorthArrowSplitButton
+Insert Scale Bar: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newScaleBarSplitButton
+Insert Legend: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newLegendSplitButton
+Insert Chart Frame: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newChartSplitButton
+Insert Table Frame: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newTableFrameSplitButton
+Insert Additional Surrounds: a=esri_core_insertTab,a=esri_layouts_insertMapSurroundGroup,a=esri_layouts_newProductionSplitButton
+Insert Dynamic Text: a=esri_core_insertTab,a=esri_layouts_insertGraphicGroup,a=esri_layouts_dynamicTextGallery
+Insert Picture: a=esri_core_insertTab,a=esri_layouts_insertGraphicGroup,a=esri_layouts_newPictureGallery
+Insert Properties: a=esri_core_insertTab,a=esri_layouts_insertGraphicGroup,a=esri_layouts_textAndGraphicsPropertiesButton
+Insert Add: a=esri_core_insertTab,a=esri_project_styles,a=esri_mapping_addStyleMenu
+Insert New: a=esri_core_insertTab,a=esri_project_styles,a=esri_mapping_newStyleMenu
+Insert Import: a=esri_core_insertTab,a=esri_project_styles,a=esri_mapping_importStyleButton
+Insert Add Item: a=esri_core_insertTab,a=esri_core_favoritesDataForInsert,a=esri_insertToFavoritesDynamicMenu
 
 Insert Map Surrounds: Insert,Map Surrounds,Map Surrounds
-#Insert Graphics and Text: Insert,Graphics and Text,Graphics and Text
-#Insert Graphics and Text: Insert,Graphics and Text,More
+
 Insert Graphics and Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout
 Insert Rectangle Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout,c=BarMenuGallery,p=group.*Text.*,n=Rectangle Text
 Insert Straight Text: Insert,Graphics and Text,a=.*insertElementGalleryLayout,c=BarMenuGallery,p=group.*Text.*,n=Straight Text
@@ -100,203 +128,225 @@ Insert Measurements: Insert,Measurements,Measurements
 Insert Styles: Insert,Styles,Styles
 Insert Favorites: Insert,Favorites,Favorites
 
-Insert New Map: Insert,Project,New Map
-Insert New Layout: Insert,Project,New Layout
-Insert New Report: Insert,Project,New Report
-Insert New Presentation: Insert,Project,New Presentation
-Insert New Notebook: Insert,Project,New Notebook
-Insert Toolbox: Insert,Project,Toolbox
-Insert Import Map: Insert,Project,Import Map
-Insert Import Layout: Insert,Project,Import Layout
-Insert Task: Insert,Project,Task
-Insert Connections: Insert,Project,Connections
-Insert Add Folder: Insert,Project,Add Folder
-Insert New Investigation: Insert,Knowledge Graph,New Investigation
-Insert Map Frame: Insert,Map Frames,Map Frame
-Insert Rectangle: Insert,Map Frames,Rectangle
-Insert Extent Indicator: Insert,Map Frames,Extent Indicator
-Insert Grid: Insert,Map Frames,Grid
-Insert Map Series: Insert,Map Frames,Map Series
-Insert Refresh Map Series: Insert,Map Frames,Refresh Map Series
-Insert North Arrow: Insert,Map Surrounds,North Arrow
-Insert Scale Bar: Insert,Map Surrounds,Scale Bar
-Insert Legend: Insert,Map Surrounds,Legend
-Insert Chart Frame: Insert,Map Surrounds,Chart Frame
-Insert Table Frame: Insert,Map Surrounds,Table Frame
-Insert Additional Surrounds: Insert,Map Surrounds,Additional Surrounds
-Insert Dynamic Text: Insert,Graphics and Text,Dynamic Text
-Insert Picture: Insert,Graphics and Text,Picture
-Insert Distance and Direction: Insert,Measurements,Distance and Direction
-Insert Add: Insert,Styles,Add
-Insert New: Insert,Styles,New
-Insert Import: Insert,Styles,Import
-Insert Add Item: Insert,Favorites,Add Item
+Analysis History: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_showToolHistory
+Analysis ModelBuilder: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_modelBuilderButton
+Analysis Python: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_PythonSplitButton
+Analysis Environments: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_environmentsButton
+Analysis Ready To Use Tools: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessingAnalysisButton_readytouse
+Analysis Tools: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_toolsButton
+Analysis Geoprocessing Options: a=esri_core_analysisTab,a=esri_geoprocessing_analysisTools,a=esri_geoprocessing_openGPOptionsButton
+Analysis More: a=esri_core_analysisTab,a=esri_geoprocessing_ToolsGallery,a=esri_geoprocessingGallery,a=PART_MoreButton
+Analysis Feature Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_portal,a=esri_geoprocessingAnalysisButton_feature
+Analysis Raster Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_portal,a=esri_geoprocessingAnalysisButton_raster
+Analysis Data Engineering: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_dataengineering_viewOutlineStatisticsButton_Analysis
+Analysis Suitability Modeler: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_geoprocessing_suitabilityModelSplitButton
+Analysis Visibility Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_defense_showVisibilityDockPane
+Analysis Exploratory 3D Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_mapping_interactiveAnalysisSplitButton
+Analysis Simulation: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_mapping_addSimulationGallery
+Analysis Network Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_networkanalysis_transportation_AnalysisLayerFactoriesAndUpdateDefaultMapNetworkSource_Gallery
+Analysis Neighborhood Explorer: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_neighborhoodexplorer_mainButton
+Analysis Geostatistical Wizard: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_geostatistics_WizardButton
+Analysis Business Analysis: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_businessAnalystButton_baToolsDropdown
+Analysis Embeddings: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_geoai_workflowsDropdown
+Analysis Data Interop: a=esri_core_analysisTab,a=esri_geoprocessing_analysis2,a=esri_dataInterop_FMEToolPalette
+Analysis Raster Functions: a=esri_core_analysisTab,a=esri_datasourcesraster_rasterLayerTemplateGroup,a=esri_datasourcesraster_analysisSplitButton
+Analysis Function Editor: a=esri_core_analysisTab,a=esri_datasourcesraster_rasterLayerTemplateGroup,a=esri_datasourcesraster_showFunctionEditorButton
 
-Analysis History: Analysis,Geoprocessing,History
-Analysis ModelBuilder: Analysis,Geoprocessing,ModelBuilder
-Analysis Python: Analysis,Geoprocessing,Python
-Analysis Environments: Analysis,Geoprocessing,Environments
-Analysis Ready To Use Tools: Analysis,Geoprocessing,Ready To Use Tools
-Analysis Tools: Analysis,Geoprocessing,Tools
-Analysis Analysis Gallery: Analysis,Tools,Analysis Gallery,Analysis Gallery
-Analysis Feature Analysis: Analysis,Portal,Feature Analysis
-Analysis Raster Analysis: Analysis,Portal,Raster Analysis
-Analysis Data Engineering: Analysis,Workflows,Data Engineering
-Analysis Suitability Modeler: Analysis,Workflows,Suitability Modeler
-Analysis Visibility Analysis: Analysis,Workflows,Visibility Analysis
-Analysis Exploratory three D Analysis: Analysis,Workflows,Exploratory 3D Analysis
-Analysis Simulation: Analysis,Workflows,Simulation
-Analysis Network Analysis: Analysis,Workflows,Network Analysis
-Analysis Neighborhood Explorer: Analysis,Workflows,Neighborhood Explorer
-Analysis Geostatistical Wizard: Analysis,Workflows,Geostatistical Wizard
-Analysis Business Analysis: Analysis,Workflows,Business Analysis
-Analysis Data Interop: Analysis,Workflows,Data Interop
-Analysis Raster: Analysis,Raster,Raster
+View Global: a=esri_core_viewTab,a=esri_mapping_viewGroup,a=esri_mapping_globe3DViewButton
+View Local: a=esri_core_viewTab,a=esri_mapping_viewGroup,a=esri_mapping_scene3DViewButton
+View Map: a=esri_core_viewTab,a=esri_mapping_viewGroup,a=esri_mapping_map2DViewButton
+View Convert: a=esri_core_viewTab,a=esri_mapping_viewGroup,a=esri_mapping_convertMapPalette
+View Link Views: a=esri_core_viewTab,a=esri_mapping_syncViewGroup,a=esri_mapping_syncViewExtentPalette
+View Link Cursors: a=esri_core_viewTab,a=esri_mapping_syncViewGroup,a=esri_mapping_linkCursorsButton
+View Pane Sets: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_dockPaneSetDynamicMenu
+View Catalog Pane: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_core_showProjectDockPane
+View Catalog View: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_core_showProjectView
+View Contents: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_core_showContentsDockPane
+View Geoprocessing: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_geoprocessing_toolsViewTabButton
+View Python Window: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_geoprocessing_pythonButton
+View Tasks: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_tasks_ShowTasks
+View Workflow Manager: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_workflow_client_open_workflow_pane
+View Aviation: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_aviation_aviationViewPalette
+View Indoors: a=esri_core_viewTab,a=esri_core_dockWindows,a=esri_indoors_indoorsViewPalette
+View Create: a=esri_core_viewTab,a=esri_mapping_thumbnailGroup,a=esri_mapping_createThumbnailButton
+View Import: a=esri_core_viewTab,a=esri_mapping_thumbnailGroup,a=esri_mapping_browseThumbnailButton
+View Color Vision Simulator: a=esri_core_viewTab,a=esri_mapping_accessibilityGroup,a=esri_mapping_colorVisionSplitButton
+View Add: a=esri_core_viewTab,a=esri_mapping_animation,a=esri_mapping_enableAnimationButton
+View Remove: a=esri_core_viewTab,a=esri_mapping_animation,a=esri_mapping_animationRemoveTrack
+View Enable Location: a=esri_core_viewTab,a=esri_mapping_deviceLocationGroup,a=esri_mapping_deviceLocation_enableMyLocationSplitButton
+View Device Location Options: a=esri_core_viewTab,a=esri_mapping_deviceLocationGroup,a=esri_core_deviceLocation_openBackstageOptionsButton
+View Illumination: a=esri_core_viewTab,a=esri_mapping_effectsGroup,a=esri_mapping_illuminationTimeSplitButton
+View Weather: a=esri_core_viewTab,a=esri_mapping_effectsGroup,a=esri_mapping_weatherEffectSplitButton
+View Visual: a=esri_core_viewTab,a=esri_mapping_effectsGroup,a=esri_mapping_visualEffectSplitButton
+View Camera: a=esri_core_viewTab,a=esri_mapping_effectsGroup,a=esri_mapping_cameraEffectSplitButton
+View Postprocessing: a=esri_core_viewTab,a=esri_mapping_effectsGroup,a=esri_mapping_postprocessingEffectSplitButton
+View Depth Priority: a=esri_core_viewTab,a=esri_mapping_sceneGroup,a=esri_mapping_depthPriorityButton
+View Drawing Mode: a=esri_core_viewTab,a=esri_mapping_sceneGroup,a=esri_mapping_sceneViewModeGallery
+View Mode : a=esri_core_viewTab,a=esri_mapping_viewClippingGroup,a=esri_mapping_nearPlaneClippingMode
+View PART_DropDownButton: a=esri_core_viewTab,a=esri_mapping_viewClippingGroup,a=esri_mapping_nearPlaneClippingMode,a=PART_DropDownButton
+View Distance : a=esri_core_viewTab,a=esri_mapping_viewClippingGroup,a=esri_mapping_spinner_nearPlaneClippingDistance,a=PART_TextBox
+View Increment: a=esri_core_viewTab,a=esri_mapping_viewClippingGroup,a=esri_mapping_spinner_nearPlaneClippingDistance,a=ScrollAmount_SmallIncrement
+View Decrement: a=esri_core_viewTab,a=esri_mapping_viewClippingGroup,a=esri_mapping_spinner_nearPlaneClippingDistance,a=ScrollAmount_SmallDecrement
+View Navigator: a=esri_core_viewTab,a=esri_mapping_navigation,a=esri_mapping_navigationControl
+View Camera: a=esri_core_viewTab,a=esri_mapping_navigation,a=esri_mapping_cameraPropertiesControl
+View Magnifier: a=esri_core_viewTab,a=esri_mapping_navigation,a=esri_mapping_magnifierControl
 
-View Global: View,View,Global
-View Local: View,View,Local
-View Map: View,View,Map
-View Convert: View,View,Convert
-View Link Views: View,Link,Link Views
-View Link Cursors: View,Link,Link Cursors
-View Reset Panes: View,Windows,Reset Panes
-View Catalog Pane: View,Windows,Catalog Pane
-View Catalog View: View,Windows,Catalog View
-View Contents: View,Windows,Contents
-View Geoprocessing: View,Windows,Geoprocessing
-View Python Window: View,Windows,Python Window
-View Tasks: View,Windows,Tasks
-View Workflow Manager: View,Windows,Workflow Manager
-View Aviation: View,Windows,Aviation
-View Indoors: View,Windows,Indoors
-View Create: View,Thumbnail,Create
-View Import: View,Thumbnail,Import
-View Add: View,Animation,Add
-View Remove: View,Animation,Remove
-View Enable Location: View,Device Location,Enable Location
-View Illumination: View,Effects,Illumination
-View Weather: View,Effects,Weather
-View Visual: View,Effects,Visual
-View Camera: View,Effects,Camera
-View Postprocessing: View,Effects,Postprocessing
-View Depth Priority: View,Scene,Depth Priority
-View Drawing Mode: View,Scene,Drawing Mode
-View Mode : View,View Clipping,Mode 
-View Navigator: View,Navigation,Navigator
-View Camera: View,Navigation,Camera
-View Magnifier: View,Navigation,Magnifier
+View Create Thumbnail: a=esri_core_viewTab,a=esri_layouts_thumbnailGroup,a=esri_layouts_createThumbnail
+View Import Thumbnail: a=esri_core_viewTab,a=esri_layouts_thumbnailGroup,a=esri_layouts_importThumbnail
 
-Edit Paste: Edit,Clipboard,Paste
-Edit Cut: Edit,Clipboard,Cut
-Edit Copy: Edit,Clipboard,Copy
-Edit Copy Path: Edit,Clipboard,Copy Path
-Edit Save: Edit,Manage Edits,Save
-Edit Discard: Edit,Manage Edits,Discard
-Edit Error Inspector: Edit,Manage Edits,Error Inspector
-Edit Manage Templates: Edit,Manage Edits,Manage Templates
-Edit Status: Edit,Manage Edits,Status
-Edit Settings: Edit,Manage Edits,Settings
-Edit Snapping: Edit,Snapping,Snapping
-Edit Create: Edit,Features,Create
-Edit Modify: Edit,Features,Modify
-Edit Delete: Edit,Features,Delete
-Edit Select: Edit,Selection,Select
-Edit Attributes: Edit,Selection,Attributes
-Edit Clear: Edit,Selection,Clear
-Edit Zoom To: Edit,Selection,Zoom To
-Edit Editor tool gallery: Edit,Tools,Editor tool gallery,Editor tool gallery
-Edit Mode: Edit,Elevation,Mode
-Edit Linear Unit: Feet: Edit,Elevation,Map surfaces,,,Linear Unit: Feet
-Edit Ground To Grid: Edit,Corrections,Ground To Grid
-Edit Manage Quality: Edit,Data Reviewer,Manage Quality
 
-Imagery New Workspace: Imagery,Ortho Mapping,New Workspace
-Imagery Georeference: Imagery,Alignment,Georeference
-Imagery Raster Functions: Imagery,Analysis,Raster Functions
-Imagery Function Editor: Imagery,Analysis,Function Editor
-Imagery Change Detection: Imagery,Analysis,Change Detection
-Imagery Classification Wizard: Imagery,Image Classification,Classification Wizard
-Imagery Classification Tools: Imagery,Image Classification,Classification Tools
-Imagery Deep Learning Tools: Imagery,Image Classification,Deep Learning Tools
-Imagery Mensuration Tools: Imagery,Mensuration,Mensuration Tools,Mensuration Tools
-Imagery Results: Imagery,Mensuration,Results
-Imagery Tools: Imagery,Tools,Tools
-Imagery Share: Imagery,Share,Share
-Imagery Motion Imagery: Imagery,Motion Imagery,Motion Imagery
+Edit Paste: a=esri_editing_EditingTab,a=esri_core_clipboardGroup,a=esri_core_editPasteSplitButton
+Edit Cut: a=esri_editing_EditingTab,a=esri_core_clipboardGroup,a=esri_core_editCutButton
+Edit Copy: a=esri_editing_EditingTab,a=esri_core_clipboardGroup,a=esri_core_editCopyButton
+Edit Copy Path: a=esri_editing_EditingTab,a=esri_core_clipboardGroup,a=esri_core_editCopyPaths
+Edit Save: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_SaveEditsBtn
+Edit Discard: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_DiscardEditsBtn
+Edit Error Inspector: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_ShowErrorInspectorBtn
+Edit Manage Templates: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_ShowManageTemplatesBtn
+Edit Status: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_ShowStatusBtn
+Edit Settings: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_ShowSettingsBtn
+Edit Editing Options: a=esri_editing_EditingTab,a=esri_editing_Manage,a=esri_editing_openEditingOptionsButton
+Edit Snapping: a=esri_editing_EditingTab,a=esri_editing_Snapping,a=esri_mapping_snappingSplitButton
+Edit Create: a=esri_editing_EditingTab,a=esri_editing_Features,a=esri_editing_ShowCreateFeaturesBtn
+Edit Modify: a=esri_editing_EditingTab,a=esri_editing_Features,a=esri_editing_ShowEditFeaturesBtn
+Edit Delete: a=esri_editing_EditingTab,a=esri_editing_Features,a=esri_editing_DelSelFeaturesBtn
+Edit Manage Templates: a=esri_editing_EditingTab,a=esri_editing_Features,a=esri_editing_ShowManageTemplatesBtn
+Edit Select: a=esri_editing_EditingTab,a=esri_editing_selectionGroup,a=esri_mapping_selectToolPalette
+Edit Attributes: a=esri_editing_EditingTab,a=esri_editing_selectionGroup,a=esri_editing_ShowAttributes
+Edit Clear: a=esri_editing_EditingTab,a=esri_editing_selectionGroup,a=esri_mapping_clearSelectionButton
+Edit Zoom To: a=esri_editing_EditingTab,a=esri_editing_selectionGroup,a=esri_mapping_zoomToSelectionButton
+Edit Selection Options: a=esri_editing_EditingTab,a=esri_editing_selectionGroup,a=esri_mapping_openSelectionOptionsButton
+Edit More: a=esri_editing_EditingTab,a=esri_editing_EditGallery,a=esri_EditFeaturesGallery,a=PART_MoreButton
+Edit Editor Settings: a=esri_editing_EditingTab,a=esri_editing_EditGallery,a=esri_editing_openEditingSettingsButton
+Edit Mode: a=esri_editing_EditingTab,a=esri_editing_elevationGroup,a=esri_editing_ElevationModeSplitButton
+Edit NumberTextBox: a=esri_editing_EditingTab,a=esri_editing_elevationGroup,a=esri_editing_ElevationTools,a=esri_editing_ElevationTextEntry,a=UnitsControl,a=NumberTextBox
+Edit Linear Unit: Feet: a=esri_editing_EditingTab,a=esri_editing_elevationGroup,a=esri_editing_ElevationTools,a=esri_editing_ElevationTextEntry,a=UnitsControl,a=UnitCombo
+Edit Button: a=esri_editing_EditingTab,a=esri_editing_elevationGroup,a=esri_editing_ElevationTools,a=Button
+Edit Ground To Grid: a=esri_editing_EditingTab,a=esri_editing_correctionGroup,a=esri_editing_GroundToGridSplitButton
+Edit Manage Quality: a=esri_editing_EditingTab,a=esri_dataReviewer_DataReviewerGroup,a=esri_dataReviewer_ManageQuality
+
+Imagery New Workspace: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_orthoMappingGroup,a=esri_datasourcesraster_orthoMappingSplitButton
+Imagery Georeference: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_georeferencingGroup,a=esri_datasourcesraster_georefStartButton
+Imagery Georeference Options: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_georeferencingGroup,a=esri_datasourcesraster_georefOptionsButton
+Imagery Raster Functions: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_analysisGroup,a=esri_datasourcesraster_analysisSplitButton
+Imagery Function Editor: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_analysisGroup,a=esri_datasourcesraster_showFunctionEditorButton
+Imagery Change Detection: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_analysisGroup,a=esri_datasourcesraster_changeDetectionToolsGallery
+Imagery Spectral Analysis: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_analysisGroup,a=esri_datasourcesraster_spectralAnalysisToolsGallery
+Imagery Classification Wizard: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_imageClassificationGroup,a=esri_datasourcesraster_imageClassificationWizardButton
+Imagery Classification Tools: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_imageClassificationGroup,a=esri_datasourcesraster_imageClassificationToolsGallery
+Imagery Deep Learning Tools: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_imageClassificationGroup,a=esri_datasourcesraster_deepLearningToolsGallery
+Imagery More: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_mensurationGroup,a=esri_datasourcesraster_mensurationToolsGallery,a=PART_MoreButton
+Imagery Results: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_mensurationGroup,a=esri_datasourcesraster_mensurationResultsButton
+Imagery Mensuration Options: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_mensurationGroup,a=esri_datasourcesraster_mensurationOptionsButton
+Imagery Process: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_toolsGroup,a=esri_datasourcesraster_rfxToolsPalette
+Imagery Indices: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_toolsGroup,a=esri_datasourcesraster_rasterIndicesGallery
+Imagery Pixel Editor: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_toolsGroup,a=esri_datasourcesraster_pixelEditorStartButton
+Imagery Image Information: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_toolsGroup,a=esri_nationalImagery_showImageInfoPaneButton
+Imagery Create Hosted Imagery: a=esri_datasourcesraster_imageryCoreTab,a=esri_datasourcesraster_shareGroup,a=esri_datasourcesraster_createHostedImageryButton
+Imagery Video Search: a=esri_datasourcesraster_imageryCoreTab,a=esri_motionimagery_imageryTabGroup,a=esri_motionimagery_videoSearchButton
 
 
 Share Save As: Share,Save As,Save As
 Share Output: Share,Output,Output
 
-Share Project: Share,Package,Project
-Share Map: Share,Package,Map
-Share Mobile Map: Share,Package,Mobile Map
-Share Layer: Share,Package,Layer
-Share Geoprocessing: Share,Package,Geoprocessing
-Share Deep Learning: Share,Package,Deep Learning
-Share Web Map: Share,Share As,Web Map
-Share Web Layer: Share,Share As,Web Layer
-Share Web Style: Share,Share As,Web Style
-Share Locator: Share,Share As,Locator
-Share Geodata Service: Share,Share As,Geodata Service
-Share Web Tool: Share,Share As,Web Tool
-Share Jobs: Share,Status,Jobs
-Share Save Web Map: Share,Manage,Save Web Map
-Share Replace Web Layer: Share,Manage,Replace Web Layer
-Share Data Stores: Share,Manage,Data Stores
-Share Upload File: Share,Manage,Upload File
-Share Project Template: Share,Save As,Project Template
-Share Style Items: Share,Save As,Style Items
-Share Map File: Share,Save As,Map File
-Share Layer File: Share,Save As,Layer File
-Share Task Item: Share,Save As,Task Item
-Share Print Map: Share,Output,Print Map
-Share Export Map: Share,Output,Export Map
-Share Capture To Clipboard: Share,Output,Capture To Clipboard
+Share Project: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_PackagingProjectPaneBtn
+Share Map: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_PackagingMapPaneBtn
+Share Mobile Map: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_PackagingMobileMapPaneBtn
+Share Layer: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_PackagingLayersPaneBtn
+Share Geoprocessing: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_gpPackageMenu
+Share Deep Learning: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_sharing_PackagingDeepLearningPaneBtn
+Share Share and Download Options: a=esri_sharing_shareTab,a=esri_sharing_packageGroupInShareTab,a=esri_mapping_openLocationOptionsButton
+Share Web Map: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_SharingAsWebMapPaneBtn
+Share Web Layer: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_webLayerToolPalette
+Share Web Style: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_shareStyleAsWebStyleRibbonBtn
+Share Locator: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_geocodeToolPalette
+Share Geodata Service: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_geodataToolPalette
+Share Web Tool: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_sharing_webToolPalette
+Share Share and Download Options: a=esri_sharing_shareTab,a=esri_sharing_shareAsWebGroupInShareTab,a=esri_mapping_openLocationOptionsButton
+Share Jobs: a=esri_sharing_shareTab,a=esri_sharing_sharingStatusGroup,a=esri_sharing_sharingStatus
+Share Save Web Map: a=esri_sharing_shareTab,a=esri_sharing_manage2DGroup,a=esri_sharing_SaveWebMap
+Share Replace Web Layer: a=esri_sharing_shareTab,a=esri_sharing_manage2DGroup,a=esri_sharing_ReplaceWebLayerPaneBtn
+Share Data Stores: a=esri_sharing_shareTab,a=esri_sharing_manage2DGroup,a=esri_sharing_manageDataStores
+Share Upload File: a=esri_sharing_shareTab,a=esri_sharing_manage2DGroup,a=esri_sharing_UploadFilePaneBtn
+Share Project Template: a=esri_sharing_shareTab,a=esri_sharing_saveAsGroupInShareTab,a=esri_sharing_ProjectTemplatePaneBtn
+Share Style Items: a=esri_sharing_shareTab,a=esri_sharing_saveAsGroupInShareTab,a=esri_mapping_SaveItemsToStyleBtn
+Share Map File: a=esri_sharing_shareTab,a=esri_sharing_saveAsGroupInShareTab,a=esri_sharing_SaveAsMapFileBtn
+Share Layer File: a=esri_sharing_shareTab,a=esri_sharing_saveAsGroupInShareTab,a=esri_sharing_SaveAsLayerFileBtn
+Share Task Item: a=esri_sharing_shareTab,a=esri_sharing_saveAsGroupInShareTab,a=esri_tasks_ShareTaskItem
+Share Print Map: a=esri_sharing_shareTab,a=esri_sharing_outputGroupInMapShareTab,a=esri_sharing_PrintMap
+Share Export Map: a=esri_sharing_shareTab,a=esri_sharing_outputGroupInMapShareTab,a=esri_mapping_exportMapSplitButton
+Share Export To 3D File: a=esri_sharing_shareTab,a=esri_sharing_outputGroupInMapShareTab,a=esri_sharing_ExportSceneTo3DFile
+Share Capture To Clipboard: a=esri_sharing_shareTab,a=esri_sharing_outputGroupInMapShareTab,a=esri_sharing_CaptureMapToClipboard
 
-Help Ribbon: Help,Customize,Ribbon
-Help Quick Access Toolbar: Help,Customize,Quick Access Toolbar
-Help Shortcuts: Help,Customize,Shortcuts
-Help Help: Help,Help,Help
-Help Learning Resources: Help,Help,Learning Resources
-Help Diagnostic Monitor: Help,Performance,Diagnostic Monitor
-Help Esri Community: Help,Contact Us,Esri Community
-Help Technical Support: Help,Contact Us,Technical Support
+Help Ribbon: a=esri_core_helpTab,a=esri_core_customizeGroup,a=esri_core_ribbonBtn
+Help Quick Access Toolbar: a=esri_core_helpTab,a=esri_core_customizeGroup,a=esri_core_qatBtn
+Help Shortcuts: a=esri_core_helpTab,a=esri_core_customizeGroup,a=esri_core_Shortcuts
+Help Help: a=esri_core_helpTab,a=esri_core_helpGroup,a=esri_core_helpMenu
+Help Learning Resources: a=esri_core_helpTab,a=esri_core_helpGroup,a=esri_core_learningBtn
+Help Diagnostic Monitor: a=esri_core_helpTab,a=esri_core_performanceGroup,a=esri_core_monitorBtn
+Help Analyze Map: a=esri_core_helpTab,a=esri_core_performanceGroup,a=esri_sharing_AnalyzePerformanceCXMUBtn
+Help Esri Community: a=esri_core_helpTab,a=esri_core_contactGroup,a=esri_core_communityBtn
+Help Technical Support: a=esri_core_helpTab,a=esri_core_contactGroup,a=esri_core_supportBtn
 
-Map Frame Dynamic Text: Map Frame,Insert Graphics and Text,Dynamic Text
-Map Frame Picture: Map Frame,Insert Graphics and Text,Picture
-Map Frame Edit Vertices: Map Frame,Edit,Edit Vertices
-Map Frame Rotate Or Flip: Map Frame,Edit,Rotate Or Flip
-Map Frame Merge Shapes: Map Frame,Edit,Merge Shapes
-Map Frame Reshape: Map Frame,Edit,Reshape
-Map Frame Polygon Symbol: Map Frame,Symbol,Polygon Symbol,Polygon Symbol
-Map Frame Fill: Map Frame,Symbol,Fill,Fill
-Map Frame Selected Color: Map Frame,Symbol,Fill,,Selected Color
-Map Frame Stroke: Map Frame,Symbol,Stroke,Stroke
-Map Frame Selected Color: Map Frame,Symbol,Stroke,,Selected Color
-Map Frame Text: Map Frame,Text Symbol,Text,Text
-Map Frame Grow Font: Map Frame,Text Symbol,,Grow Font
-Map Frame Decrease Font Size: Map Frame,Text Symbol,,Decrease Font Size
-Map Frame Font Settings: Map Frame,Text Symbol,,Font Settings
-Map Frame Selected Color: Map Frame,Text Symbol,,Color,,Selected Color
-Map Frame Align: Map Frame,Arrange,Align
-Map Frame Distribute: Map Frame,Arrange,Distribute
-Map Frame Group: Map Frame,Arrange,Group
-Map Frame Order: Map Frame,Arrange,Order
-Map Frame Size and Position: Map Frame,Size & Position,Size & Position
-Map Frame X: Map Frame,Size & Position,Size & Position,a=X
-Map Frame Y: Map Frame,Size & Position,Size & Position,a=Y
-Map Frame Width: Map Frame,Size & Position,Size & Position,a=Width
-Map Frame Height: Map Frame,Size & Position,Size & Position,a=Height
-Map Frame Anchor Top Left: Map Frame,Size & Position,Size & Position,a=AnchorTopLeft
-Map Frame Anchor Top Middle: Map Frame,Size & Position,Size & Position,a=AnchorTopMid
-Map Frame Anchor Top Right: Map Frame,Size & Position,Size & Position,a=AnchorTopRight
-Map Frame Anchor Center Left: Map Frame,Size & Position,Size & Position,a=AnchorLeftMid
-Map Frame Anchor Center Middle: Map Frame,Size & Position,Size & Position,a=AnchorCenter
-Map Frame Anchor Center Right: Map Frame,Size & Position,Size & Position,a=AnchorRightMid
-Map Frame Anchor Bottom Left: Map Frame,Size & Position,Size & Position,a=BottomLeft
-Map Frame Anchor Bottom Middle: Map Frame,Size & Position,Size & Position,a=AnchorBottomMid
-Map Frame Anchor Bottom Right: Map Frame,Size & Position,Size & Position,a=AnchorBottomRight
+Map Frame Element Part: a=esri_layouts_FormatTab,a=esri_layouts_subElementGroup,a=esri_layouts_subElementComboBox
+Map Frame PART_DropDownButton: a=esri_layouts_FormatTab,a=esri_layouts_subElementGroup,a=esri_layouts_subElementComboBox,a=PART_DropDownButton
+Map Frame Element Properties: a=esri_layouts_FormatTab,a=esri_layouts_subElementGroup,a=esri_layouts_showElementDockPaneButton
+Map Frame Dynamic Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_dynamicTextGallery
+Map Frame Picture: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_newPictureGallery
+Map Frame Properties: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_textAndGraphicsPropertiesButton
+Map Frame Edit Vertices: a=esri_layouts_FormatTab,a=esri_layouts_editMapFrameGroup,a=esri_layouts_editVerticesTool
+Map Frame Rotate Or Flip: a=esri_layouts_FormatTab,a=esri_layouts_editMapFrameGroup,a=esri_layouts_rotateOrFlipMenu
+Map Frame Merge Shapes: a=esri_layouts_FormatTab,a=esri_layouts_editMapFrameGroup,a=esri_layouts_mergeShapesMenu
+Map Frame Reshape: a=esri_layouts_FormatTab,a=esri_layouts_editMapFrameGroup,a=esri_layouts_reshapeElementToolPalette
+Map Frame Layer Visibility: a=esri_layouts_FormatTab,a=esri_layouts_editMapFrameGroup,a=esri_layouts_overrideLayerVisibilityButton
+Map Frame More: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_polygonStyleGalleryInLine,a=PART_MoreButton
+Map Frame Selected Color: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_fillColorGallery,a=colorPicker,a=colorComboBox
+Map Frame Selected Color: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_lineColorGallery,a=colorPicker,a=colorComboBox
+Map Frame Size: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolSizeComboBox
+Map Frame Size: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolSizeComboBox,a=PART_TextBox
+Map Frame PART_DropDownButton: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolSizeComboBox,a=PART_DropDownButton
+Map Frame Width: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolWidthComboBox
+Map Frame Width: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolWidthComboBox,a=PART_TextBox
+Map Frame PART_DropDownButton: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_symbolWidthComboBox,a=PART_DropDownButton
+Map Frame Format Symbol: a=esri_layouts_FormatTab,a=esri_layouts_polygonFormatGroup,a=esri_layouts_showPolygonSymbolDockPaneButton
+Map Frame More: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,a=esri_layouts_textStyleGalleryInLine,a=PART_MoreButton
+Map Frame fontNameComboBox: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolFontControl,a=fontNameComboBox
+Map Frame PART_EditableTextBox: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolFontControl,a=fontNameComboBox,a=PART_EditableTextBox
+Map Frame Font Size: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolFontSizeComboBox
+Map Frame Font Size: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolFontSizeComboBox,a=PART_TextBox
+Map Frame PART_DropDownButton: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolFontSizeComboBox,a=PART_DropDownButton
+Map Frame Grow Font: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolIncreaseSizeButton
+Map Frame Decrease Font Size: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolDecreaseSizeButton
+Map Frame Bullets: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolBulletsAndNumberingControl,a=ToggleBulletsButton
+Map Frame Decrease indent: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolBulletsAndNumberingControl,a=DecreaseIndentButton
+Map Frame Increase indent: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolBulletsAndNumberingControl,a=IncreaseIndentButton
+Map Frame Font Style: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolStyleComboBox
+Map Frame Font Style: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolStyleComboBox,a=PART_TextBox
+Map Frame PART_DropDownButton: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolStyleComboBox,a=PART_DropDownButton
+Map Frame Selected Color: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textColorGallery,a=colorPicker,a=colorComboBox
+Map Frame System.Windows.Media.DrawingImage: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolHorizontalAlignmentControl,a=Position_HorizontalAlignmentLeftButton
+Map Frame System.Windows.Media.DrawingImage: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolHorizontalAlignmentControl,a=Position_HorizontalAlignmentCenterButton
+Map Frame System.Windows.Media.DrawingImage: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolHorizontalAlignmentControl,a=Position_HorizontalAlignmentRightButton
+Map Frame System.Windows.Media.DrawingImage: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,,a=esri_layouts_textSymbolHorizontalAlignmentControl,a=Position_HorizontalAlignmentJustifiedButton
+Map Frame Format Text Symbol: a=esri_layouts_FormatTab,a=esri_layouts_textFormatGroup,a=esri_layouts_showTextSymbolDockPaneButton
+Map Frame Align: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_alignMenu
+Map Frame Distribute: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_distributeMenu
+Map Frame Group: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_GroupUngroupMenu
+Map Frame Order: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_orderMenu
+Map Frame AnchorTopLeft: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopLeft
+Map Frame AnchorTopMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopMid
+Map Frame AnchorTopRight: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopRight
+Map Frame AnchorLeftMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorLeftMid
+Map Frame AnchorCenter: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorCenter
+Map Frame AnchorRightMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorRightMid
+Map Frame BottomLeft: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=BottomLeft
+Map Frame AnchorBottomMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorBottomMid
+Map Frame AnchorBottomRight: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorBottomRight
+Map Frame X: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=X
+Map Frame Y: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Y
+Map Frame Width: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Width
+Map Frame Height: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Height
+Map Frame LockedAspectRatio: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=LockedAspectRatio
 
 Text More: Text,Insert Graphics and Text,,More
 Text Dynamic Text: Text,Insert Graphics and Text,Dynamic Text
@@ -477,55 +527,107 @@ Raster Layer Band Combination: Raster Layer,Rendering,Band Combination
 Raster Layer Masking: Raster Layer,Rendering,Masking
 Raster Layer Rotation Type: Raster Layer,Rotation,Rotation Type
 
-Animation Path: Animation,Display,Path
-Animation Edit Current Keyframe: Animation,Display,,Edit Current Keyframe
-Animation Edit Previous: Animation,Display,,Edit Previous
-Animation Edit Next: Animation,Display,,Edit Next
-Animation Bring Into View: Animation,Display,,Bring Into View
-Animation Import: Animation,Create,Import
-Animation Append: Animation,Create,Append
-Animation Update: Animation,Edit,,Update
-Animation Delete: Animation,Edit,,Delete
-Animation Delete All: Animation,Edit,,Delete All
-Animation EmbeddedTextBox: Animation,Edit,,,EmbeddedTextBox
-Animation Zoom To: Animation,Edit,,Zoom To
-Animation Properties: Animation,Edit,,Properties
-Animation Current:: Animation,Playback,,Current:
-Animation Duration:: Animation,Playback,,Duration:
-Animation Timeline: Animation,Playback,Timeline
-Animation Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Title
-Animation Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Paragraph
-Animation Image: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Image
-Animation Group: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Group
-Animation Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Title
-Animation Outline Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Outline Title
-Animation Shadow Title: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Shadow Title
-Animation Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Paragraph
-Animation Outline Paragraph: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Outline Paragraph
-Animation Copyright: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Copyright
-Animation Image: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Image
-Animation Watermark: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Watermark
-Animation Full Screen: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Full Screen
-Animation Map Time: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Map Time
-Animation Map Range: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Map Range
-Animation Viewpoint: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Viewpoint
-Animation Voxel Filter: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Voxel Filter
-
-Animation Voxel Surface: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Voxel Surface
-
-Animation Point: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Point
-
-Animation Ellipse: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Ellipse
-
-Animation Rectangle: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Rectangle
-
-Animation Arrow: Animation,Overlay,Add Overlay,ArcGIS.Desktop.Internal.Mapping.Ribbon.AnimationOverlayGalleryItem,Arrow
-
-Animation More: Animation,Overlay,Add Overlay,More
-Animation EmbeddedTextBox: Animation,Overlay,,,EmbeddedTextBox
-Animation Selected Color: Animation,Overlay,,,Selected Color
-Animation Movie: Animation,Export,Movie
-Animation Preview: Animation,Export,Preview
+Animation Path: a=esri_mapping_animationTab,a=esri_mapping_animationVisualization,a=esri_mapping_animationFeedbackPalette
+Animation Edit Current Keyframe: a=esri_mapping_animationTab,a=esri_mapping_animationVisualization,a=esri_mapping_animationMoveControl,a=ShowMoveHandleBtn
+Animation Edit Previous: a=esri_mapping_animationTab,a=esri_mapping_animationVisualization,a=esri_mapping_animationMoveControl,a=PreviousMoveHandleBtn
+Animation Edit Next: a=esri_mapping_animationTab,a=esri_mapping_animationVisualization,a=esri_mapping_animationMoveControl,a=NextMoveHandleBtn
+Animation Bring Into View: a=esri_mapping_animationTab,a=esri_mapping_animationVisualization,a=esri_mapping_animationMoveControl,a=MoveHandleStaysInViewBtn
+Animation Import: a=esri_mapping_animationTab,a=esri_mapping_animationAppend,a=esri_mapping_importToKeyframeGallery
+Animation Append: a=esri_mapping_animationTab,a=esri_mapping_animationAppend,a=esri_mapping_animationAppendTransitionSplitButton
+Animation Update: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=SetBtn
+Animation Delete: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=DeleteKeyBtn
+Animation Delete All: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=DeleteAllKeysBtn
+Animation KeyframesCombo: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=KeyframesCombo
+Animation PART_EditableTextBox: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=KeyframesCombo,a=PART_EditableTextBox
+Animation Zoom To: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=GoToCurrentBtn
+Animation Properties: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationKeyframeControl,a=KeyPropertiesPaneBtn
+Animation Configuration: a=esri_mapping_animationTab,a=esri_mapping_animationKeyframe,a=esri_mapping_animationSettingsButton
+Animation TextBox: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=CurrentTimeSpan,a=TextBox
+Animation TextBox: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=DurationTimeSpan,a=TextBox
+Animation Return playback to the beginning of the animation.: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=ResetBtn
+Animation Step time backwards one keyframe at a time.: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=PreviousStepBtn
+Animation Autoplay forward through time from the current keyframe to the last keyframe.: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=PlayForwardBtn
+Animation Step time forward one keyframe at a time.: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationPlaybackControl,a=NextStepBtn
+Animation Timeline: a=esri_mapping_animationTab,a=esri_mapping_animationPlayback,a=esri_mapping_animationTimelineButton
+Animation More: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayGallery,a=PART_MoreButton
+Animation fontNameComboBox: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayControl,a=OverlayFont,a=fontNameComboBox
+Animation PART_EditableTextBox: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayControl,a=OverlayFont,a=fontNameComboBox,a=PART_EditableTextBox
+Animation Set the font size for the overlay text.: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayControl,a=OverlayFontSize
+Animation PART_EditableTextBox: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayControl,a=OverlayFontSize,a=PART_EditableTextBox
+Animation Selected Color: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayControl,a=ScreenOverlayColor,a=colorComboBox
+Animation Overlay Properties: a=esri_mapping_animationTab,a=esri_mapping_animationOverlay,a=esri_mapping_animationOverlayPropertiesButton
+Animation Movie: a=esri_mapping_animationTab,a=esri_mapping_animationExport,a=esri_mapping_animationExportButton
+Animation Preview: a=esri_mapping_animationTab,a=esri_mapping_animationExport,a=esri_mapping_animationPreviewButton
+Animation Lock View Size: a=esri_mapping_animationTab,a=esri_mapping_animationExport,a=esri_mapping_animationLockViewSizeButton
+Animation Select or rename the current animation for this map.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=AnimationList
+Animation PART_EditableTextBox: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=AnimationList,a=PART_EditableTextBox
+Animation Add a new empty animation and set it as the current animation.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=AddAnimationBtn
+Animation Create a new animation using a copy of the current animation.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=DuplicateAnimationBtn
+Animation Delete the current animation and set another animation as the current.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=DeleteAnimationBtn
+Animation Sort the animation list by when they were added to the map.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=NoSortAnimationsBtn
+Animation Sort the animation list in ascending order.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=SortAnimationsBtn
+Animation Sort the animation list in descending order.: a=esri_mapping_animationTab,a=esri_mapping_animationList,a=esri_mapping_animationListControl,a=ReverseSortAnimationsBtn
 Animation Lock View Size: Animation,Export,Lock View Size
 Animation Current Animation:: Animation,Manage,,Current Animation:
 Animation EmbeddedTextBox: Animation,Manage,,,EmbeddedTextBox
+
+North Arrow North Arrow: a=esri_layouts_FormatTab
+North Arrow Element Part: a=esri_layouts_FormatTab,a=esri_layouts_subElementGroup,a=esri_layouts_subElementComboBox
+North Arrow Element Properties: a=esri_layouts_FormatTab,a=esri_layouts_subElementGroup,a=esri_layouts_showElementDockPaneButton
+North Arrow Rectangle Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Rectangle Text
+North Arrow Polygon Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Polygon Text
+North Arrow Straight Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Straight Text
+North Arrow Curved Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Curved Text
+North Arrow Circle Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Circle Text
+North Arrow Ellipse Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Ellipse Text
+North Arrow Line: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Line
+North Arrow Curve: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Curve
+North Arrow Freehand: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Freehand
+North Arrow Arc: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Arc
+North Arrow Point: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Point
+North Arrow Rectangle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Rectangle
+North Arrow Polygon: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Polygon
+North Arrow Circle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Circle
+North Arrow Ellipse: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Ellipse
+North Arrow Lasso: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Lasso
+North Arrow Rounded Rectangle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Rounded Rectangle
+North Arrow Triangle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Triangle
+North Arrow Right Triangle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Right Triangle
+North Arrow Half-Circle: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Half-Circle
+North Arrow Cross: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Cross
+North Arrow X: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,X
+North Arrow Cloud: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Cloud
+North Arrow Arrow: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Arrow
+North Arrow Curved Arrow: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Curved Arrow
+North Arrow Double Arrow: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Double Arrow
+North Arrow Curved Double Arrow: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,Curved Double Arrow
+North Arrow More: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_insertElementGalleryLayout,a=PART_MoreButton
+North Arrow Dynamic Text: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_dynamicTextGallery
+North Arrow Picture: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_newPictureGallery
+North Arrow Properties: a=esri_layouts_FormatTab,a=esri_layouts_insertGraphicGroupFormat,a=esri_layouts_textAndGraphicsPropertiesButton
+North Arrow Rotate Or Flip: a=esri_layouts_FormatTab,a=esri_layouts_editGraphicGroup,a=esri_layouts_rotateOrFlipMenu
+North Arrow Merge Shapes: a=esri_layouts_FormatTab,a=esri_layouts_editGraphicGroup,a=esri_layouts_mergeShapesMenu
+North Arrow Reshape: a=esri_layouts_FormatTab,a=esri_layouts_editGraphicGroup,a=esri_layouts_reshapeElementToolPalette
+North Arrow North Arrow Gallery: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_northArrowStyleGalleryInLine
+North Arrow colorPicker: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_fillColorGallery,a=colorPicker
+North Arrow Selected Color: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_fillColorGallery,a=colorPicker,a=colorComboBox
+North Arrow Size: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_symbolSizeComboBox
+North Arrow Size: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_symbolSizeComboBox,a=PART_TextBox
+North Arrow Format North Arrow: a=esri_layouts_FormatTab,a=esri_layouts_northArrowFormatGroup,a=esri_layouts_showNorthArrowStyleDockPaneButton
+North Arrow Align: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_alignMenu
+North Arrow Distribute: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_distributeMenu
+North Arrow Group: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_GroupUngroupMenu
+North Arrow Order: a=esri_layouts_FormatTab,a=esri_layouts_arrangeGroup,a=esri_layouts_orderMenu
+North Arrow AnchorTopLeft: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopLeft
+North Arrow AnchorTopMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopMid
+North Arrow AnchorTopRight: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorTopRight
+North Arrow AnchorLeftMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorLeftMid
+North Arrow AnchorCenter: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorCenter
+North Arrow AnchorRightMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorRightMid
+North Arrow BottomLeft: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=BottomLeft
+North Arrow AnchorBottomMid: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorBottomMid
+North Arrow AnchorBottomRight: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=AnchorBottomRight
+North Arrow X: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=X
+North Arrow Y: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Y
+North Arrow Width: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Width
+North Arrow Height: a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=Height	

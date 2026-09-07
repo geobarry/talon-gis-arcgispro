@@ -252,7 +252,6 @@ class Actions:
             prop_seq = [
                 [("automation_id","SymbolGallery_Tabs")],
                 [("class_name","ListBox")],
-                # [("class_name","ListBox"),("automation_id","SymbolGallery_GalleryPropertiesHeader")],
                 [("class_name","ListBoxItem"),("name",prop_tab)]
             ]
             el = actions.user.find_el_by_prop_seq(prop_seq,DockPane,verbose = True)
@@ -365,6 +364,25 @@ class Actions:
                         if is_number_control:
                             actions.key("ctrl-a")
                     return el
+
+    def arc_symbol_add_effect(name: str):
+        """Adds desired effect to first symbol"""
+        # Navigate to the layers group under structure
+        container=actions.user.arc_symbol_property_group("Structure,Layers")
+        # Click add effect button
+        prop_seq=[
+            [("control_type","List")],
+            [("control_type","DataItem")],
+            [("control_type","Group")],
+            [("control_type","ComboBox"),("name","Add layer effect")]
+        ]
+        button=actions.user.find_el_by_prop_seq(prop_seq,container,verbose=True)
+        if button:
+            actions.user.act_on_element(button,'expand')
+            prop_list=[("name",f"{name} effect")]
+            item=actions.user.key_to_matching_element("down",prop_list)
+            if item:
+                actions.key("enter")
 
     def arc_symbol_color_properties():
         """navigates to the color properties button if the color palette is already open"""

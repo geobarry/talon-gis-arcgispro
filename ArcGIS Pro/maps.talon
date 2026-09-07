@@ -13,12 +13,9 @@ zoom out: user.arc_call_menu_item("Map,Navigate,,Fixed Zoom Out")
 representative fraction [<number>]: user.arc_scale_text(number or 0)
 
 
-pan {user.compass_direction}: user.arc_pan(compass_direction,0.25)
-pan (far|way) {user.compass_direction}: user.arc_pan(compass_direction,0.9)
-pan (tiny|a little bit) {user.compass_direction}: user.arc_pan(compass_direction,0.05)
+pan <user.four_directions>: user.drag_window_center(four_directions,25)
+pan <number> <user.four_directions>: user.drag_window_center(four_directions,number)
+pan (far|way) <user.four_directions>: user.drag_window_center(four_directions,49)
+pan (tiny|a little bit) <user.four_directions>: user.drag_window_center(four_directions,5)
 
-pan west <number>: user.pan_arcgis_pro_map('west',number)
-pan east <number>: user.pan_arcgis_pro_map("east",number)
-pan north <number>: user.pan_arcgis_pro_map('north',number)
-pan south <number>: user.pan_arcgis_pro_map('south',number)
 orient [north]: key(o)

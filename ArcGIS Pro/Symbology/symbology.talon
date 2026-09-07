@@ -20,7 +20,7 @@ gallery tab:
 
 symbol gallery: user.arc_symbol_tab("gallery")
 
-symbol properties: user.arc_symbol_property_tab("Properties")
+symbol properties: user.arc_symbol_property_tab("Symbol")
 symbol layers: user.arc_symbol_property_tab("Layers")
 symbol structure: user.arc_symbol_property_tab("Structure")
 
@@ -48,6 +48,9 @@ split down:
 split up:
 	user.key_to_elem_by_val("tab","Grid splitter")
 	key("up:7")
+
+# EFFECT
+effect add buffer: user.arc_symbol_add_effect("Buffer")
 
 # SPECIALIZED COMMANDS
 button burger: user.key_to_name_and_class("tab","$","Button_Burger")

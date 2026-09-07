@@ -9,14 +9,13 @@ mod.list("arc_button","Say '{arc_button} button' to tab to the button and click 
 mod.list("arc_catalog_group","Say 'catalog select {arc_catalog_group} to open group in Catalog panel'")
 mod.list("arc_layer_context_item","Say 'layer {{layer_name}} {arc_layer_context_item}' to right click on layer and select option in context menu")
 mod.list("arc_contents_map_context_item","automation_id's for items in context menu when you right click map in them Table of Contents")
-mod.list("arc_menu_heading","Main menu headings. Say 'menu {arc_menu_heading}' to open menu. Say 'arc help {arc_menu_heading} menu for list of menu' items.")
 mod.list("arc_menu_item","Say '{arc_menu_heading} arc_menu_item' to invoke control from main menu")
 mod.list("arc_contents_list_style","Say 'list by {arc_contents_list_style}' to change list style of Contents panel")
 
 mod.list("arc_field_name","the name of a field for definition queries and attribute selection")
 
 mod.list("arc_parameter","property list for parameter in geoprocessing tool window")
-mod.list("compass_direction","Compass direction")
+
 mod.list("arc_dynamic_panel","currently accessible panels")
 mod.list("arc_dynamic_map","currently accessible maps")
 mod.list("arc_dynamic_layout","currently accessible layouts")
@@ -24,13 +23,6 @@ mod.list("arc_dynamic_table","currently accessible tables")
 mod.list("arc_dynamic_layer","layers_in_the_table_of_contents")
 mod.list("arc_dynamic_toolbox","toolboxes in geoprocessing pane")
 mod.list("arc_geoprocessing_tool","geoprocessing tool name for search")
-
-compass_diffs = {
-    "north": (0,-1),
-    "south": (0,1),
-    "east": (1,0),
-    "west": (-1,0)
-}
 
 global layout_wd 
 layout_wd = -1
@@ -355,12 +347,13 @@ class Actions:
                 [("class_name","RibbonApplicationButton"),("name",heading)]
             ]    
         else:
+            menu_prop=actions.user.get_property_list(heading)[0]
             prop_seq = [
-                [("class_name","Ribbon")],
-                [("class_name","RibbonTabHeaderItemsControl")],
-                [("class_name","RibbonTabHeader"),("name",heading)]
+                [("automation_id","NewRibbon")],
+                [("automation_id","PART_TabHeaderItemsControl")],
+                [("control_type","TabItem"),menu_prop]
             ]
-        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
+        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
         return el
     def arc_open_menu(heading: str):
         """Opens the menu; use talon list user.arc_menu_heading"""
@@ -386,7 +379,6 @@ class Actions:
     def arc_menu_item(seq: str):
         """Returns element on ribbon; use {user.arc_menu_item}"""
         ensure_focus()
-        print(f'seq: {seq}')
         # make sure ribbon is expanded
         need_to_collapse = expand_ribbon()
         seq = seq.split(",")
@@ -410,18 +402,13 @@ class Actions:
                     if not el:
                         print(f"could not find element {prop_list}")
                         break
-        print(f'elapsed_sec: {elapsed_sec}')
         return el,need_to_collapse
     def arc_call_menu_item(seq: str):
         """Performs default action on ribbon item"""
         el,need_to_collapse = actions.user.arc_menu_item(seq)
         # If the button is disabled, the element will be None
         if el:
-            # make sure element has been selected
-#            actions.user.act_on_element(el,"select")
             prop_list=[("name",seq.split(",")[-1])]
-            print(f'arc_call_menu_item: el: {el}')
-            
             pattern_list = actions.user.el_prop_val(el,'patterns')
             if pattern_list:
                 if "Invoke" in pattern_list:
@@ -439,15 +426,42 @@ class Actions:
         actions.user.act_on_element(menu_heading,"select")
         r = []
         def append_item(item, seq):
-            new_seq = seq + [item.name]
+            # Get item properties
+            name=actions.user.el_prop_val(item,'name')
+            help_text=actions.user.el_prop_val(item,'help_text')
+            control_type=actions.user.el_prop_val(item,'control_type')
+            automation_id=actions.user.el_prop_val(item,'automation_id')
+            valid_ctrl = control_type in ["Edit", "RadioButton", "Button", "ComboBox", "SplitButton"]
+            # Create text property list
+            if automation_id:
+                txt_prop_list=f"a={automation_id}"
+            else:
+                txt_prop_list=name
+            # Some controls don't have names but their automation ids are readable
+            lbl=name if name else help_text if help_text else automation_id
+            # create sequence
+            new_seq = seq + [(lbl,txt_prop_list)]
+            # Add to result if we can focus keyboard on it
+            if valid_ctrl:
+                r.append(new_seq)
+            # work through children
             if len(item.children) > 0:
                 for child in item.children:
                     append_item(child,new_seq)
-            elif item.name != "":
-                r.append(new_seq)
+                
+        # recursively create list of text property list sequences
         append_item(menu_heading,[])
-        r = [f"{x[0]} {x[-1]}: {','.join(x)}" for x in r]
-        clip.set_text("\n".join(r))
+        # create list of talon list text lines
+        menu_name=actions.user.el_prop_val(menu_heading,'name')
+        txt_list=[]
+        for item in r:
+            if item[-1][0]: # only include if it has a label
+                txt_prop_seq=','.join([x[1] for x in item])
+                txt=f"{menu_name} {item[-1][0]}: {txt_prop_seq}"
+                txt_list.append(txt)
+        # r = [f"{x[0]} {x[-1]}: {','.join(x)}" for x in r]
+        print(f'txt_list: {txt_list}')
+        clip.set_text("\n".join(txt_list))
     def arc_tool_window(name: str):
         """Need to make sure catalog panel is visible before calling this"""
         # let's go from bottom up
@@ -689,23 +703,36 @@ class Actions:
         print("function ARC_CONTEXT_ITEM")
         # open context menu
         actions.key("menu")
-        # parse item sequence
-        item_list = item_str.split(",")
+
         # prep work
         root = actions.user.window_root()
         popup_prop_list=[("class_name",".*Popup")]
 
-        # ArcGIS Pro stubbornly keeps secondary menu popups open so we need to test for this
-        level_n=0
-        menu=actions.user.matching_child(root,popup_prop_list)
+        def collapse_to_top_level_popup(root, popup_prop_list, max_depth=5):
+            """ArcGIS Pro reopens the context menu at whatever nesting depth
+            it was left at last time. Escape back down to just the top-level
+            popup so subsequent navigation starts from a known state."""
+            def measure_depth():
+                depth = 0
+                menu = actions.user.matching_child(root, popup_prop_list)
+                while menu and depth < max_depth:
+                    depth += 1
+                    menu = actions.user.matching_child(menu, popup_prop_list)
+                return depth
 
-        while menu and level_n < 5:
-            level_n += 1
-            menu=actions.user.matching_child(menu,popup_prop_list)
-        if level_n > 1:
-            actions.key(f"esc:{level_n - 1}")
+            depth = measure_depth()
+            attempts = 0
+            while depth > 1 and attempts < max_depth:
+                actions.key(f"esc:{depth - 1}")
+                depth = measure_depth()
+                attempts += 1
+            return depth
+            
+        collapse_to_top_level_popup(root,popup_prop_list)
 
         # go through menu item sequence
+        # parse item sequence
+        item_list = item_str.split(",")
         level=0
         for item in item_list:
             level += 1
@@ -795,43 +822,6 @@ class Actions:
         prop_list = [("automation_id",contents_list_style)]
         if not actions.user.element_match(actions.user.safe_focused_element(),prop_list):
             actions.user.key_to_matching_element("right",prop_list)
-    def arc_pan(direction: str, screen_prop: float = 0.5):
-        """Pans the map for duration expressed relative to the default duration 
-        which is 0.5 seconds."""
-        # start in the center of the map or layout
-        prop_list = ["or",[("class_name","LayoutPaneView"),("class_name","MapPaneView")]]
-        root = actions.user.earthbound_root()
-        print(f'root: {root}')
-        prop_seq = [
-            [("class_name","FrameworkDockSite")],
-            [("class_name","DockHost")],
-            [],
-            [],
-            [],
-            [("class_name","Workspace")],
-            [],
-            [],
-            [("class_name","DocumentWindow")],
-            [("class_name",".*PaneView")]
-        ]
-        # el = actions.user.matching_element(prop_list,max_level = 10)
-        el = actions.user.find_el_by_prop_seq(prop_seq,root)
-        if el:
-            x = el.rect.x + int(el.rect.width/2)
-            y = el.rect.y + int(el.rect.height/2)
-            ctrl.mouse_move(x,y)
-            actions.sleep(0.02)
-            # determine pixels from screen proportion
-            dist_pixels = screen_prop * min(el.rect.width,el.rect.height)
-            dx,dy = compass_diffs[direction]
-            x += -1 * dx * dist_pixels
-            y += -1 * dy * dist_pixels
-            # drag
-            actions.user.mouse_drag(0)
-            actions.sleep(0.1)
-            actions.user.slow_mouse(x,y,500)
-            actions.sleep(0.6)
-            actions.user.mouse_drag_end()
 
     def arc_create_custom_layout(wd: float, ht: float):
         """Creates a new layout with the given dimensions"""
@@ -885,7 +875,7 @@ class Actions:
                     [("class_name","Workspace")],
                     [("class_name","TabbedMdiContainer")],
                     [("automation_id","esri_layouts.*"),("class_name","DockingWindowContainerTabItem")],
-                    [("automation_id","esri_layouts.*"),("class_name","DocumentWindow")]
+                    [("automation_id","esri_layouts.*"),("class_name","ProDocumentWindow")]
             ]
         el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
         print(f'el: {el}')
@@ -901,21 +891,23 @@ class Actions:
             actions.user.slow_mouse(x,y,750)
             actions.sleep(0.76)
             actions.user.mouse_drag_end()
-    def arc_expand_map_to_layout():
+    def arc_expand_map_to_layout(wd: float = None, ht: float = None):
         """resizes current map frame to fill up layout"""
         # pull up X ribbon item
-        global layout_wd
-        global layout_ht
-        if layout_wd == -1 or layout_ht == -1:
+        if not wd:
+            wd=layout_wd
+        if not ht:
+            ht=layout_ht
+        if not wd or not ht:
             print("unable to obtain layout width or height")
             return
-        actions.user.arc_call_menu_item("Map Frame,Size & Position,Size & Position,a=X")
+        actions.user.arc_call_menu_item("a=esri_layouts_FormatTab,a=esri_layouts_sizeAndPositionGroup,a=esri_layouts_sizeAndPositionControl,a=X")
         el = actions.user.safe_focused_element()
         print(f'el: {el}')
         # makes sure we're there
         prop_list = [("automation_id","X")]
-        el = actions.user.wait_for_element(prop_list)
-        print(f'el: {el}')
+#        el = actions.user.wait_for_element(prop_list)
+#        print(f'el: {el}')
         el = actions.user.safe_focused_element()
         print(f'el automation_id: {actions.user.el_prop_val(el,"automation_id")}')
         if el:
@@ -926,12 +918,37 @@ class Actions:
             actions.insert("0")
             actions.sleep(0.1)
             actions.key("tab ctrl-a")
-            actions.insert(f"{layout_wd}")
+            actions.insert(f"{wd}")
             actions.sleep(0.1)
             actions.key("tab ctrl-a")
-            actions.insert(f"{layout_ht}")
+            actions.insert(f"{ht}")
             actions.sleep(0.1)
             actions.key("enter")
+    def arc_insert_map_frame(map_name: str = None, ordinal: int = 1):
+        """Inserts map frame with given name more quickly"""
+        print(f'map_name: {map_name}')
+        # obtain full map name
+        global panel_or_tab_dict
+        if panel_or_tab_dict:
+            panel_or_tab_list=panel_or_tab_dict[map_name]
+            if panel_or_tab_list and ordinal <= len(panel_or_tab_list):
+                panel_or_tab=panel_or_tab_list[ordinal - 1]
+                map_name=actions.user.el_prop_val(panel_or_tab,'name')
+        actions.user.arc_call_menu_item("a=esri_core_insertTab,a=esri_layouts_insertMapFrameGroup,a=esri_layouts_newMapFrameGallery")        
+        # go to filter
+        prop_list=[("automation_id","PART_FilterButton")]
+        button=actions.user.key_to_matching_element("tab",prop_list)
+        if button:
+            # select group from filter
+            actions.key("alt-down")
+            prop_list=[("name",map_name)]
+            el=actions.user.key_to_matching_element("down",prop_list)
+            if el:
+                actions.key("enter")
+                # select map from group
+                prop_list=[("name","Default Extent")]
+                actions.user.key_to_matching_element("tab",prop_list)
+                            
 
     def arc_scale_text(scale: int = None):
         """Places focus on the scale text element"""
@@ -1251,3 +1268,14 @@ class Actions:
                 if el:
                     actions.user.act_on_element(el,"toggle")
 
+    def arc_show_undo_list():
+        """Shows list of recent actions that you can undo. Sometimes this allows 
+        undo actions that don't work with ctrl-z"""
+        root = actions.user.window_root()
+        prop_seq = [
+        	[("automation_id","titleBarPanel")],
+        	[("automation_id","QAT")],
+        	[("automation_id","esri_core_undoSplitButton")]
+        ]
+        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
+        actions.user.act_on_element(el,'expand')

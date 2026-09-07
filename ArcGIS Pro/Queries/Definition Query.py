@@ -6,6 +6,19 @@ mod = Module()
 @mod.action_class
 
 class Actions:
+    def arc_definition_query():
+        """Opens up a definition query and selects the first clause"""
+        actions.user.slow_key_press("enter pageup:3 down:7 tab")
+        prop_list=[("automation_id","addQueryWhenNoQueriesDefinedYet")]
+        el=actions.user.safe_focused_element()
+        if actions.user.element_match(el,prop_list):
+            actions.user.act_on_element(el,'invoke')
+        # Select default query
+        query=actions.user.arc_selected_definition_query()
+        print(f'query: {query}')
+        if query:
+            actions.user.act_on_element(query,'select')
+            actions.user.arc_select_nth_clause_item()#n: int = 1,item_type: str = "clause",action: str = ''):
     def arc_definition_query_list():
         """Return the list box containing all of the queries"""
         root = actions.user.window_root()
@@ -23,8 +36,11 @@ class Actions:
             return el
     def arc_selected_definition_query():
         """returns the selected definition query item from the query list"""
+        # Get object containing queries
         query_list = actions.user.arc_definition_query_list()
+        print(f'query_list: {query_list}')
         if query_list:
+            # Get first selected query if it exists
             selection = actions.user.el_prop_val(query_list,'selection')
             print(f'selection: {selection}')
             if selection:
@@ -86,6 +102,7 @@ class Actions:
                 actions.user.act_on_element(txt_box,'select')
             else:
                 actions.user.set_el_prop_val(txt_box,"value",name)
+                actions.key("tab")
     def query_remove_item(name: str):
         """Remove item with given value"""
         prop_list = [("value",name)]
