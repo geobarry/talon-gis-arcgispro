@@ -14,24 +14,28 @@ mod=Module()
 mod.list("arc_gp_dynamic_parameter","name of parameter in current geoprocessing tool dialog")
 
 
+
+
 def get_parameter_container():
     """retrieves custom element that contains all of the parameters"""
     container=None
     # TRY ANCESTORS FIRST
-    prop_list=[("automation_id","gp_tool_dialog.*")]
+    prop_list=["or",[[("automation_id","gp_tool_dialog.*")],[("class_name","ProToolWindow")]]]
     el=actions.user.safe_focused_element()
-    dialog=actions.user.matching_ancestor(el,prop_list)
-    if dialog:
-        prop_seq=[
-            [("class_name","ScrollViewer")],
-            [("control_type","Custom")],
-            [("control_type","Custom")]
-        ]
-        container=actions.user.find_el_by_prop_seq(prop_seq,dialog)
+    ancestor=actions.user.matching_ancestor(el,prop_list)
+    if ancestor:
+        prop_seq=[[("class_name","ScrollViewer")]]
+        container=actions.user.find_el_by_prop_seq(prop_seq,ancestor)
+        if container:
+            n=0
+            child=actions.user.matching_child(container, [("control_type","Custom")])
+            while n < 5 and child:
+                container=child
+                child=actions.user.matching_child(container,[("control_type","Custom")])
+        return container
     # TRY TO SELECT GEOPROCESSING PANEL OTHERWISE
     if not container:
         panel=actions.user.quick_select_panel("Geoprocessing")
-        print(f'panel: {panel}')
         if panel:
             prop_seq=[
                 [("automation_id","gp_doc_pane")],
@@ -40,7 +44,6 @@ def get_parameter_container():
                 [("control_type","Custom")]
             ]
             container=actions.user.find_el_by_prop_seq(prop_seq,panel,verbose=False)
-    print(f'container: {container}')
     return container
 
 
@@ -49,22 +52,32 @@ def fetch_parameters():
     """retrieves list of parameter names for dynamic list and simultaneously saves control list and dictionary of (text controls) and corresponding ids to global variables"""
     container=get_parameter_container()
     print(f'container: {container}')
+    parent=actions.user.el_prop_val(container,'parent')
+    siblings=actions.user.matching_children(parent,[("class_name","ScrollViewer")])
+    print(f'siblings: {siblings}')
+    
     if container:
         param_dict.clear()
         param_ctrl_list=actions.user.el_prop_val(container,'children')
-        print(f'param_ctrl_list: {param_ctrl_list}')
         if param_ctrl_list:
             name_list=[]
             param_name=None
-            for control in param_ctrl_list:
+            while len(param_ctrl_list) > 0:
+                control=param_ctrl_list.pop(0)
                 control_type=actions.user.el_prop_val(control,'control_type')
+                # handle actual parameters
                 if control_type.lower() in ['text','checkbox']:
                     param_name=actions.user.el_prop_val(control,'name')
                     param_dict[param_name] = []
                     name_list.append(param_name)
-                print(f'param_name: {param_name}')
+                print(f'param_name: {param_name} control_type: {control_type}')
                 if param_name and control_type.lower() not in ['text','image']:
                     param_dict[param_name].append(control)
+                # handle expanders
+                if control_type.lower() == "group":
+                    print("GROUP FOUND!!!!!!!")
+                    children=actions.user.el_prop_val(control,'children')
+                    param_ctrl_list=param_ctrl_list + children
             return name_list
 
 ctx=Context()
@@ -157,6 +170,27 @@ class Actions:
                     actions.user.act_on_element(trg_ctrl,'expand')
                 case 'toggle':
                     actions.user.act_on_element(trg_ctrl,'toggle')
+    def arc_gp_select_tab(name: str):
+        """Selects one of the tabs in the geoprocessing panel"""
+        # Retrieve tool window panel
+        prop_list=[("automation_id","esri_geoprocessing_toolBoxes")]
+        el=actions.user.safe_focused_element()
+        print(f'el: {el}')
+        if el:
+            panel=actions.user.matching_ancestor(el,prop_list)
+            print(f'panel: {panel}')
+            if panel:
+                # Retrieved tab
+                prop_seq=[
+                    [("automation_id","gp_doc_pane")],
+                    [("automation_id","gp_tool_dialog")],
+                    [("control_type","List")],
+                    [("name",name)]
+                ]
+                tab = actions.user.find_el_by_prop_seq(prop_seq,panel,verbose=True)
+                print(f'tab: {tab}')
+                if tab:
+                    actions.user.act_on_element(tab,'select')
     
-    
+
     

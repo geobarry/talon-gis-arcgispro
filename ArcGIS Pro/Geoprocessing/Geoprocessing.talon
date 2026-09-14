@@ -18,6 +18,9 @@ parameter browse {user.arc_gp_dynamic_parameter}: user.arc_select_parameter(arc_
 parameter expand {user.arc_gp_dynamic_parameter}: user.arc_select_parameter(arc_gp_dynamic_parameter,'expand')
 parameter toggle {user.arc_gp_dynamic_parameter}: user.arc_select_parameter(arc_gp_dynamic_parameter,'toggle')
 
+# TABS
+tab parameters: user.arc_gp_select_tab("Parameters")
+tab environments: user.arc_gp_select_tab("Environments")
 
 # REPLACED
 #^parameter {user.arc_parameter}$: user.arc_tab_to_parameter(arc_parameter)
