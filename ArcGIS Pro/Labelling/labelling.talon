@@ -18,3 +18,6 @@ label paragraph: user.arc_label_group("Symbol",'Paragraph')
 
 label fitting strategy: user.arc_label_group('Position','2')
 label conflict resolution: user.arc_label_group('Position','3')
+
+# WHEN YOU ARE ALREADY IN THE LABEL CLASS PANEL
+label fields: user.arc_label_class_fields()

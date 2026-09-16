@@ -510,6 +510,7 @@ class Actions:
                     panel=get_panel_from_panel_or_tab(panel_or_tab)
                     name=actions.user.el_prop_val(panel,'name')
                     post_process_panel(panel,name)
+                    return panel_or_tab
     def quick_select_panel(panel_name: str):
         """Selects tool panel with known name"""
         # first try to find parent of current focused element
@@ -534,6 +535,16 @@ class Actions:
             # actions.user.act_on_element(panel,'invoke')
             post_process_panel(panel,panel_name)
             return panel
+    def arc_close_panel(panel_spoken_form: str, ordinal: int = 1):
+        """Closes a panel, tab, were similar by searching through panels"""
+        panel_or_tab=actions.user.arc_select_panel(panel_spoken_form,ordinal)
+        if panel_or_tab:
+            actions.key("ctrl-f4")
+    def quick_close_panel(panel_name: str):
+        """Closes tool panel with known name"""    
+        panel=actions.user.quick_select_panel(panel_name)
+        if panel:
+            actions.key("shift-esc")
     def arc_tab_to_layers():
         """presses the tab key to get to the layer list area"""
         # make sure Contents panel is selected
@@ -752,7 +763,7 @@ class Actions:
                     actions.key('down')
                 elif 'Invoke' in pattern_list:
                     actions.user.act_on_element(el,'select')
-                    actions.sleep(0.25) # for visual confirmation
+                    actions.sleep(1.25) # for visual confirmation
                     actions.user.act_on_element(el,'invoke')
             else:
                 # can't go onto the next level if we haven't successfully gotten this one

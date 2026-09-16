@@ -13,6 +13,7 @@ clause add [{user.conjunction}] {user.arc_field_name} [{user.arc_selection_predi
 clause add [{user.conjunction}] {user.arc_field_name} [{user.arc_selection_predicate}] <user.geo_list>: user.arc_query_add_multiple(conjunction or "or",arc_field_name,arc_selection_predicate or "is equal to",geo_list)
 
 (city|cities) include <user.city_list>: user.arc_query_add_multiple("or","name","is equal to",city_list)
+(country|countries) include <user.country_list>: user.arc_query_add_multiple("or","name","is equal to",country_list)
 
 test <user.geo_list>: print(geo_list)
 

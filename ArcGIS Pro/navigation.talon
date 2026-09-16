@@ -12,6 +12,13 @@ map select [<user.ordinals>] {user.arc_dynamic_map}$: user.arc_select_panel(arc_
 layout select [<user.ordinals>] {user.arc_dynamic_layout}$: user.arc_select_panel(arc_dynamic_layout, ordinals or 1)
 table select [<user.ordinals>] {user.arc_dynamic_table}$: user.arc_select_panel(arc_dynamic_table, ordinals or 1)
 
+panel close {user.arc_panel}: user.quick_close_panel(arc_panel)
+map close [<user.ordinals>] {user.arc_dynamic_map}$: user.arc_close_panel(arc_dynamic_map, ordinals or 1)
+layout close [<user.ordinals>] {user.arc_dynamic_layout}$: user.arc_close_panel(arc_dynamic_layout, ordinals or 1)
+table close [<user.ordinals>] {user.arc_dynamic_table}$: user.arc_close_panel(arc_dynamic_table, ordinals or 1)
+
+
+# CATALOG GROUPS
 catalog select {user.arc_catalog_group}: user.arc_select_catalog_group(arc_catalog_group)
 
 # TABS (MAPS,LAYOUTS,TABLES)

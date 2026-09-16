@@ -9,13 +9,19 @@ next feature$:
 	sleep(0.6)
 	user.arc_attribute_table_feature_command("ctrl-n")
 
+# OPENING AN ATTRIBUTE TABLE
+[open] attribute table: 
+	key(ctrl-t)
+	user.arc_focus_table()
+layer [<user.ordinals>] {user.arc_dynamic_layer} attribute table: 
+	user.arc_layer_attribute_table(arc_dynamic_layer, ordinals or 1)
+
 # ELEMENT SELECTION
 new field select: user.arc_fields_view_focus_new_field()
 table select: user.arc_focus_table()
 
 
 # TABLE VIEW
-[open] attribute table: key(ctrl-t)
 toggle (select|selection): key(ctrl-space)
 (switch|invert) selection: key(ctrl-u)
 clear table selection: key(ctrl-shift-a)

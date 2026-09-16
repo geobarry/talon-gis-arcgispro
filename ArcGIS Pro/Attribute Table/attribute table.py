@@ -86,6 +86,13 @@ class Actions:
             print(f'el: {el}')
             if el:
                 actions.user.act_on_element(el,'select')
-        
+    def arc_layer_attribute_table(layer_name: str, ordinal: int = 1):
+        """short cut to open the attribute table for a specified layer"""
+        el=actions.user.arc_select_layer(layer_name, ordinal)
+        if el:
+            actions.key("ctrl-t")
+            actions.sleep(3)
+            actions.user.arc_focus_table()
     
+
 ctx = Context()
