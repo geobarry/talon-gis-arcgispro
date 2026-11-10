@@ -12,9 +12,11 @@ next feature$:
 # OPENING AN ATTRIBUTE TABLE
 [open] attribute table: 
 	key(ctrl-t)
+	sleep(0.5)
 	user.arc_focus_table()
 layer [<user.ordinals>] {user.arc_dynamic_layer} attribute table: 
 	user.arc_layer_attribute_table(arc_dynamic_layer, ordinals or 1)
+table focus: user.arc_focus_table()
 
 # ELEMENT SELECTION
 new field select: user.arc_fields_view_focus_new_field()
@@ -31,8 +33,8 @@ clear table selection: key(ctrl-shift-a)
 (column|field) last: key(end)
 
 (column|field) commands: key("menu o")
-(column|field) sort: key("menu o s")
-(column|field) sort descending: key("menu o d")
+(column|field) sort [ascending]$: key("menu o s")
+(column|field) sort descending$: key("menu o d")
 (column|field) hide: 
 	key("menu o h")
 	sleep(0.5)

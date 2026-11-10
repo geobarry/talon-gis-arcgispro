@@ -41,13 +41,13 @@ class Actions:
         	[("control_type","Group")],
         	[("control_type","Pane")],
         	[("control_type","Tab"),("automation_id",".*Workspace__TabbedMdiContainer")],
-        	[("control_type","TabItem"),("automation_id","esri_mapping_mapPane_275Tab")],
-        	[("control_type","Pane"),("automation_id","esri_mapping_mapPane_275")],
+        	[("control_type","TabItem"),("automation_id","esri_mapping_mapPane_.*Tab")],
+        	[("control_type","Pane"),("automation_id","esri_mapping_mapPane_.*")],
         	[("control_type","Custom")],
         	[("control_type","Custom"),("automation_id","MapControl")],
         	[("control_type","Pane")]
         ]
-        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = False)
+        el = actions.user.find_el_by_prop_seq(prop_seq,root,verbose = True)
         if el:
             # Max shift in one go is 49%
             print(f'map pan d: {d}')

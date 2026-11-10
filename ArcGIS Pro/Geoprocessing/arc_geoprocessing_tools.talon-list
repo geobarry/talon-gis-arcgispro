@@ -11,6 +11,7 @@ Multipart to Singlepart
 Buffer
 Alter Field
 Feature to Line
+Feature to Point
 Merge
 Eliminate Polygon Part
 Erase

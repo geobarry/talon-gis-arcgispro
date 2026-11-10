@@ -82,10 +82,11 @@ class Actions:
                 [("class_name","TableCoreControl")],
                 [("automation_id","_tableDataGrid")]
             ]
-            el=actions.user.find_el_by_prop_seq(prop_seq,container)
+            el=actions.user.find_el_by_prop_seq(prop_seq,container,verbose=True)
             print(f'el: {el}')
             if el:
                 actions.user.act_on_element(el,'select')
+                
     def arc_layer_attribute_table(layer_name: str, ordinal: int = 1):
         """short cut to open the attribute table for a specified layer"""
         el=actions.user.arc_select_layer(layer_name, ordinal)
