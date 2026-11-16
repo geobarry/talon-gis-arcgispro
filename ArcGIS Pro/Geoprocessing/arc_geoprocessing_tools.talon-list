@@ -4,7 +4,7 @@ Clip
 Dissolve
 Create Features
 Clip Raster
-Intersection
+Intersect
 Union
 Count Overlapping Features
 Multipart to Singlepart
@@ -20,3 +20,6 @@ Simplify Polygon
 Check Geometry
 Spatial Join
 Minimum Bounding Geometry
+Create Random Points
+Create Thiessen Polygons
+Define Projection

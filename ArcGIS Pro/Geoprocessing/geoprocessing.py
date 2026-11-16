@@ -106,6 +106,7 @@ class Actions:
         if search_box:
             # set the value to the tool name
             actions.user.set_el_prop_val(search_box,"value",tool_name)
+            actions.sleep(1)
             if tool_name != '':
                 prop_seq=[
                     [("class_name","GPDocPaneView")],                    
@@ -120,6 +121,7 @@ class Actions:
                         actions.sleep(1)
                         actions.key('down')
                         el=actions.user.wait_for_element(prop_list)
+                        print(f"geoprocessing tool: {el.name}")
                         if el:
                             actions.user.act_on_focused_element("click")
     def arc_select_parameter(param_name: str, kw: str = 'select'):

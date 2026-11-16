@@ -31,15 +31,16 @@ clear table selection: key(ctrl-shift-a)
 (column|field) previous: key(shift-tab)
 (column|field) first: key(home)
 (column|field) last: key(end)
+(column|field) delete: key("menu o l")
 
-(column|field) commands: key("menu o")
+(column|field) menu: key("menu o")
 (column|field) sort [ascending]$: key("menu o s")
 (column|field) sort descending$: key("menu o d")
 (column|field) hide: 
 	key("menu o h")
 	sleep(0.5)
 
-(row|record|feature) commands: key("menu r")
+(row|record|feature) menu: key("menu r")
 
 (row|record|feature) next: key(enter)
 (row|record|feature) first: key(ctrl-up)
