@@ -516,68 +516,67 @@ class Actions:
         print("QUICK SELECT PANEL")
         container=None
         def get_panel_or_tab_container():
-            # first try to find parent of current focused element
-            prop_list=[("class_name","(ProToolWindow|ProDocumentWindow)"),("name",panel_name)]
-            el=actions.user.safe_focused_element()
-            panel=actions.user.matching_ancestor(el,prop_list)
-            # otherwise navigate from top
-            if not panel:
-                root=actions.user.earthbound_root()
-                print(f'root: {root}')
-                prop_seq = [
-                    [("automation_id","dockSite")], # [("class_name","FrameworkDockSite")],
-                    [("automation_id","dockSite.PART_DockHost")], # [("class_name","DockHost")],
-                ]
-                # check here for auto hide button
-                container=actions.user.find_el_by_prop_seq(prop_seq,root,verbose=True)
-                print(f'container: {container}')
-                prop_list=[("automation_id","dockSite.PART_DockHost.RightAutoHideTabGroup.*")]
-                hidden_grp=actions.user.matching_child(container,prop_list)
-                print(f'hidden_grp: {hidden_grp}')
-                if hidden_grp:
-                    prop_list=[("control_type","button"),("name",panel_name)]
-                    button=actions.user.matching_child(hidden_grp,prop_list)
-                    print(f'button: {button}')
-                    if button:
-                        actions.user.act_on_element(button,'invoke')
-                        # work up to ToolWindowContainer
-                        el=actions.user.safe_focused_element()
-                        print(f'el: {el}')
-                        prop_list=[("automation_id","ToolWindowContainer")]
-                        container=actions.user.matching_ancestor(el,prop_list)
-                        if container:
-                            # toggle auto hide
-                            prop_seq=[
-                                [("automation_id","PART_TitleBar")],
-                                [("automation_id","toggleAutoHideButton")]
-                            ]
-                            button=actions.user.find_el_by_prop_seq(prop_seq,container)
-                            if button:
-                                actions.user.act_on_element(button,'invoke')
-                                # ArcGIS Pro doesn't select well here so let's just go recursive
-                                return get_panel_or_tab_container()
-                    else:
-                        return container
+            root=actions.user.earthbound_root()
+            print(f'root: {root}')
+            prop_seq = [
+                [("automation_id","dockSite")], # [("class_name","FrameworkDockSite")],
+                [("automation_id","dockSite.PART_DockHost")], # [("class_name","DockHost")],
+            ]
+            # check here for auto hide button
+            container=actions.user.find_el_by_prop_seq(prop_seq,root,verbose=True)
+            print(f'container: {container}')
+            prop_list=[("automation_id","dockSite.PART_DockHost.RightAutoHideTabGroup.*")]
+            hidden_grp=actions.user.matching_child(container,prop_list)
+            print(f'hidden_grp: {hidden_grp}')
+            if hidden_grp:
+                prop_list=[("control_type","button"),("name",panel_name)]
+                button=actions.user.matching_child(hidden_grp,prop_list)
+                print(f'button: {button}')
+                if button:
+                    actions.user.act_on_element(button,'invoke')
+                    # work up to ToolWindowContainer
+                    el=actions.user.safe_focused_element()
+                    print(f'el: {el}')
+                    prop_list=[("automation_id","ToolWindowContainer")]
+                    container=actions.user.matching_ancestor(el,prop_list)
+                    if container:
+                        # toggle auto hide
+                        prop_seq=[
+                            [("automation_id","PART_TitleBar")],
+                            [("automation_id","toggleAutoHideButton")]
+                        ]
+                        button=actions.user.find_el_by_prop_seq(prop_seq,container)
+                        if button:
+                            actions.user.act_on_element(button,'invoke')
+                            # ArcGIS Pro doesn't select well here so let's just go recursive
+                            return get_panel_or_tab_container()
                 else:
                     return container
-        container=get_panel_or_tab_container()
-        print(f'container: {container}')
-        if container:
-            prop_seq=[
-                [("class_name","SplitContainer")],
-                [("automation_id",".*ToolWindowContainer")], # [("class_name","ToolWindowContainer")],
-                [("name",panel_name)]
-            ]
-            panel_or_tab = actions.user.find_el_by_prop_seq(prop_seq,container,verbose = False,extra_search_levels=3)
-            print(f'panel_or_tab: {panel_or_tab}')
-            panel=None
-            if panel_or_tab:
-                panel=get_panel_from_panel_or_tab(panel_or_tab)
-            if panel:
-                actions.user.act_on_element(panel,'select')
-                # actions.user.act_on_element(panel,'invoke')
-                post_process_panel(panel,panel_name)
-                return panel
+            else:
+                return container
+        # first try to find panel or tab in ancestor of current focused element
+        prop_list=[("class_name","(ProToolWindow|ProDocumentWindow)"),("name",panel_name)]
+        el=actions.user.safe_focused_element()
+        panel=actions.user.matching_ancestor(el,prop_list)
+        if not panel:
+            container=get_panel_or_tab_container()
+            print(f'QuickSelectPanel container: {container}')
+            if container:
+                prop_seq=[
+                    [("class_name","SplitContainer")],
+                    [("automation_id",".*ToolWindowContainer")], # [("class_name","ToolWindowContainer")],
+                    [("name",panel_name)]
+                ]
+                panel_or_tab = actions.user.find_el_by_prop_seq(prop_seq,container,verbose = False,extra_search_levels=3)
+                print(f'panel_or_tab: {panel_or_tab}')
+                panel=None
+                if panel_or_tab:
+                    panel=get_panel_from_panel_or_tab(panel_or_tab)
+        if panel:
+            actions.user.act_on_element(panel,'select')
+            # actions.user.act_on_element(panel,'invoke')
+            post_process_panel(panel,panel_name)
+            return panel
     def arc_close_panel(panel_spoken_form: str, ordinal: int = 1):
         """Closes a panel, tab, were similar by searching through panels"""
         panel_or_tab=actions.user.arc_select_panel(panel_spoken_form,ordinal)
